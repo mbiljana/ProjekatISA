@@ -21,12 +21,16 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+    @Column
     private LocalDateTime dateFrom;
     //akcija kao boolean da li je na akciji ili ne ???
     //datum vazenja akcije
+    @Column
     private int numPeople;
+    @Column
     private String price;
     //proveriti tip trajanja
+    @Column
     private LocalTime duration;
     @Transient // ???
     private List<String> additionalServices = new ArrayList<String>() ;

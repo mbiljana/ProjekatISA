@@ -18,15 +18,23 @@ public class Adventure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+    @Column
     private String adventureName;
+    @Column
     private String adventureAddress;
+    @Column
     private String promoDescription;
+    @Column
     private String instructorBiography;
+    @Column
     private int adventureCapacity;
+    @Column
     private String adventureRules;
     //termini;
+    @Column
     private String aventureEquipment;
     //cenovnik
+    @Column
     private String adventureAdditionalServices;
     //uslovi otkazivanja
     @ManyToOne

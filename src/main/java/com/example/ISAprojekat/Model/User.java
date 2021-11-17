@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
@@ -22,15 +19,25 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+    @Column
     private String name;
+    @Column
     private String surname;
+    @Column
     private String emailAddress;
+    @Column
     private int phoneNumber;
+    @Column
     private String city;
+    @Column
     private String state;
+    @Column
     private String homeAddress;
+    @Column
     private Date birthDate; //mozda ne treba
+    @Column
     private String username;
+    @Column
     private String password;
 
 
