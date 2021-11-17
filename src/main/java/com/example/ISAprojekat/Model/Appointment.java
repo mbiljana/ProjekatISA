@@ -17,19 +17,19 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Termin {
+public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    private LocalDateTime datumOd;
+    private LocalDateTime dateFrom;
     //akcija kao boolean da li je na akciji ili ne ???
     //datum vazenja akcije
-    private int brojOsoba;
-    private String cena;
+    private int numPeople;
+    private String price;
     //proveriti tip trajanja
-    private LocalTime trajanje;
+    private LocalTime duration;
     @Transient // ???
-    private List<String> dodatneUsluge = new ArrayList<String>() ;
+    private List<String> additionalServices = new ArrayList<String>() ;
 
 
 

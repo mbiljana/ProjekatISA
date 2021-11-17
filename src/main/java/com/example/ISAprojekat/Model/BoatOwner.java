@@ -11,15 +11,16 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class VlasnikVikendice extends Korisnik{
+
+@Entity
+public class BoatOwner extends User {
 
     @OneToMany
-    private List<Vikendica> vikendice = new ArrayList<>();
-
+    private List<Boat> boats = new ArrayList<>();
 
 }

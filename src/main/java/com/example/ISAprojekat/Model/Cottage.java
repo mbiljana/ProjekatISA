@@ -12,22 +12,22 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vikendica {
+public class Cottage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    private String nazivVikendice;
-    private String adresaVikendice;
-    private String opisVikendice;
-    private int brojSoba;
-    private int brojKreveta;
+    private String cottageName;
+    private String cottageAddress;
+    private String cottageDescription;
+    private int numRooms;
+    private int numBeds;
     //cenovnik
-    private String dodatneUsluge;
-    private String pravilaPonasanja;
+    private String cottageAdditionalServices;
+    private String cottageRules;
     //termini
     //vlasnik
     @ManyToOne
-    private VlasnikVikendice vlasnikVikendice;
+    private CottageOwner cottageOwner;
 
 }

@@ -13,22 +13,22 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Avantura {
+public class Adventure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    private String nazivAvanture;
-    private String adresaAvanture;
-    private String promoOpis;
-    private String biografijaInstruktora;
-    private int kapacitet;
-    private String pravilaPonasanjaAvanture;
+    private String adventureName;
+    private String adventureAddress;
+    private String promoDescription;
+    private String instructorBiography;
+    private int adventureCapacity;
+    private String adventureRules;
     //termini;
-    private String opremaAvanture;
+    private String aventureEquipment;
     //cenovnik
-    private String dodatneUslugeAvanture;
+    private String adventureAdditionalServices;
     //uslovi otkazivanja
     @ManyToOne
-    private InstruktorPecanja instruktorPecanja;
+    private FishingInstructor fishingInstructor;
 }

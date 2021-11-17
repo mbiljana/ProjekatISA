@@ -17,21 +17,21 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Korisnik {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    private String ime;
-    private String prezime;
-    private String emailAdresa;
-    private int brojTelefona;
-    private String grad;
-    private String drzava;
-    private String adresaPrebivalista;
-    private Date datumRodjenja; //mozda ne treba
-    private String korisnickoIme;
-    private String lozinka;
+    private String name;
+    private String surname;
+    private String emailAddress;
+    private int phoneNumber;
+    private String city;
+    private String state;
+    private String homeAddress;
+    private Date birthDate; //mozda ne treba
+    private String username;
+    private String password;
 
 
 
