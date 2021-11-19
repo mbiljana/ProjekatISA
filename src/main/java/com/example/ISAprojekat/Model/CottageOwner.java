@@ -1,5 +1,6 @@
 package com.example.ISAprojekat.Model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class InstruktorPecanja extends Korisnik{
+public class CottageOwner extends User {
 
+
+    /*
     @OneToMany
-    private List<Avantura> avanture = new ArrayList<>();
+    private List<Cottage> cottages = new ArrayList<>();
+
+     */
+
 
 }
