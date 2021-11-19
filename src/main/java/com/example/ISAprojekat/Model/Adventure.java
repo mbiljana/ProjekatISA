@@ -37,6 +37,9 @@ public class Adventure {
     @Column
     private String adventureAdditionalServices;
     //uslovi otkazivanja
+   /*
     @ManyToOne
     private FishingInstructor fishingInstructor;
+
+    */
 }

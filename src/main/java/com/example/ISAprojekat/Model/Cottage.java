@@ -34,8 +34,12 @@ public class Cottage {
     private String cottageRules;
     //termini
     //vlasnik
+
+    /*
     @ManyToOne
     private CottageOwner cottageOwner;
+
+     */
 
 
 

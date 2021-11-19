@@ -43,7 +43,11 @@ public class Boat {
     //cenovnik
     //private String dodatneUsluge; ???
     //uslovi otkaza rez
+
+   /*
     @ManyToOne
     private BoatOwner boatOwner;
+
+    */
 
 }

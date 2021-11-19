@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class FishingInstructor extends User {
 
+
+    /*
     @OneToMany
     private List<Adventure> adventures = new ArrayList<>();
+
+     */
 
 }

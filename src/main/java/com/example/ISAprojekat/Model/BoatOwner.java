@@ -12,15 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 
 @Entity
 public class BoatOwner extends User {
 
+
+    /*
     @OneToMany
     private List<Boat> boats = new ArrayList<>();
+
+     */
 
 }

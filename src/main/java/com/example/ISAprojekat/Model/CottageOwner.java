@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class CottageOwner extends User {
 
+
+    /*
     @OneToMany
     private List<Cottage> cottages = new ArrayList<>();
+
+     */
 
 
 }

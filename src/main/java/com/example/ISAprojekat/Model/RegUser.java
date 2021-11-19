@@ -13,12 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class RegUser extends User {
 
+
+    /*
     @OneToMany(mappedBy = "reservedCottages",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     public List<CottageAppointment> reservedCottages = new ArrayList<>();
 
@@ -37,6 +35,8 @@ public class RegUser extends User {
     @OneToMany(mappedBy = "visitedAdventure",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     public List<AdventureAppointment> visitedAdventure = new ArrayList<>();
 
+
+     */
 
 
 

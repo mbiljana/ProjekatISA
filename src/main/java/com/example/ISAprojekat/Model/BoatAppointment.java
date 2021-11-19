@@ -10,14 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class BoatAppointment extends Appointment{
 
+    /*
     @ManyToOne(fetch = FetchType.EAGER)
     private RegUser reservedBoat;
     @ManyToOne(fetch = FetchType.EAGER)
     private RegUser visitedBoat;
+
+     */
 }

@@ -11,14 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class CottageAppointment extends Appointment{
 
+    /*
     @ManyToOne(fetch = FetchType.EAGER)
     private RegUser reservedCottages;
     @ManyToOne(fetch = FetchType.EAGER)
     private RegUser visitedCottages;
+
+     */
 }
