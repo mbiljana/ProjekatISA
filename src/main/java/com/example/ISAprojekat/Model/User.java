@@ -26,7 +26,7 @@ public class User {
     @Column
     private String emailAddress;
     @Column
-    private int phoneNumber;
+    private String phoneNumber;
     @Column
     private String city;
     @Column
@@ -39,6 +39,8 @@ public class User {
     private String username;
     @Column
     private String password;
+    @Column
+    private Role role;
 
 
 
