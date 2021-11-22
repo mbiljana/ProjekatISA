@@ -9,9 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.io.Serializable;
 
 @Entity
-public class CottageAppointment extends Appointment{
+public class CottageAppointment extends Appointment implements Serializable {
 
     /*
     @ManyToOne(fetch = FetchType.EAGER)

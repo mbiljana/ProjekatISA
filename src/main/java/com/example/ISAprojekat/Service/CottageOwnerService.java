@@ -1,4 +1,4 @@
 package com.example.ISAprojekat.Service;
 
-public class BoatServiceImpl {
+public interface CottageOwnerService {
 }
