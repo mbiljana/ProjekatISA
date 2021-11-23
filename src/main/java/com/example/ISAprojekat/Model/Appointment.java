@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Appointment implements Serializable {
+public class Appointment  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;

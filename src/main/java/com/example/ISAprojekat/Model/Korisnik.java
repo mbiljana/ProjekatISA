@@ -15,7 +15,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
+public class Korisnik implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

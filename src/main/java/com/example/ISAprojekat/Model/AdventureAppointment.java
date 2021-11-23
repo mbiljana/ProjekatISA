@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Entity
-public class AdventureAppointment extends Appointment implements Serializable {
+public class AdventureAppointment extends Appointment  {
 
     /*
     @ManyToOne(fetch = FetchType.EAGER)

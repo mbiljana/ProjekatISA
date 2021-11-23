@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Boat implements Serializable {
+public class Boat  implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,10 +45,13 @@ public class Boat implements Serializable {
     //private String dodatneUsluge; ???
     //uslovi otkaza rez
 
-   /*
-    @ManyToOne
+
+    /*
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "boat_owner_id")
     private BoatOwner boatOwner;
 
-    */
+
+     */
 
 }
