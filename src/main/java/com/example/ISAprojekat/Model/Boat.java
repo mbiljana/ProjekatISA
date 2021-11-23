@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Boat {
+public class Boat  implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,10 +45,13 @@ public class Boat {
     //private String dodatneUsluge; ???
     //uslovi otkaza rez
 
-   /*
-    @ManyToOne
+
+    /*
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "boat_owner_id")
     private BoatOwner boatOwner;
 
-    */
+
+     */
 
 }

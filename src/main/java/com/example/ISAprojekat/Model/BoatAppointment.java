@@ -8,9 +8,10 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @Entity
-public class BoatAppointment extends Appointment{
+public class BoatAppointment extends Appointment implements Serializable {
 
     /*
     @ManyToOne(fetch = FetchType.EAGER)

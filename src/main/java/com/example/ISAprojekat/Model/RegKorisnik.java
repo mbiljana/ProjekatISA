@@ -1,19 +1,10 @@
 package com.example.ISAprojekat.Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 @Entity
-public class RegUser extends User {
+public class RegKorisnik extends Korisnik implements Serializable {
 
 
     /*

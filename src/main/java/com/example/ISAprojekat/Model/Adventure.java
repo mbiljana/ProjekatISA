@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Adventure {
+public class Adventure implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

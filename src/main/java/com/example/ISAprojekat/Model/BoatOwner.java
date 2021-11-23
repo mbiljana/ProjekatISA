@@ -1,25 +1,18 @@
 package com.example.ISAprojekat.Model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.io.Serializable;
 
 
 @Entity
-public class BoatOwner extends User {
-
+public class BoatOwner extends Korisnik implements Serializable {
 
     /*
-    @OneToMany
+
+    @OneToMany(mappedBy = "boatOwner",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Boat> boats = new ArrayList<>();
+
 
      */
 

@@ -1,4 +1,6 @@
 package com.example.ISAprojekat.Model;
 
-public class Admin extends User {
+import java.io.Serializable;
+
+public class Admin extends Korisnik implements Serializable {
 }
