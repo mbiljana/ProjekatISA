@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table
 @Getter
 @Setter
 @AllArgsConstructor
@@ -46,12 +47,10 @@ public class Boat  implements Serializable{
     //uslovi otkaza rez
 
 
-    /*
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "boat_owner_id")
     private BoatOwner boatOwner;
 
 
-     */
 
 }

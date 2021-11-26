@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping(value = "api/boats")
 public class BoatController {
 
-    /*
+
     @Autowired
     private BoatService boatService;
 
@@ -38,5 +38,4 @@ public class BoatController {
         return new ResponseEntity<>(boatDTOS, HttpStatus.OK);
     }
 
-     */
 }

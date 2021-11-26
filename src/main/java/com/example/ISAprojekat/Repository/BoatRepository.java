@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface BoatRepository extends JpaRepository<Boat, Long> {
 
-   // public List<Boat> findAllByBoatOwner(BoatOwner boatOwner);
+    public List<Boat> findAllByBoatOwner(BoatOwner boatOwner);
 }

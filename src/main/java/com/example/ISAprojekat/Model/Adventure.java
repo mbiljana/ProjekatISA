@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table
 @Getter
 @Setter
 @AllArgsConstructor

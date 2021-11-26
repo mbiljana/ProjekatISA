@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
+@Table
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,7 +21,7 @@ public class Korisnik implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    @Column
+    @Column (name = "ime")
     private String name;
     @Column
     private String surname;

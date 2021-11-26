@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table
 @Getter
 @Setter
 @AllArgsConstructor
@@ -33,9 +34,11 @@ public class Appointment  {
     //proveriti tip trajanja
     @Column
     private LocalTime duration;
-    @Transient // ???
+   /* @Transient // ???
     private List<String> additionalServices = new ArrayList<String>() ;
 
+
+    */
 
 
 

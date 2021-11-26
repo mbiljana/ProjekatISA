@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class  BoatServiceImpl implements BoatService {
 
-    /*
     @Autowired
     private BoatRepository boatRepository;
 
@@ -26,6 +25,6 @@ public class  BoatServiceImpl implements BoatService {
         return boatRepository.findAll();
     }
 
-     */
+
 
 }
