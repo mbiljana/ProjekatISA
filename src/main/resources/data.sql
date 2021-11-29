@@ -22,8 +22,6 @@ include stability, strength and durability to survive fishing ventures across va
         'Blue Moon','Pets are not allowed.','Fishing boat',
         'WKC4B','100 horsepower',100);
 
-insert into isa_proj_schema.korisnik(dtype, id, birth_date, city, email_address, home_address, ime, password, phone_number, role, state, surname, username)
-VALUES('a',2,'1999-12-12','fdhigdf','kdgoudg','iudggiod','dfgdu','hfhi','hghg',1,'yyi','hghg','hghg');
 
 
 
