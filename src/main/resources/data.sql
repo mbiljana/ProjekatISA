@@ -14,8 +14,6 @@ INSERT INTO adventure(id,adventure_additional_services,adventure_address,adventu
 VALUES (4,'#lunchBreakIncluded #transportIncluded','Tarinska 25b',20,'Tara rafting','Bring swimsuits.','Boats, inflatable vests','Instructor is a professional fisherman with a longterm experience.','This is a once in a lifetime opportunity to experience rafting while fishing.');
 
 
-
-
 INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed)
 VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
 include stability, strength and durability to survive fishing ventures across various kinds of waterways',

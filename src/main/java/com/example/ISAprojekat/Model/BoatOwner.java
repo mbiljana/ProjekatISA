@@ -16,7 +16,7 @@ public class BoatOwner  extends Korisnik implements Serializable {
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "boatOwner")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<Boat> boats = new ArrayList<>();
+    public List<Boat> boats = new ArrayList<>();
 
 
 

@@ -49,7 +49,7 @@ public class Boat  implements Serializable{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "boat_owner_id")
-    private BoatOwner boatOwner;
+    public BoatOwner boatOwner;
 
 
 

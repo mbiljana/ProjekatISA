@@ -1,7 +1,7 @@
 package com.example.ISAprojekat.Controller;
 
-import com.example.ISAprojekat.DTO.BoatDTO;
 import com.example.ISAprojekat.Model.Boat;
+import com.example.ISAprojekat.Model.DTO.BoatDTO;
 import com.example.ISAprojekat.Service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +32,6 @@ public class BoatController {
         List<BoatDTO> boatDTOS = new ArrayList<>();
         for (Boat b : boats) {
             boatDTOS.add(new BoatDTO(b));
-           // System.out.println(b.getBoatName());
         }
 
         return new ResponseEntity<>(boatDTOS, HttpStatus.OK);
