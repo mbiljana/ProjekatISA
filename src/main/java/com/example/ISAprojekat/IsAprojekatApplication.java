@@ -12,6 +12,8 @@ public class IsAprojekatApplication {
 		System.out.println("Uspesno pokrenuta aplikacija");
 
 
+
+
 	}
 
 }
