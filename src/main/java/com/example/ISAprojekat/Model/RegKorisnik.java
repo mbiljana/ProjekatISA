@@ -1,11 +1,16 @@
 package com.example.ISAprojekat.Model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table
-public class RegKorisnik extends Korisnik implements Serializable {
+@Getter
+@Setter
+public class RegKorisnik extends Korisnik{
 
 
     /*

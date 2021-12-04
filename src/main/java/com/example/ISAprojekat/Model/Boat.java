@@ -47,10 +47,6 @@ public class Boat  implements Serializable{
     //uslovi otkaza rez
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "boat_owner_id")
-    public BoatOwner boatOwner;
-
 
 
 }

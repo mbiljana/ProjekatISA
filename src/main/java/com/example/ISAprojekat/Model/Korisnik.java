@@ -10,12 +10,17 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static javax.persistence.InheritanceType.*;
+
 @Entity
 @Table
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+//ovo je dodato
+//proveriti da li je potrebno u nizim klasama dodati jos nesto
+@Inheritance(strategy=JOINED)
 public class Korisnik implements Serializable {
 
     @Id
