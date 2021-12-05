@@ -33,52 +33,34 @@ public class KorisnikController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegisterOwnerDTO> createBoatOwner(@RequestBody RegisterOwnerDTO DTO) throws Exception {
-
-        //po ulozi
-        if (DTO.getRole() == Role.BOATOWNER) {
-
             BoatOwner existing = this.boatOwnerService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
             //ako vec postoji clan
             if (existing != null) {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }else {
+                if (DTO.getPassword().equals(DTO.getPassword2()) && (DTO.getRegType().equals("BoatOwner"))) {
+                    BoatOwner boatOwner = new BoatOwner(DTO.getName(), DTO.getSurname(), DTO.getEmailAddress(),
+                            DTO.getPhoneNumber(), DTO.getCity(), DTO.getState(), DTO.getHomeAddress(),
+                            DTO.getBirthDate(), DTO.getUsername(), DTO.getPassword(), DTO.getRole());
+                    boatOwner.setEmailAddress(DTO.getEmailAddress());
+
+
+                    BoatOwner newBO = this.boatOwnerService.save(boatOwner);
+
+                    RegisterOwnerDTO boDTO = new RegisterOwnerDTO(newBO.getName(), newBO.getSurname(), newBO.getEmailAddress(),
+                            newBO.getPhoneNumber(), newBO.getCity(), newBO.getState(),
+                            newBO.getHomeAddress(), newBO.getBirthDate(),
+                            newBO.getUsername(), newBO.getPassword(), newBO.getRole());
+
+                    return new ResponseEntity<>(boDTO, HttpStatus.OK);
+                }else{
+                    System.out.println("Lozinke se ne poklapaju!");
+                    return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-            //u suprotnom
-            BoatOwner boatOwner = new BoatOwner(DTO.getName(), DTO.getSurname(), DTO.getEmailAddress(),
-                    DTO.getPhoneNumber(), DTO.getCity(), DTO.getState(), DTO.getHomeAddress(),
-                    DTO.getBirthDate(), DTO.getUsername(), DTO.getPassword(), DTO.getRole());
-            boatOwner.setEmailAddress(DTO.getEmailAddress());
 
-
-            BoatOwner newBO = this.boatOwnerService.save(boatOwner);
-
-            RegisterOwnerDTO boDTO = new RegisterOwnerDTO(newBO.getName(), newBO.getSurname(), newBO.getEmailAddress(),
-                    newBO.getPhoneNumber(), newBO.getCity(), newBO.getState(), newBO.getHomeAddress(), newBO.getBirthDate(),
-                    newBO.getUsername(), newBO.getPassword(), newBO.getRole());
-
-            return new ResponseEntity<>(boDTO, HttpStatus.OK);
-        } else if (DTO.getRole() == Role.COTTAGEOWNER) {
-            CottageOwner existing = this.cottageOwnerService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
-            //ako vec postoji clan
-            if (existing != null) {
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
-            //u suprotnom
-            CottageOwner cottageOwner = new CottageOwner(DTO.getName(), DTO.getSurname(), DTO.getEmailAddress(),
-                    DTO.getPhoneNumber(), DTO.getCity(), DTO.getState(), DTO.getHomeAddress(),
-                    DTO.getBirthDate(), DTO.getUsername(), DTO.getPassword(), DTO.getRole());
-            cottageOwner.setEmailAddress(DTO.getEmailAddress());
-
-
-            CottageOwner newBO = this.cottageOwnerService.save(cottageOwner);
-
-            RegisterOwnerDTO boDTO = new RegisterOwnerDTO(newBO.getName(), newBO.getSurname(), newBO.getEmailAddress(),
-                    newBO.getPhoneNumber(), newBO.getCity(), newBO.getState(), newBO.getHomeAddress(), newBO.getBirthDate(),
-                    newBO.getUsername(), newBO.getPassword(), newBO.getRole());
-
-            return new ResponseEntity<>(boDTO, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+
+
     }
 
 

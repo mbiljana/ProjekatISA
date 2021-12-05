@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner registration</title>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/ownerRegistration.js"></script>
+
+
+
+</head>
+<body>
+<div class="w3-content" style="max-width:1600px">
+</div>
+<div class="container">
+    <h1 class="w3-xlarge"><b>Register to become a member of our community</b></h1>
+    <div class="modal-dialog text-center">
+        <div class="col-sm-12">
+            <div class="modal-content">
+                <h2 class="text-center">Fill in the registration form</h2>
+                <form id="addOwnerForm" >
+                    <div class="form-group1">
+                        <h5 for="username">Username:</h5>
+                        <input id="username" name="username" type="text" class="registar" placeholder="Username">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="password">Password:</h5>
+                        <input id="password" name="password" type="password" class="registar" placeholder="Password">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="password2">Repeat password:</h5>
+                        <input id="password2" name="password2" type="password" class="registar" placeholder="Password">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="name">Name:</h5>
+                        <input id="name" name="name" type="text" class="registar" placeholder="Ime">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="surname">Surname:</h5>
+                        <input id="surname" name="surname"type="text" class="registar" placeholder="Prezime">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="phoneNumber">Phone:</h5>
+                        <input id="phoneNumber" name="phoneNumber"type="text" class="registar" placeholder="Kontakt">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="emailAddress">E-mail:</h5>
+                        <input id="emailAddress" name="emailAdress"type="text" class="registar" placeholder="E-mail">
+                    </div>
+
+                    <div class="form-group1">
+                        <h5 for="birthDate">Birth date:</h5>
+                        <input id="birthDate"  name="birthDate" type="date" value="2020-05-21" class="registar datum" placeholder="Datum rodjenja">
+                    </div>
+                    <div>
+                        <div class="form-group1">
+                            <h5 for="city">City:</h5>
+                            <input id="city" name="city"type="text" class="registar" placeholder="Prezime">
+                        </div>
+                        <div class="form-group1">
+                            <h5 for="state">State:</h5>
+                            <input id="state" name="state"type="text" class="registar" placeholder="Kontakt">
+                        </div>
+                        <div class="form-group1">
+                            <h5 for="homeAddress">Home address:</h5>
+                            <input id="homeAddress" name="homeAddress"type="text" class="registar" placeholder="E-mail">
+                        </div>
+
+                        <form >
+                            <select id="regType" name="regType">
+                                <option value="BoatOwner">Boat owner</option>
+                                <option value="CottageOwner">Cottage Owner</option>
+                            </select>
+                        </form>
+
+
+
+                        <button id="formKorisnikBtn" type="submit" value="Register" class="btn btn-success">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

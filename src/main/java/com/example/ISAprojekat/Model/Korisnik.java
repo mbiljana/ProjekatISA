@@ -10,12 +10,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static javax.persistence.InheritanceType.JOINED;
+
 @Entity
 @Table
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy=JOINED)
 public class Korisnik implements Serializable {
 
     @Id
@@ -52,6 +55,17 @@ public class Korisnik implements Serializable {
         this.city = city;
         this.state = state;
         this.homeAddress = homeAddress;
+        this.birthDate = birthDate;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Korisnik(String name, String surname, String emailAddress, String phoneNumber, Date birthDate, String username, String password, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
         this.username = username;
         this.password = password;
