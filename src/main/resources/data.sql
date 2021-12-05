@@ -20,6 +20,8 @@ include stability, strength and durability to survive fishing ventures across va
         'Blue Moon','Pets are not allowed.','Fishing boat',
         'WKC4B','100 horsepower',100);
 
+INSERT INTO admin(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
+VALUES (10,'1997-02-05','bg','@','sdf','bla','111',234,0,'srb','qwe','123');
 
 
 
