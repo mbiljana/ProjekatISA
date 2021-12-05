@@ -15,10 +15,6 @@ public class  BoatServiceImpl implements BoatService {
     @Autowired
     private BoatRepository boatRepository;
 
-    @Override
-    public List<Boat> findAllByBoatOwner(BoatOwner boatOwner) {
-        return boatRepository.findAllByBoatOwner(boatOwner);
-    }
 
     @Override
     public List<Boat> findAll(){
