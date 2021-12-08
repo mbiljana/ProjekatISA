@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static javax.persistence.InheritanceType.JOINED;
 import static javax.persistence.InheritanceType.*;
 
 @Entity
@@ -18,8 +19,10 @@ import static javax.persistence.InheritanceType.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 //ovo je dodato
 //proveriti da li je potrebno u nizim klasama dodati jos nesto
+
 @Inheritance(strategy=JOINED)
 public class Korisnik implements Serializable {
 
@@ -49,6 +52,28 @@ public class Korisnik implements Serializable {
     @Column
     private Role role;
 
+    public Korisnik(String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.city = city;
+        this.state = state;
+        this.homeAddress = homeAddress;
+        this.birthDate = birthDate;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
-
+    public Korisnik(String name, String surname, String emailAddress, String phoneNumber, Date birthDate, String username, String password, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 }

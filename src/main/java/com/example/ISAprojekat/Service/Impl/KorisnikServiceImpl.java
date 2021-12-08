@@ -1,5 +1,7 @@
 package com.example.ISAprojekat.Service.Impl;
 
+import com.example.ISAprojekat.Service.KorisnikService;
+import org.springframework.stereotype.Service;
 import com.example.ISAprojekat.Model.Admin;
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.Korisnik;
