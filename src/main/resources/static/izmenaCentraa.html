@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Izmena fitness centra</title>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/izmenaCentra.js"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+    <link rel="stylesheet" href="css/table.css"></link>
+</head>
+<style>
+    h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
+    body {font-family: "Open Sans"}
+    .container{
+        align-content: center;
+        align-self: center;
+        align-items: center;
+
+        text-align: center;
+    }
+    ul#hl{
+        text-align: center;
+    }
+    ul#hl{
+        display: inline;
+    }
+
+
+
+</style>
+<body>
+<div class="header">
+    <header class="w3-container w3-center w3-padding-48 w3-white">
+        <h1 class="w3-xxxlarge"><b>FITNESS CENTER</b></h1>
+        <h6>Dobrodošli na stranicu fitness centra <span class="w3-tag"> BE FIT</span></h6>
+    </header>
+</div>
+
+
+
+<div>
+    <div class="container">
+        <table id="centri" class="display" >
+            <tr>
+                <th>Id</th>
+                <th>Naziv</th>
+
+                <th>Adresa</th>
+                <th>Broj telefona</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="form-group1">
+    <h5 for="nazivCentra">Naziv:</h5>
+    <input id="nazivCentra" name="nazivCentra" type="text" class="registar" >
+</div>
+
+
+
+
+<div class="form-group1">
+    <h5 for="adresaCentra">Adresa:</h5>
+    <input id="adresaCentra"  name="adresaCentra" type="text"  class="registar " >
+</div>
+
+
+<div class="form-group1">
+    <h5 for="brojTelefonaCentrale">Broj telefona:</h5>
+    <input id="brojTelefonaCentrale"  name="brojTelefonaCentrale" type="text"  class="registar " >
+</div>
+
+
+<div class="form-group1">
+    <h5 for="emailCentra">Email:</h5>
+    <input id="emailCentra"  name="emailCentra" type="text"  class="registar " >
+</div>
+<button id="izmeni">Izmeni</button>
+</body>
+</html>
