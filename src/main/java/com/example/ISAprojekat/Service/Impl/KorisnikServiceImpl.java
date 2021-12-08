@@ -31,6 +31,26 @@ public class KorisnikServiceImpl implements KorisnikService {
     public List<Korisnik> findAll(){
         return korisnikRepository.findAll();
     }
+    @Override
+    public Korisnik findOne(Long id) {
 
+        Korisnik korisnik = this.korisnikRepository.findById(id).get();
+        return korisnik;
+    }
+
+    @Override
+    public Korisnik update (Korisnik korisnik) throws Exception{
+        Korisnik updated = this.korisnikRepository.findById(korisnik.getId()).get();
+        if(korisnik.getId() == null){
+            throw  new Exception("Greska! Nepostojeci korisnik!");
+        }
+        updated.setName(korisnik.getName());
+        updated.setSurname(korisnik.getSurname());
+        updated.setUsername(korisnik.getUsername());
+        updated.setEmailAddress(korisnik.getEmailAddress());
+        updated.setRole(korisnik.getRole());
+        Korisnik promenjen = korisnikRepository.save(updated);
+        return promenjen;
+    }
 
 }

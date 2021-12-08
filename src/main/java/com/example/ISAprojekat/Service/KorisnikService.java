@@ -12,4 +12,8 @@ public interface KorisnikService {
     Korisnik getByUsernameAndPassword(String username, String password);
     public List<Korisnik> findAll();
 
+    Korisnik findOne(Long id);
+
+    Korisnik update(Korisnik korisnik) throws Exception;
+
 }
