@@ -19,23 +19,15 @@ import java.util.List;
 
 @Entity
 @Table
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class BoatOwner  extends Korisnik{
-    public BoatOwner(Long id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
-        super(id, name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role);
+
+
+    public BoatOwner() {
     }
 
-
-
-
-    public BoatOwner(String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
-        super(name,surname,emailAddress,phoneNumber,city,state,homeAddress,birthDate,username,password,role);
-    }
-
-    public BoatOwner(String name, String surname, String emailAddress, String phoneNumber,  Date birthDate, String username, String password, Role role) {
-        super(name,surname,emailAddress,phoneNumber,birthDate,username,password,role);
+    public BoatOwner( String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
+        super( name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role);
     }
 }

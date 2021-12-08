@@ -38,19 +38,14 @@ public class KorisnikController {
    private AdminService adminService;
     private KorisnikService korisnikService;
   
+    
 
     @Autowired
-    public KorisnikController(BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService){
-        this.boatOwnerService = boatOwnerService;
-        this.cottageOwnerService = cottageOwnerService;
-    }
-
-   
-
-    @Autowired
-    public KorisnikController(AdminService adminService, KorisnikService korisnikService){
+    public KorisnikController(AdminService adminService, KorisnikService korisnikService,BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService){
         this.adminService = adminService;
         this.korisnikService = korisnikService;
+        this.boatOwnerService = boatOwnerService;
+        this.cottageOwnerService = cottageOwnerService;
     }
 
     @PostMapping(value="/registerOwner" ,

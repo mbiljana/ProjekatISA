@@ -1,6 +1,6 @@
 package com.example.ISAprojekat.Service;
 
-public interface KorisnikService {
+
 
 import com.example.ISAprojekat.Model.Admin;
 import com.example.ISAprojekat.Model.Boat;
