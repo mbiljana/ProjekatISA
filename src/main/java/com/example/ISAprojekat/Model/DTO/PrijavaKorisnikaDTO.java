@@ -1,7 +1,5 @@
 package com.example.ISAprojekat.Model.DTO;
 
-import com.example.ISAprojekat.Model.Admin;
-import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Model.Role;
 import lombok.Getter;
 import lombok.Setter;

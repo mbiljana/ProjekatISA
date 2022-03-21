@@ -1,12 +1,9 @@
 package com.example.ISAprojekat.Controller;
 
 
-import com.example.ISAprojekat.Model.Admin;
-import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Service.AdminService;
-import com.example.ISAprojekat.Service.BoatService;
 import com.example.ISAprojekat.Service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

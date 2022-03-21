@@ -1,15 +1,11 @@
 package com.example.ISAprojekat.Service.Impl;
 
-import com.example.ISAprojekat.Service.KorisnikService;
-import org.springframework.stereotype.Service;
-import com.example.ISAprojekat.Model.Admin;
-import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.Korisnik;
-import com.example.ISAprojekat.Repository.AdminRepository;
-import com.example.ISAprojekat.Repository.KorisnikRepository;
 import com.example.ISAprojekat.Service.KorisnikService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.ISAprojekat.Model.Korisnikk;
+import com.example.ISAprojekat.Repository.KorisnikRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

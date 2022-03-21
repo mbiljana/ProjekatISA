@@ -1,5 +1,6 @@
 package com.example.ISAprojekat.Model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static javax.persistence.InheritanceType.JOINED;
+import static javax.persistence.InheritanceType.*;
+
 @Entity
 @Table
 @Getter
@@ -16,12 +20,16 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Korisnik implements Serializable {
+//ovo je dodato
+//proveriti da li je potrebno u nizim klasama dodati jos nesto
+
+@Inheritance(strategy=JOINED)
+public class Korisnikk implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    @Column(name = "ime")
+    @Column (name = "ime")
     private String name;
     @Column
     private String surname;
@@ -44,7 +52,7 @@ public class Korisnik implements Serializable {
     @Column
     private Role role;
 
-    public Korisnik(String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
+    public Korisnikk(String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
         this.name = name;
         this.surname = surname;
         this.emailAddress = emailAddress;
@@ -58,7 +66,7 @@ public class Korisnik implements Serializable {
         this.role = role;
     }
 
-    public Korisnik(String name, String surname, String emailAddress, String phoneNumber, Date birthDate, String username, String password, Role role) {
+    public Korisnikk(String name, String surname, String emailAddress, String phoneNumber, Date birthDate, String username, String password, Role role) {
         this.name = name;
         this.surname = surname;
         this.emailAddress = emailAddress;
@@ -68,5 +76,5 @@ public class Korisnik implements Serializable {
         this.password = password;
         this.role = role;
     }
-}
 
+}

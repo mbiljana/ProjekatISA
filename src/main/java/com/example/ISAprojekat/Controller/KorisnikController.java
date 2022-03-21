@@ -2,17 +2,13 @@ package com.example.ISAprojekat.Controller;
 
 
 import com.example.ISAprojekat.Model.BoatOwner;
-import com.example.ISAprojekat.Model.CottageOwner;
 import com.example.ISAprojekat.Model.DTO.RegisterOwnerDTO;
-import com.example.ISAprojekat.Model.Role;
+import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Service.BoatOwnerService;
 import com.example.ISAprojekat.Service.CottageOwnerService;
-import com.example.ISAprojekat.Model.Admin;
-import com.example.ISAprojekat.Model.DTO.AdminDTO;
 import com.example.ISAprojekat.Model.DTO.KorisnikDTO;
 import com.example.ISAprojekat.Model.DTO.PrijavaKorisnikaDTO;
 import com.example.ISAprojekat.Model.DTO.PrijavljenKorisnikDTO;
-import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Service.AdminService;
 import com.example.ISAprojekat.Service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +33,6 @@ public class KorisnikController {
     private final CottageOwnerService cottageOwnerService;
    private AdminService adminService;
     private KorisnikService korisnikService;
-
-   
 
     @Autowired
     public KorisnikController(AdminService adminService, KorisnikService korisnikService,BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService){
