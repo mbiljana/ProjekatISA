@@ -41,6 +41,8 @@ public class ZahtevZaReg implements Serializable {
     private String password;
     @Column
     private String regType;
+    @Column
+    private String razlog;
     @ManyToOne
     private Admin admin;
 

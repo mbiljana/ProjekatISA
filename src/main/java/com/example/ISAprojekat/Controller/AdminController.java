@@ -111,13 +111,13 @@ public class AdminController {
 
     @PostMapping(value = ("/acceptRequest"), consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegOwnerDTO> acceptRequest(@RequestBody ZahtevDTO dto) throws Exception{
-        ZahtevZaReg zahtevZaReg = this.zahtevZaRegService.findOne(dto.getId());
-        if(dto.getRegType().equals("BoatOwner")) {
+        ZahtevZaReg zahtevZaReg = this.zahtevZaRegService.findOne(dto.getIdKorisnika());
+        if(zahtevZaReg.getRegType().equals("BoatOwner")) {
             BoatOwner boatOwner = new BoatOwner(
-                    dto.getName(), dto.getSurname(), dto.getEmailAddress(),
-                    dto.getPhoneNumber(), dto.getCity(), dto.getState(),
-                    dto.getHomeAddress(), dto.getBirthDate(), dto.getUsername(),
-                    dto.getPassword(), Role.BOATOWNER
+                    zahtevZaReg.getName(), zahtevZaReg.getSurname(), zahtevZaReg.getEmailAddress(),
+                    zahtevZaReg.getPhoneNumber(), zahtevZaReg.getCity(), zahtevZaReg.getState(),
+                    zahtevZaReg.getHomeAddress(), zahtevZaReg.getBirthDate(), zahtevZaReg.getUsername(),
+                    zahtevZaReg.getPassword(), Role.BOATOWNER
             );
             this.boatOwnerService.save(boatOwner);
             Admin admin = this.adminService.getByUsernameAndPassword("123", "111");
@@ -130,10 +130,10 @@ public class AdminController {
 
         }else //if(dto.getRegType() == "CottageOwner"){
         {CottageOwner cottageOwner = new CottageOwner(
-                    dto.getName(), dto.getSurname(), dto.getEmailAddress(),
-                    dto.getPhoneNumber(), dto.getCity(), dto.getState(),
-                    dto.getHomeAddress(), dto.getBirthDate(), dto.getUsername(),
-                    dto.getPassword(), Role.COTTAGEOWNER
+                zahtevZaReg.getName(), zahtevZaReg.getSurname(), zahtevZaReg.getEmailAddress(),
+                zahtevZaReg.getPhoneNumber(), zahtevZaReg.getCity(), zahtevZaReg.getState(),
+                zahtevZaReg.getHomeAddress(), zahtevZaReg.getBirthDate(), zahtevZaReg.getUsername(),
+                zahtevZaReg.getPassword(), Role.COTTAGEOWNER
             );
             this.cottageOwnerService.save(cottageOwner);
             Admin admin = this.adminService.getByUsernameAndPassword("123", "111");
@@ -145,5 +145,25 @@ public class AdminController {
             return new ResponseEntity<>(regOwnerDTO, HttpStatus.CREATED);
         }
     }
+
+    //getting all requests for registration
+    @GetMapping(value="/regReq", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ZahtevDTO>> getRequests() {
+        List<ZahtevDTO> zahtevZaRegDTOS = new ArrayList<>();
+
+        List<ZahtevZaReg> zahtevZaRegs = this.zahtevZaRegService.findAll();
+
+        for(ZahtevZaReg t : zahtevZaRegs) {
+
+                ZahtevDTO zahtevZaRegDTO = new ZahtevDTO(t.getId(),
+                        t.getName(),t.getSurname(),t.getEmailAddress(),t.getPhoneNumber(),
+                        t.getCity(),t.getState(),t.getHomeAddress(),t.getBirthDate(),
+                        t.getUsername(),t.getPassword(),t.getRegType(),t.getRazlog()
+                        );
+                zahtevZaRegDTOS.add(zahtevZaRegDTO);
+        }
+        return new ResponseEntity<>(zahtevZaRegDTOS, HttpStatus.OK);
+    }
+
 
 }

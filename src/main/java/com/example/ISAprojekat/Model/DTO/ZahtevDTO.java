@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ZahtevDTO {
-    private Long id;
+    private Long idKorisnika;
     private String name;
     private String surname;
     private String emailAddress;

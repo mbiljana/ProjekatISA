@@ -103,7 +103,7 @@ public class BoatOwController {
 
     @PostMapping(value = ("/acceptRequest"), consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegOwnerDTO> acceptRequest(@RequestBody ZahtevDTO dto) throws Exception{
-        ZahtevZaReg zahtevZaReg = this.zahtevZaRegService.findOne(dto.getId());
+        ZahtevZaReg zahtevZaReg = this.zahtevZaRegService.findOne(dto.getIdKorisnika());
         BoatOwner boatOwner = new BoatOwner(
                 dto.getName(),dto.getSurname(),dto.getEmailAddress(),
                 dto.getPhoneNumber(),dto.getCity(),dto.getState(),

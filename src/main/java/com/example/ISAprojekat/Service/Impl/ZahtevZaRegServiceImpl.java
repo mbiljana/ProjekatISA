@@ -7,6 +7,8 @@ import com.example.ISAprojekat.Service.ZahtevZaRegService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ZahtevZaRegServiceImpl implements ZahtevZaRegService {
 
@@ -29,5 +31,11 @@ public class ZahtevZaRegServiceImpl implements ZahtevZaRegService {
     public ZahtevZaReg findOne(Long id) {
         ZahtevZaReg zahtevZaReg = this.zahtevZaRegRepository.findById(id).get();
         return zahtevZaReg;
+    }
+
+    @Override
+    public List<ZahtevZaReg> findAll() {
+        List<ZahtevZaReg> zahtevZaRegs = this.zahtevZaRegRepository.findAll();
+        return zahtevZaRegs;
     }
 }
