@@ -8,7 +8,8 @@ import java.util.List;
 public interface BoatService {
 
 
-    public List<Boat> findAll();
+    List<Boat> findAll();
+    Boat getOne(Long id);
 
 
 }

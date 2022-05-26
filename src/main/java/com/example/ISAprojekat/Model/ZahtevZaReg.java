@@ -1,35 +1,47 @@
-package com.example.ISAprojekat.Model.DTO;
+package com.example.ISAprojekat.Model;
 
-import com.example.ISAprojekat.Model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterOwnerDTO {
+@Entity
+public class ZahtevZaReg implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
 
+    @Column
     private String name;
+    @Column
     private String surname;
+    @Column
     private String emailAddress;
+    @Column
     private String phoneNumber;
+    @Column
     private String city;
+    @Column
     private String state;
+    @Column
     private String homeAddress;
+    @Column
     private Date birthDate;
+    @Column
     private String username;
-
+    @Column
     private String password;
-    private String password2;
+    @Column
     private String regType;
-    private String razlog;
-
-    //private Role role;
-
+    @ManyToOne
+    private Admin admin;
 
 }

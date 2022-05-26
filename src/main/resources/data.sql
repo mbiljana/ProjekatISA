@@ -21,10 +21,10 @@ include stability, strength and durability to survive fishing ventures across va
         'WKC4B','100 horsepower',100);
 
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (73,'1997-02-05','bg','@','sdf','bla','111',234,0,'srb','qwe','123');
+VALUES (73,'1997-02-05','bg','@','sdf','bla','111',234,1,'srb','qwe','123');
 
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (76,'1997-02-05','bg','@1','sdf','bla','1111',234,1,'srb','qwe','1234');
+VALUES (76,'1997-02-05','bg','@1','sdf','bla','1111',234,2,'srb','qwe','1234');
 
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
 VALUES (77,'1997-02-05','bg','@1','sdf','bla','11',234,2,'srb','qwe','12');
@@ -36,7 +36,8 @@ INSERT INTO boat_owner(id) VALUES (76);
 
 INSERT INTO cottage_owner(id) VALUES  (77);
 
-
+INSERT INTO zahtev_za_reg(id, name,surname,email_address,phone_number,city,state,home_address,birth_date,username,password,reg_type)
+values ( 555, 'biljana','marinkov', 'hhh','02202','hhh','jjj','sss','2002-02-02','jjjshshs','ssss','BoatOwner');
 
 
 

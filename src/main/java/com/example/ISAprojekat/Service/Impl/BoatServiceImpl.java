@@ -12,8 +12,11 @@ import java.util.List;
 @Service
 public class  BoatServiceImpl implements BoatService {
 
+    private final BoatRepository boatRepository;
     @Autowired
-    private BoatRepository boatRepository;
+    public BoatServiceImpl(BoatRepository boatRepository){
+        this.boatRepository = boatRepository;
+    }
 
 
     @Override
@@ -21,6 +24,11 @@ public class  BoatServiceImpl implements BoatService {
         return boatRepository.findAll();
     }
 
+    @Override
+    public Boat getOne(Long id) {
+        Boat boat = this.boatRepository.findById(id).get();
+        return boat;
+    }
 
 
 }

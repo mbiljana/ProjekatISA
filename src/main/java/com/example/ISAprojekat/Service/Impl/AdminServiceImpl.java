@@ -31,5 +31,11 @@ public class AdminServiceImpl implements AdminService {
         return adminRepository.findAll();
     }
 
+    @Override
+    public Admin getOne(Long id) {
+        Admin admin = this.adminRepository.findById(id).get();
+        return admin;
+    }
+
 
 }

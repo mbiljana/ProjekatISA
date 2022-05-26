@@ -1,19 +1,19 @@
 package com.example.ISAprojekat.Model.DTO;
 
-import com.example.ISAprojekat.Model.Role;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterOwnerDTO {
-
+public class ZahtevDTO {
+    private Long id;
     private String name;
     private String surname;
     private String emailAddress;
@@ -23,13 +23,7 @@ public class RegisterOwnerDTO {
     private String homeAddress;
     private Date birthDate;
     private String username;
-
     private String password;
-    private String password2;
     private String regType;
     private String razlog;
-
-    //private Role role;
-
-
 }
