@@ -39,6 +39,7 @@ public class CottageController {
                     f.getCottageDescription(),f.getNumRooms(),f.getNumBeds(),f.getCottageAdditionalServices(),f.getCottageRules());
             cottageDTOS.add(cottageDTO);
         }
+
         return new ResponseEntity<>(cottageDTOS, HttpStatus.FOUND);
     }
 
