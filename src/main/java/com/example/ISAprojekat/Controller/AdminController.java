@@ -1,6 +1,7 @@
 package com.example.ISAprojekat.Controller;
 
 
+import com.example.ISAprojekat.Model.Admin;
 import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Service.AdminService;
@@ -46,16 +47,16 @@ public class AdminController {
     }
 
     @GetMapping(value = "/allAdmins")
-    public ResponseEntity<List<KorisnikDTO>> getAllAdmins() {
+    public ResponseEntity<List<AdminDTO>> getAllAdmins() {
 
-        List<Korisnik> korisnici = korisnikService.findAll();
+        List<Admin> korisnici = adminService.findAll();
 
 
-        List<KorisnikDTO> korisnikDTOS = new ArrayList<>();
+        List<AdminDTO> korisnikDTOS = new ArrayList<>();
 
-            for (Korisnik a : korisnici) {
-                if(a == adminService.findAll())
-                korisnikDTOS.add(new KorisnikDTO(a));
+            for (Admin a : korisnici) {
+
+                    korisnikDTOS.add(new AdminDTO(a));
             }
 
         //return new ResponseEntity<>(korisnikDTOS, HttpStatus.OK);
@@ -64,6 +65,32 @@ public class AdminController {
 
     }
 
+    @PostMapping(value = ("/updateAdmin"),
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AdminDTO> izmenaAdmina(@RequestBody AdminDTO kDTO) throws Exception {
+        Admin admin = adminService.findOne(kDTO.getId());
+        admin.setRole(kDTO.getRole()); //menjamo samo ulogu
+        admin.setName(kDTO.getName());
+        admin.setEmailAddress(kDTO.getEmailAddress());
+        admin.setSurname(kDTO.getSurname());
+        admin.setUsername(kDTO.getUsername());
+        admin.setBirthDate(kDTO.getBirthDate());
+        admin.setCity(kDTO.getCity());
+        admin.setHomeAddress(kDTO.getHomeAddress());
+        admin.setPassword(kDTO.getPassword());
+        admin.setState(kDTO.getState());
+        admin.setPhoneNumber(kDTO.getPhoneNumber());
+
+
+        korisnikService.update(admin);
+        AdminDTO tDTO =new AdminDTO(admin.getId(),admin.getName(),admin.getSurname(),admin.getEmailAddress(),admin.getPhoneNumber(),
+                admin.getCity(),admin.getState(),admin.getHomeAddress(),admin.getBirthDate(),admin.getUsername(),admin.getPassword(),admin.getRole());
+        return new ResponseEntity<>(tDTO,HttpStatus.OK);
+
+    }
+
+    //ne znam cemu sluzi
     @PostMapping(value = ("/updateKorisnik"),
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

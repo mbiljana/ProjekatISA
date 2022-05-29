@@ -1,6 +1,5 @@
 package com.example.ISAprojekat.Model.DTO;
 
-
 import com.example.ISAprojekat.Model.Admin;
 import com.example.ISAprojekat.Model.FishingInstructor;
 import com.example.ISAprojekat.Model.Role;
@@ -15,7 +14,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminDTO {
+public class FishingInstructorDTO {
     private Long id;
     private String name;
     private String surname;
@@ -29,7 +28,7 @@ public class AdminDTO {
     private String password;
     private Role role;
 
-    public AdminDTO(Admin a) {
+    public FishingInstructorDTO(FishingInstructor a) {
         this.id = a.getId();
         this.name = a.getName();
         this.surname = a.getSurname();
@@ -43,6 +42,4 @@ public class AdminDTO {
         this.password = a.getPassword();
         this.role = a.getRole();
     }
-
-
 }

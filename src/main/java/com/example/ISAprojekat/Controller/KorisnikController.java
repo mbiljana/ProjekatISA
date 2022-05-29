@@ -76,10 +76,43 @@ public class KorisnikController {
 
     }
 
+    @PostMapping(value="/registration" ,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PrijavaKorisnikaDTO> registerBoatOwner(@RequestBody PrijavaKorisnikaDTO DTO) throws Exception {
+        Korisnik existing = this.korisnikService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
+        //ako vec postoji clan
+        if (existing != null) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }else {
+            if (DTO.getPassword().equals(DTO.getPassword2())) {
+                Korisnik korisnik = new Korisnik(DTO.getName(), DTO.getSurname(), DTO.getEmailAddress(),
+                        DTO.getPhoneNumber(), DTO.getCity(), DTO.getState(), DTO.getHomeAddress(),
+                        DTO.getBirthDate(), DTO.getUsername(), DTO.getPassword(), DTO.getRole());
+                korisnik.setEmailAddress(DTO.getEmailAddress());
+
+
+                Korisnik newBO = this.korisnikService.save(korisnik);
+
+                PrijavaKorisnikaDTO boDTO = new PrijavaKorisnikaDTO(newBO.getName(), newBO.getSurname(), newBO.getEmailAddress(),
+                        newBO.getPhoneNumber(), newBO.getCity(), newBO.getState(),
+                        newBO.getHomeAddress(), newBO.getBirthDate(),
+                        newBO.getUsername(), newBO.getPassword(), newBO.getRole());
+
+                return new ResponseEntity<>(boDTO, HttpStatus.OK);
+            }else{
+                System.out.println("Lozinke se ne poklapaju!");
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+        }
+
+
+    }
 
 
 
-  
+    //ne znam sta ovo radi
     //logovanje admina kao provera
     @PostMapping(
             value =("/login"),
@@ -93,7 +126,7 @@ public class KorisnikController {
             System.out.print("Admin je null");
         }
 
-        korisnikDTO = new PrijavaKorisnikaDTO(korisnik.getId(), korisnik.getName(), korisnik.getSurname(), korisnik.getEmailAddress(),
+        korisnikDTO = new PrijavaKorisnikaDTO(korisnik.getName(), korisnik.getSurname(), korisnik.getEmailAddress(),
                 korisnik.getPhoneNumber(), korisnik.getCity(), korisnik.getState(), korisnik.getHomeAddress(),
                 korisnik.getBirthDate(), korisnik.getUsername(), korisnik.getPassword(), korisnik.getRole());
         return new ResponseEntity<>(korisnikDTO, HttpStatus.OK);

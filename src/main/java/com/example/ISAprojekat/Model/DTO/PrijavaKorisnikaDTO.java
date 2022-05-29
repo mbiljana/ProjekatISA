@@ -20,6 +20,7 @@ public class PrijavaKorisnikaDTO {
     private Date birthDate; //mozda ne treba
     private String username;
     private String password;
+    private String password2;
     private Role role;
 
     public PrijavaKorisnikaDTO(Long id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
@@ -54,7 +55,23 @@ public class PrijavaKorisnikaDTO {
     public PrijavaKorisnikaDTO() {
     }
 
-  /*  public PrijavaKorisnikaDTO(Korisnik a) {
+    public PrijavaKorisnikaDTO(Long id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, String password2, Role role) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.city = city;
+        this.state = state;
+        this.homeAddress = homeAddress;
+        this.birthDate = birthDate;
+        this.username = username;
+        this.password = password;
+        this.password2 = password2;
+        this.role = role;
+    }
+
+    /*  public PrijavaKorisnikaDTO(Korisnik a) {
         this.id = a.getId();
         this.name = a.getName();
         this.surname = a.getSurname();
