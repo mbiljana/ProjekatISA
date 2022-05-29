@@ -38,10 +38,13 @@ public class Adventure implements Serializable {
     //cenovnik
     @Column
     private String adventureAdditionalServices;
+
+
     //uslovi otkazivanja
-   /*
+
+    /*
     @ManyToOne
     private FishingInstructor fishingInstructor;
+*/
 
-    */
 }

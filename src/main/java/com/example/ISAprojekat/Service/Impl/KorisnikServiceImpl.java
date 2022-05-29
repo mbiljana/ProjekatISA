@@ -1,5 +1,6 @@
 package com.example.ISAprojekat.Service.Impl;
 
+import com.example.ISAprojekat.Model.BoatOwner;
 import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Service.KorisnikService;
 import org.springframework.stereotype.Service;
@@ -23,15 +24,32 @@ public class KorisnikServiceImpl implements KorisnikService {
         Korisnik korisnik = this.korisnikRepository.findByUsernameAndPassword(username,password);
         return korisnik;
     }
+
+    @Override
+    public Korisnik getByEmailAddressAndPassword(String emailAddress, String password) {
+        Korisnik korisnik =this.korisnikRepository.findByEmailAddressAndPassword(emailAddress,password);
+        return korisnik;
+    }
+
     @Override
     public List<Korisnik> findAll(){
         return korisnikRepository.findAll();
     }
+
     @Override
     public Korisnik findOne(Long id) {
 
         Korisnik korisnik = this.korisnikRepository.findById(id).get();
         return korisnik;
+    }
+
+    @Override
+    public Korisnik save(Korisnik korisnik) throws Exception {
+        if(korisnik.getId() != null){
+            throw new Exception("ID must be unique!");
+        }
+        Korisnik newK = korisnikRepository.save(korisnik);
+        return  newK;
     }
 
     @Override
