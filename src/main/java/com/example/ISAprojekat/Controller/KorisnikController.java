@@ -1,16 +1,12 @@
 package com.example.ISAprojekat.Controller;
 
 
+import com.example.ISAprojekat.Model.Admin;
 import com.example.ISAprojekat.Model.BoatOwner;
-import com.example.ISAprojekat.Model.DTO.RegisterOwnerDTO;
+import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Model.Korisnik;
-import com.example.ISAprojekat.Service.BoatOwnerService;
-import com.example.ISAprojekat.Service.CottageOwnerService;
-import com.example.ISAprojekat.Model.DTO.KorisnikDTO;
-import com.example.ISAprojekat.Model.DTO.PrijavaKorisnikaDTO;
-import com.example.ISAprojekat.Model.DTO.PrijavljenKorisnikDTO;
-import com.example.ISAprojekat.Service.AdminService;
-import com.example.ISAprojekat.Service.KorisnikService;
+import com.example.ISAprojekat.Model.ZahtevZaReg;
+import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,49 +27,17 @@ public class KorisnikController {
 
     private final BoatOwnerService boatOwnerService;
     private final CottageOwnerService cottageOwnerService;
+    private final ZahtevZaRegService zahtevZaRegService;
    private AdminService adminService;
     private KorisnikService korisnikService;
 
     @Autowired
-    public KorisnikController(AdminService adminService, KorisnikService korisnikService,BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService){
+    public KorisnikController(AdminService adminService, KorisnikService korisnikService,BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService,ZahtevZaRegService zahtevZaRegService){
         this.adminService = adminService;
         this.korisnikService = korisnikService;
         this.boatOwnerService = boatOwnerService;
         this.cottageOwnerService = cottageOwnerService;
-    }
-
-    @PostMapping(value="/registerOwner" ,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RegisterOwnerDTO> createBoatOwner(@RequestBody RegisterOwnerDTO DTO) throws Exception {
-            BoatOwner existing = this.boatOwnerService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
-            //ako vec postoji clan
-            if (existing != null) {
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }else {
-                if (DTO.getPassword().equals(DTO.getPassword2()) && (DTO.getRegType().equals("BoatOwner"))) {
-                    BoatOwner boatOwner = new BoatOwner(DTO.getName(), DTO.getSurname(), DTO.getEmailAddress(),
-                            DTO.getPhoneNumber(), DTO.getCity(), DTO.getState(), DTO.getHomeAddress(),
-                            DTO.getBirthDate(), DTO.getUsername(), DTO.getPassword(), DTO.getRole());
-                    boatOwner.setEmailAddress(DTO.getEmailAddress());
-
-
-                    BoatOwner newBO = this.boatOwnerService.save(boatOwner);
-
-                    RegisterOwnerDTO boDTO = new RegisterOwnerDTO(newBO.getName(), newBO.getSurname(), newBO.getEmailAddress(),
-                            newBO.getPhoneNumber(), newBO.getCity(), newBO.getState(),
-                            newBO.getHomeAddress(), newBO.getBirthDate(),
-                            newBO.getUsername(), newBO.getPassword(), newBO.getRole());
-
-                    return new ResponseEntity<>(boDTO, HttpStatus.OK);
-                }else{
-                    System.out.println("Lozinke se ne poklapaju!");
-                    return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
-
-        }
-
-
+        this.zahtevZaRegService = zahtevZaRegService;
     }
 
     @PostMapping(value="/registration" ,
@@ -145,6 +109,48 @@ public class KorisnikController {
         }
 
         return new ResponseEntity<>(korisniciDTO, HttpStatus.OK);
+    }
+
+
+
+
+
+    @PostMapping(value="/registerOwner" ,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ZahtevZaRegDTO> createOwner(@RequestBody RegisterOwnerDTO DTO) throws Exception {
+        BoatOwner existing = this.boatOwnerService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
+        //ako vec postoji clan
+        if (existing != null) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }else {
+            if (DTO.getPassword().equals(DTO.getPassword2())) {
+                ZahtevZaReg zahtevZaReg = new ZahtevZaReg();
+                zahtevZaReg.setCity(DTO.getCity());
+                zahtevZaReg.setBirthDate(DTO.getBirthDate());
+                zahtevZaReg.setEmailAddress(DTO.getEmailAddress());
+                zahtevZaReg.setName(DTO.getName());
+                zahtevZaReg.setRegType(DTO.getRegType());
+                zahtevZaReg.setPassword(DTO.getPassword());
+                zahtevZaReg.setState(DTO.getState());
+                zahtevZaReg.setHomeAddress(DTO.getHomeAddress());
+                zahtevZaReg.setPhoneNumber(DTO.getPhoneNumber());
+                zahtevZaReg.setUsername(DTO.getUsername());
+                zahtevZaReg.setSurname(DTO.getSurname());
+                ZahtevZaRegDTO zahtevZaRegDTO = new ZahtevZaRegDTO(DTO.getName(),DTO.getSurname(),
+                        DTO.getEmailAddress(),DTO.getPhoneNumber(),DTO.getCity(),
+                        DTO.getState(),DTO.getHomeAddress(),DTO.getBirthDate(),
+                        DTO.getUsername(),DTO.getPassword(),DTO.getRegType(),DTO.getRazlog());
+                this.zahtevZaRegService.save(zahtevZaReg);
+                Admin admin = this.adminService.getByUsernameAndPassword("123","111");
+                admin.zahtevi.add(zahtevZaReg);
+                return new ResponseEntity<>(zahtevZaRegDTO, HttpStatus.OK);
+            }else{
+                System.out.println("Lozinke se ne poklapaju!");
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+        }
     }
 
 

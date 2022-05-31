@@ -15,6 +15,7 @@ $(document).ready(function(){
         var state = $("#state").val();
         var homeAddress = $("#homeAddress").val();
         var regType = $("#regType").val();
+        var razlog = $("#razlog").val();
         //var aktivan = true;
        // var da_li_je_registrovan = true;
         var obj = JSON.stringify({
@@ -31,6 +32,7 @@ $(document).ready(function(){
             "homeAddress" : homeAddress ,
             "regType" : regType,
             "role" : 1,
+            "razlog" : razlog,
            // "aktivan" : aktivan,
            // "da_li_je_registrovan" : da_li_je_registrovan,
         });

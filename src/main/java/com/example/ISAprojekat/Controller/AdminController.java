@@ -1,11 +1,9 @@
 package com.example.ISAprojekat.Controller;
 
-
+import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.Admin;
 import com.example.ISAprojekat.Model.DTO.*;
-import com.example.ISAprojekat.Model.Korisnik;
-import com.example.ISAprojekat.Service.AdminService;
-import com.example.ISAprojekat.Service.KorisnikService;
+import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,13 +16,19 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "api/admins")
 public class AdminController {
-    private AdminService adminService;
-    private KorisnikService korisnikService;
+    private final AdminService adminService;
+    private final KorisnikService korisnikService;
+    private final BoatOwnerService boatOwnerService;
+    private final CottageOwnerService cottageOwnerService;
+    private final ZahtevZaRegService zahtevZaRegService;
 
     @Autowired
-    public AdminController(AdminService adminService, KorisnikService korisnikService){
+    public AdminController(AdminService adminService, KorisnikService korisnikService, BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService, ZahtevZaRegService zahtevZaRegService){
         this.adminService = adminService;
         this.korisnikService = korisnikService;
+        this.boatOwnerService = boatOwnerService;
+        this.cottageOwnerService = cottageOwnerService;
+        this.zahtevZaRegService = zahtevZaRegService;
     }
 
 
@@ -129,5 +133,63 @@ public class AdminController {
 
         return new ResponseEntity<>(ret, HttpStatus.CREATED);
     }*/
+
+
+    @PostMapping(value = ("/acceptRequest"), consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RegOwnerDTO> acceptRequest(@RequestBody ZahtevDTO dto) throws Exception{
+        ZahtevZaReg zahtevZaReg = this.zahtevZaRegService.findOne(dto.getIdKorisnika());
+        if(zahtevZaReg.getRegType().equals("BoatOwner")) {
+            BoatOwner boatOwner = new BoatOwner(
+                    zahtevZaReg.getName(), zahtevZaReg.getSurname(), zahtevZaReg.getEmailAddress(),
+                    zahtevZaReg.getPhoneNumber(), zahtevZaReg.getCity(), zahtevZaReg.getState(),
+                    zahtevZaReg.getHomeAddress(), zahtevZaReg.getBirthDate(), zahtevZaReg.getUsername(),
+                    zahtevZaReg.getPassword(), Role.BOATOWNER
+            );
+            this.boatOwnerService.save(boatOwner);
+            Admin admin = this.adminService.getByUsernameAndPassword("123", "111");
+            admin.zahtevi.remove(zahtevZaReg);
+
+            RegOwnerDTO regOwnerDTO = new RegOwnerDTO(boatOwner.getName(), boatOwner.getSurname(), boatOwner.getEmailAddress(),
+                    boatOwner.getPhoneNumber(), boatOwner.getCity(), boatOwner.getState(), boatOwner.getHomeAddress(),
+                    boatOwner.getBirthDate(), boatOwner.getUsername(), boatOwner.getPassword());
+            return new ResponseEntity<>(regOwnerDTO, HttpStatus.CREATED);
+
+        }else //if(dto.getRegType() == "CottageOwner"){
+        {CottageOwner cottageOwner = new CottageOwner(
+                zahtevZaReg.getName(), zahtevZaReg.getSurname(), zahtevZaReg.getEmailAddress(),
+                zahtevZaReg.getPhoneNumber(), zahtevZaReg.getCity(), zahtevZaReg.getState(),
+                zahtevZaReg.getHomeAddress(), zahtevZaReg.getBirthDate(), zahtevZaReg.getUsername(),
+                zahtevZaReg.getPassword(), Role.COTTAGEOWNER
+            );
+            this.cottageOwnerService.save(cottageOwner);
+            Admin admin = this.adminService.getByUsernameAndPassword("123", "111");
+            admin.zahtevi.remove(zahtevZaReg);
+
+            RegOwnerDTO regOwnerDTO = new RegOwnerDTO(cottageOwner.getName(), cottageOwner.getSurname(), cottageOwner.getEmailAddress(),
+                    cottageOwner.getPhoneNumber(), cottageOwner.getCity(), cottageOwner.getState(), cottageOwner.getHomeAddress(),
+                    cottageOwner.getBirthDate(), cottageOwner.getUsername(), cottageOwner.getPassword());
+            return new ResponseEntity<>(regOwnerDTO, HttpStatus.CREATED);
+        }
+    }
+
+    //getting all requests for registration
+    @GetMapping(value="/regReq", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ZahtevDTO>> getRequests() {
+        List<ZahtevDTO> zahtevZaRegDTOS = new ArrayList<>();
+
+        List<ZahtevZaReg> zahtevZaRegs = this.zahtevZaRegService.findAll();
+
+        for(ZahtevZaReg t : zahtevZaRegs) {
+
+                ZahtevDTO zahtevZaRegDTO = new ZahtevDTO(t.getId(),
+                        t.getName(),t.getSurname(),t.getEmailAddress(),t.getPhoneNumber(),
+                        t.getCity(),t.getState(),t.getHomeAddress(),t.getBirthDate(),
+                        t.getUsername(),t.getPassword(),t.getRegType(),t.getRazlog()
+                        );
+                zahtevZaRegDTOS.add(zahtevZaRegDTO);
+        }
+        return new ResponseEntity<>(zahtevZaRegDTOS, HttpStatus.OK);
+    }
+
 
 }

@@ -6,6 +6,8 @@ import com.example.ISAprojekat.Service.BoatOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoatOwnerServiceImpl implements BoatOwnerService {
 
@@ -30,5 +32,17 @@ public class BoatOwnerServiceImpl implements BoatOwnerService {
         }
         BoatOwner newBO = boatOwnerRepository.save(boatOwner);
         return  newBO;
+    }
+
+    @Override
+    public List<BoatOwner> findAll() {
+        List<BoatOwner> boatOwners = this.boatOwnerRepository.findAll();
+        return boatOwners;
+    }
+
+    @Override
+    public BoatOwner getOne(Long id) {
+        BoatOwner boatOwner = this.boatOwnerRepository.findById(id).get();
+        return boatOwner;
     }
 }

@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface AdminService {
     Admin getByUsernameAndPassword(String username, String password);
-    public List<Admin> findAll();
+     List<Admin> findAll();
+    Admin getOne(Long id);
     Admin findOne(Long id);
     Admin update(Admin admin) throws Exception;
 }
