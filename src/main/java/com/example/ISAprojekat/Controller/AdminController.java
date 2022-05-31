@@ -147,7 +147,8 @@ public class AdminController {
             );
             this.boatOwnerService.save(boatOwner);
             Admin admin = this.adminService.getByUsernameAndPassword("123", "111");
-            admin.zahtevi.remove(zahtevZaReg);
+            //admin.zahtevi.remove(zahtevZaReg);
+            admin.zahtevi.remove(zahtevZaReg.getId());
 
             RegOwnerDTO regOwnerDTO = new RegOwnerDTO(boatOwner.getName(), boatOwner.getSurname(), boatOwner.getEmailAddress(),
                     boatOwner.getPhoneNumber(), boatOwner.getCity(), boatOwner.getState(), boatOwner.getHomeAddress(),
