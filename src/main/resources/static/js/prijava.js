@@ -13,7 +13,7 @@ $(document).ready(function(){
         if(username != "" && password != "") {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8181/api/korisnik/login",
+                url: "http://localhost:8181/api/korisnik/userLogin",
                 dataType: "json",
                 contentType: "application/json",
                 data: obj,
@@ -29,11 +29,12 @@ $(document).ready(function(){
                     localStorage.setItem('city', data.city);
                     localStorage.setItem('state', data.state);
                     localStorage.setItem('homeAddress', data.homeAddress);
+                    localStorage.setItem('birthDate', data.homeAddress);
                     localStorage.setItem('username', data.username);
                     localStorage.setItem('password', data.password);
                     localStorage.setItem('role', data.role);
 
-                    window.location.href = "index.html";
+                    window.location.href = "home.html";
                 },
                 error: function (data) {
                     console.log("ERROR " + JSON.stringify(data));

@@ -127,19 +127,19 @@ public class KorisnikController {
             prijavaDTO = new PrijavaKorisnikaDTO(admin.getId(),admin.getName(),admin.getSurname(),
                     admin.getEmailAddress(),admin.getPhoneNumber(),admin.getCity(),admin.getState(),
                     admin.getHomeAddress(),admin.getBirthDate(),admin.getUsername(),
-                    admin.getPassword(),Role.ADMIN);
+                    admin.getPassword(),admin.getRole());
             return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
         }else if(boatOwner != null){
             prijavaDTO = new PrijavaKorisnikaDTO(boatOwner.getId(),boatOwner.getName(),boatOwner.getSurname(),
                     boatOwner.getEmailAddress(),boatOwner.getPhoneNumber(),boatOwner.getCity(),boatOwner.getState(),
                     boatOwner.getHomeAddress(),boatOwner.getBirthDate(),boatOwner.getUsername(),
-                    boatOwner.getPassword(),Role.BOATOWNER);
+                    boatOwner.getPassword(),boatOwner.getRole());
             return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
         }else if(cottageOwner != null){
             prijavaDTO = new PrijavaKorisnikaDTO(cottageOwner.getId(),cottageOwner.getName(),cottageOwner.getSurname(),
                     cottageOwner.getEmailAddress(),cottageOwner.getPhoneNumber(),cottageOwner.getCity(),cottageOwner.getState(),
                     cottageOwner.getHomeAddress(),cottageOwner.getBirthDate(),cottageOwner.getUsername(),
-                    cottageOwner.getPassword(),Role.COTTAGEOWNER);
+                    cottageOwner.getPassword(),cottageOwner.getRole());
             return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
         }else{
             throw new Exception("Kredencijali nisu tacni ili korisnik nema nalog!");
