@@ -40,35 +40,29 @@ public class AdventureController {
     }
 
     //ne radi
-   /* @PostMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AdventureDTO> createTraining(@RequestBody AdventureDTO tDTO) throws Exception {
-        Adventure adventure = new Adventure(tDTO.getId(),tDTO.getAdventureName(), tDTO.getAdventureAddress(),tDTO.getPromoDescription(), tDTO.getInstructorBiography(), tDTO.getAdventureCapacity(), tDTO.getAdventureRules(),tDTO.getAventureEquipment(), tDTO.getAdventureAdditionalServices());
-        Adventure newAdventure = this.adventureService.save(adventure);
-        AdventureDTO adventureDTO = new AdventureDTO(newAdventure.getAdventureName(), newAdventure.getAdventureAddress(),newAdventure.getPromoDescription(), newAdventure.getInstructorBiography(), newAdventure.getAdventureCapacity(), newAdventure.getAdventureRules(),newAdventure.getAventureEquipment(), newAdventure.getAdventureAdditionalServices());
-        return new ResponseEntity<>(adventureDTO, HttpStatus.CREATED);
-
-    }*/
-
-    //ne radi
     @PostMapping(value = ("/create"),
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AdventureDTO> createTrening(@RequestBody AdventureDTO tDTO) throws Exception {
+    public ResponseEntity<AdventureDTO> createAdventure(@RequestBody AdventureDTO aDTO) throws Exception {
+        Adventure adventure = new Adventure();
+        adventure.setAdventureName(aDTO.getAdventureName());
+        //LocalDateTime now = LocalDateTime.now();
+        adventure.setAdventureRules(aDTO.getAdventureRules());
+        adventure.setAdventureAddress(aDTO.getAdventureAddress());
+        adventure.setAdventureCapacity(aDTO.getAdventureCapacity());
+        adventure.setInstructorBiography(aDTO.getInstructorBiography());
+        adventure.setAventureEquipment(aDTO.getAventureEquipment());
+        adventure.setAdventureAdditionalServices(aDTO.getAdventureAdditionalServices());
+        adventure.setPromoDescription(aDTO.getPromoDescription());
+        this.adventureService.save(adventure);
+        AdventureDTO adventureDTO = new AdventureDTO(adventure.getId(),adventure.getAdventureName(), adventure.getAdventureAddress()
+                ,adventure.getPromoDescription(), adventure.getInstructorBiography(), adventure.getAdventureCapacity(),
+                adventure.getAdventureRules(),adventure.getAventureEquipment(), adventure.getAdventureAdditionalServices());
+        return new ResponseEntity<>(adventureDTO, HttpStatus.CREATED);
 
-        Adventure adventure = adventureService.findOne(tDTO.getId());
-        if(adventure != null){
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-        Adventure listaTreninga = new Adventure(tDTO.getId(), tDTO.getAdventureName(), tDTO.getAdventureAddress(),tDTO.getPromoDescription(), tDTO.getInstructorBiography(), tDTO.getAdventureCapacity(), tDTO.getAdventureRules(),tDTO.getAventureEquipment(), tDTO.getAdventureAdditionalServices());
-
-        Adventure novaListaTreninga = this.adventureService.save(listaTreninga);
-        AdventureDTO listaTreningaDTO = new AdventureDTO(novaListaTreninga.getId(),novaListaTreninga.getAdventureName(), novaListaTreninga.getAdventureAddress(),
-                novaListaTreninga.getPromoDescription(), novaListaTreninga.getInstructorBiography(), novaListaTreninga.getAdventureCapacity(),
-                novaListaTreninga.getAdventureRules(),novaListaTreninga.getAventureEquipment(), novaListaTreninga.getAdventureAdditionalServices());
-        return new ResponseEntity<>(listaTreningaDTO, HttpStatus.CREATED);
     }
+
+
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteTermin(@PathVariable Long id) {

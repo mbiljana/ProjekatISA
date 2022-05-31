@@ -1,14 +1,10 @@
 package com.example.ISAprojekat.Controller;
 
 
-import com.example.ISAprojekat.Model.Admin;
-import com.example.ISAprojekat.Model.DTO.AdminDTO;
-import com.example.ISAprojekat.Model.DTO.FishingInstructorDTO;
-import com.example.ISAprojekat.Model.DTO.IzmenjenKorisnikDTO;
-import com.example.ISAprojekat.Model.DTO.KorisnikDTO;
-import com.example.ISAprojekat.Model.FishingInstructor;
-import com.example.ISAprojekat.Model.Korisnik;
+import com.example.ISAprojekat.Model.*;
+import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Service.AdminService;
+import com.example.ISAprojekat.Service.AdventureService;
 import com.example.ISAprojekat.Service.FishingInstructorService;
 import com.example.ISAprojekat.Service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +20,13 @@ import java.util.List;
 @RequestMapping(value = "api/instructor")
 public class FishingInstructorController {
     private FishingInstructorService fishingInstructorService;
+    private AdventureService adventureService;
 
 
     @Autowired
-    public FishingInstructorController(FishingInstructorService fishingInstructorService){
+    public FishingInstructorController(FishingInstructorService fishingInstructorService, AdventureService adventureService){
         this.fishingInstructorService = fishingInstructorService;
+        this.adventureService = adventureService;
     }
 
     @GetMapping(value = "/allInstructors")
@@ -49,7 +47,29 @@ public class FishingInstructorController {
 
 
     }
-    //ovde nastaviti
+
+    //prikaz termina
+    @GetMapping(value = "/allReservedAdventures")
+    public ResponseEntity<List<AdventureDTO>> getAllFreeAppointments() {
+
+        //nema mi smisla
+        List<Adventure> korisnici = adventureService.findAll();
+
+
+        List<AdventureDTO> korisnikDTOS = new ArrayList<>();
+
+        //if(korisnikDTOS.getRegType().equals("fi"))
+        for (Adventure a : korisnici) {
+
+            korisnikDTOS.add(new AdventureDTO(a));
+        }
+
+        //return new ResponseEntity<>(korisnikDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(korisnikDTOS, HttpStatus.OK);
+
+
+    }
+
     @PostMapping(value = ("/updateInstructor"),
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,9 +1,7 @@
 package com.example.ISAprojekat.Service.Impl;
 
-import com.example.ISAprojekat.Model.Adventure;
 import com.example.ISAprojekat.Model.FishingInstructor;
 import com.example.ISAprojekat.Repository.FishingInstructorRepository;
-import com.example.ISAprojekat.Repository.KorisnikRepository;
 import com.example.ISAprojekat.Service.FishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +36,12 @@ public class FishingInstructorImpl implements FishingInstructorService {
     public List<FishingInstructor> findAll(){
         return fishingInstructorRepository.findAll();
     }
+
+    /*@Override
+    public List<AdventureAppointment> findAllAdventures(){
+        return fishingInstructorRepository.findAllAdventures();
+    }*/
+
 
     @Override
     public FishingInstructor findOne(Long id){

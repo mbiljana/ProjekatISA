@@ -1,6 +1,7 @@
 package com.example.ISAprojekat.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,10 @@ public class Appointment  {
     //akcija kao boolean da li je na akciji ili ne ???
     //datum vazenja akcije
     @Column
+    private String place;
+    @Column
+    private String additionalServices;
+    @Column
     private int numPeople;
     @Column
     private String price;
@@ -36,9 +41,11 @@ public class Appointment  {
     private LocalTime duration;
    /* @Transient // ???
     private List<String> additionalServices = new ArrayList<String>() ;
+   */
 
-
-    */
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Adventure adventure;
 
 
 
