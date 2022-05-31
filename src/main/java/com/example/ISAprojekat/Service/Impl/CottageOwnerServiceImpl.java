@@ -33,4 +33,10 @@ public class CottageOwnerServiceImpl implements CottageOwnerService {
         CottageOwner newCO = cottageOwnerRepository.save(cottageOwner);
         return  newCO;
     }
+
+    @Override
+    public CottageOwner getOne(Long id) {
+        CottageOwner cottageOwner = this.cottageOwnerRepository.findById(id).get();
+        return cottageOwner;
+    }
 }

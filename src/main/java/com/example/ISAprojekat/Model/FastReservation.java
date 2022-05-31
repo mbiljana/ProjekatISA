@@ -6,43 +6,33 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.swing.*;
-import java.awt.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-@Table
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cottage implements Serializable {
-
+public class FastReservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    @Column
-    private String cottageName;
-    @Column
-    private String cottageAddress;
-    @Column
-    private String cottageDescription;
-    @Column
-    private int numRooms;
-    @Column
-    private int numBeds;
-    @Column
-    private String cottageAdditionalServices;
-    @Column
-    private String cottageRules;
+    private Long id;
 
+    @Column
+    private Date startDate;
+    @Column
+    //duration in days
+    private int duration;
+    @Column
+    private int capacity;
+    @Column
+    private String additionalServices;
+    @Column
+    private String price;
+    @Column
+    private String reservation;
     @ManyToOne
-    private CottageOwner cottageOwner;
-
-
-
-
-
-
+    private Boat boat;
 
 }

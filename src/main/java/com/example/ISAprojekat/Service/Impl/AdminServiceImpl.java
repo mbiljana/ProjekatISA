@@ -39,6 +39,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Admin getOne(Long id) {
+        Admin admin = this.adminRepository.findById(id).get();
+        return admin;
+    }
+
     public Admin update (Admin admin) throws Exception{
         Admin updated = this.adminRepository.findById(admin.getId()).get();
         if(admin.getId() == null){
