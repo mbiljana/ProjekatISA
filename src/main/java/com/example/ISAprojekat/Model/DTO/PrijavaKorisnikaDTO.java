@@ -1,13 +1,17 @@
 package com.example.ISAprojekat.Model.DTO;
 
 import com.example.ISAprojekat.Model.Role;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PrijavaKorisnikaDTO {
     private Long id;
     private String name;
@@ -52,8 +56,6 @@ public class PrijavaKorisnikaDTO {
         this.role = role;
     }
 
-    public PrijavaKorisnikaDTO() {
-    }
 
     public PrijavaKorisnikaDTO(Long id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, String password2, Role role) {
         this.id = id;
@@ -71,18 +73,4 @@ public class PrijavaKorisnikaDTO {
         this.role = role;
     }
 
-    /*  public PrijavaKorisnikaDTO(Korisnik a) {
-        this.id = a.getId();
-        this.name = a.getName();
-        this.surname = a.getSurname();
-        this.emailAddress = a.getEmailAddress();
-        this.phoneNumber = a.getPhoneNumber();
-        this.city = a.getCity();
-        this.state = a.getState();
-        this.homeAddress = a.getHomeAddress();
-        this.birthDate = a.getBirthDate();
-        this.username = a.getUsername();
-        this.password = a.getPassword();
-        this.role = a.getRole();
-    }*/
 }
