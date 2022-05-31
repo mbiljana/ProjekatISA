@@ -45,4 +45,10 @@ public class BoatOwnerServiceImpl implements BoatOwnerService {
         BoatOwner boatOwner = this.boatOwnerRepository.findById(id).get();
         return boatOwner;
     }
+
+    @Override
+    public BoatOwner getByUsernameAndPassword(String username, String password) {
+        BoatOwner boatOwner = this.boatOwnerRepository.findByUsernameAndPassword(username,password);
+        return boatOwner;
+    }
 }

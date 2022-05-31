@@ -1,11 +1,8 @@
 package com.example.ISAprojekat.Controller;
 
 
-import com.example.ISAprojekat.Model.Admin;
-import com.example.ISAprojekat.Model.BoatOwner;
+import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.*;
-import com.example.ISAprojekat.Model.Korisnik;
-import com.example.ISAprojekat.Model.ZahtevZaReg;
 import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,42 +37,6 @@ public class KorisnikController {
         this.zahtevZaRegService = zahtevZaRegService;
     }
 
-    @PostMapping(value="/registration" ,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PrijavaKorisnikaDTO> registerBoatOwner(@RequestBody PrijavaKorisnikaDTO DTO) throws Exception {
-        Korisnik existing = this.korisnikService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
-        //ako vec postoji clan
-        if (existing != null) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }else {
-            if (DTO.getPassword().equals(DTO.getPassword2())) {
-                Korisnik korisnik = new Korisnik(DTO.getName(), DTO.getSurname(), DTO.getEmailAddress(),
-                        DTO.getPhoneNumber(), DTO.getCity(), DTO.getState(), DTO.getHomeAddress(),
-                        DTO.getBirthDate(), DTO.getUsername(), DTO.getPassword(), DTO.getRole());
-                korisnik.setEmailAddress(DTO.getEmailAddress());
-
-
-                Korisnik newBO = this.korisnikService.save(korisnik);
-
-                PrijavaKorisnikaDTO boDTO = new PrijavaKorisnikaDTO(newBO.getName(), newBO.getSurname(), newBO.getEmailAddress(),
-                        newBO.getPhoneNumber(), newBO.getCity(), newBO.getState(),
-                        newBO.getHomeAddress(), newBO.getBirthDate(),
-                        newBO.getUsername(), newBO.getPassword(), newBO.getRole());
-
-                return new ResponseEntity<>(boDTO, HttpStatus.OK);
-            }else{
-                System.out.println("Lozinke se ne poklapaju!");
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
-
-        }
-
-
-    }
-
-
-
     //ne znam sta ovo radi
     //logovanje admina kao provera
     @PostMapping(
@@ -85,7 +46,7 @@ public class KorisnikController {
     public ResponseEntity<PrijavaKorisnikaDTO> KorisnikLogin(@RequestBody PrijavljenKorisnikDTO korisnikLoginDTO) throws Exception {
         //Admin admin = this.adminService.getByUsernameAndPassword(korisnikLoginDTO.getUsername(), korisnikLoginDTO.getPassword());
         Korisnik korisnik = this.korisnikService.getByUsernameAndPassword(korisnikLoginDTO.getUsername(), korisnikLoginDTO.getPassword());
-        PrijavaKorisnikaDTO korisnikDTO = new PrijavaKorisnikaDTO();
+        PrijavaKorisnikaDTO korisnikDTO;
         if(korisnik == null){
             System.out.print("Admin je null");
         }
@@ -119,7 +80,7 @@ public class KorisnikController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ZahtevZaRegDTO> createOwner(@RequestBody RegisterOwnerDTO DTO) throws Exception {
-        BoatOwner existing = this.boatOwnerService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
+        Korisnik existing = this.korisnikService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
         //ako vec postoji clan
         if (existing != null) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -152,6 +113,47 @@ public class KorisnikController {
 
         }
     }
+
+//login
+    @PostMapping(value = "/userLogin", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PrijavaKorisnikaDTO>userLogin(@RequestBody PrijavljenKorisnikDTO kDTO) throws Exception{
+        Admin admin = this.adminService.getByUsernameAndPassword(kDTO.getUsername(),kDTO.getPassword());
+        BoatOwner boatOwner = this.boatOwnerService.getByUsernameAndPassword(kDTO.getUsername(),kDTO.getPassword());
+        CottageOwner cottageOwner = this.cottageOwnerService.getByUsernameAndPassword(kDTO.getUsername(),kDTO.getPassword());
+
+        PrijavaKorisnikaDTO prijavaDTO = new PrijavaKorisnikaDTO();
+
+        if(admin != null){
+            prijavaDTO = new PrijavaKorisnikaDTO(admin.getId(),admin.getName(),admin.getSurname(),
+                    admin.getEmailAddress(),admin.getPhoneNumber(),admin.getCity(),admin.getState(),
+                    admin.getHomeAddress(),admin.getBirthDate(),admin.getUsername(),
+                    admin.getPassword(),admin.getRole());
+            return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
+        }else if(boatOwner != null){
+            prijavaDTO = new PrijavaKorisnikaDTO(boatOwner.getId(),boatOwner.getName(),boatOwner.getSurname(),
+                    boatOwner.getEmailAddress(),boatOwner.getPhoneNumber(),boatOwner.getCity(),boatOwner.getState(),
+                    boatOwner.getHomeAddress(),boatOwner.getBirthDate(),boatOwner.getUsername(),
+                    boatOwner.getPassword(),boatOwner.getRole());
+            return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
+        }else if(cottageOwner != null){
+            prijavaDTO = new PrijavaKorisnikaDTO(cottageOwner.getId(),cottageOwner.getName(),cottageOwner.getSurname(),
+                    cottageOwner.getEmailAddress(),cottageOwner.getPhoneNumber(),cottageOwner.getCity(),cottageOwner.getState(),
+                    cottageOwner.getHomeAddress(),cottageOwner.getBirthDate(),cottageOwner.getUsername(),
+                    cottageOwner.getPassword(),cottageOwner.getRole());
+            return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
+        }else{
+            throw new Exception("Kredencijali nisu tacni ili korisnik nema nalog!");
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 
 }
