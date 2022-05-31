@@ -39,5 +39,6 @@ INSERT INTO cottage_owner(id) VALUES  (77);
 INSERT INTO zahtev_za_reg(id, name,surname,email_address,phone_number,city,state,home_address,birth_date,username,password,reg_type)
 values ( 555, 'biljana','marinkov', 'hhh','02202','hhh','jjj','sss','2002-02-02','jjjshshs','ssss','BoatOwner');
 
-
+INSERT INTO fast_reservation(id,start_date,duration,capacity,additional_services,price,boat_id)
+values(88,'2021-02-05',5,4,'some services','14.000',8);
 

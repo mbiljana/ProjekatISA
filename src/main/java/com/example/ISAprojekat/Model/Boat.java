@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -30,21 +32,23 @@ public class Boat  implements Serializable{
     private String enginePower;
     @Column
     private int maxSpeed;
-    //navigaciona oprema ???
     @Column
     private String boatAddress;
     @Column
     private int boatCapacity;
-    //termini
     @Column
     private String boatRules;
     @Column
     private String boatDescription;
     @Column
     private String additionalEquipment;
-    //cenovnik
-    //private String dodatneUsluge; ???
-    //uslovi otkaza rez
+    @Column
+    private String navigationEquimpment;
+
+    @ManyToOne
+    private BoatOwner boatOwner;
+    @OneToMany(mappedBy = "boat")
+    private List<FastReservation> fastReservation = new ArrayList<>();
 
 
 

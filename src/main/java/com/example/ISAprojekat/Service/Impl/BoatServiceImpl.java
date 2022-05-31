@@ -2,6 +2,7 @@ package com.example.ISAprojekat.Service.Impl;
 
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.BoatOwner;
+import com.example.ISAprojekat.Model.FastReservation;
 import com.example.ISAprojekat.Repository.BoatRepository;
 import com.example.ISAprojekat.Service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,15 @@ public class  BoatServiceImpl implements BoatService {
     public Boat getOne(Long id) {
         Boat boat = this.boatRepository.findById(id).get();
         return boat;
+    }
+
+    @Override
+    public Boat create(Boat boat) throws Exception {
+        if(boat.getId() != null){
+            throw new Exception("ID must be unique!");
+        }
+        Boat newB = this.boatRepository.save(boat);
+        return  newB;
     }
 
 

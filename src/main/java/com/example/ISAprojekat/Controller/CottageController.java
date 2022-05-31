@@ -1,8 +1,12 @@
 package com.example.ISAprojekat.Controller;
 
+import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.Cottage;
 import com.example.ISAprojekat.Model.CottageOwner;
+import com.example.ISAprojekat.Model.DTO.BoatDTO;
 import com.example.ISAprojekat.Model.DTO.CottageDTO;
+import com.example.ISAprojekat.Model.DTO.ZahtevDTO;
+import com.example.ISAprojekat.Model.ZahtevZaReg;
 import com.example.ISAprojekat.Repository.CottageRepository;
 import com.example.ISAprojekat.Service.CottageService;
 import com.example.ISAprojekat.Service.Impl.CottageServiceImpl;
@@ -30,17 +34,18 @@ public class CottageController {
     }
 
     //get all cottages
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<CottageDTO>> getCottages(){
-        List<Cottage>cottages = this.cottageService.findAll();
+    @GetMapping(value = "/all")
+    public ResponseEntity<List<CottageDTO>> getAllCottages() {
+
+        List<Cottage> cottages= this.cottageService.findAll();
+
+        // convert boats to DTOs
         List<CottageDTO> cottageDTOS = new ArrayList<>();
-        for(Cottage f : cottages){
-            CottageDTO cottageDTO = new CottageDTO(f.getCottageName(),f.getCottageAddress(),
-                    f.getCottageDescription(),f.getNumRooms(),f.getNumBeds(),f.getCottageAdditionalServices(),f.getCottageRules());
-            cottageDTOS.add(cottageDTO);
+        for (Cottage c : cottages) {
+            cottageDTOS.add(new CottageDTO(c));
         }
 
-        return new ResponseEntity<>(cottageDTOS, HttpStatus.FOUND);
+        return new ResponseEntity<>(cottageDTOS, HttpStatus.OK);
     }
 
     //get one cottage

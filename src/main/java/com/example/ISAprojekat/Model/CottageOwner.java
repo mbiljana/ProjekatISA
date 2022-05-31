@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -23,11 +25,9 @@ public class CottageOwner extends Korisnik {
         super( name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role);
     }
 
-    /*
-    @OneToMany
+    @OneToMany(mappedBy = "cottageOwner")
     private List<Cottage> cottages = new ArrayList<>();
 
-     */
 
 
 }

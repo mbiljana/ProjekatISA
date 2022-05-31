@@ -2,19 +2,18 @@ package com.example.ISAprojekat.Controller;
 
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.Cottage;
-import com.example.ISAprojekat.Model.DTO.BoatDTO;
-import com.example.ISAprojekat.Model.DTO.CottageDTO;
+import com.example.ISAprojekat.Model.DTO.*;
+import com.example.ISAprojekat.Model.FastReservation;
 import com.example.ISAprojekat.Service.BoatService;
+import com.example.ISAprojekat.Service.FastReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +21,14 @@ import java.util.List;
 @RequestMapping(value = "api/boats")
 public class BoatController {
 
-
+    private final BoatService boatService;
+    private final FastReservationService fastReservationService;
     @Autowired
-    private BoatService boatService;
+    public BoatController(BoatService boatService, FastReservationService fastReservationService){
+        this.boatService = boatService;
+        this.fastReservationService = fastReservationService;
+    }
+
 
 
     //get all boats
@@ -57,7 +61,86 @@ public class BoatController {
         boatDTO.setEnginePower(boat.getEnginePower());
         boatDTO.setMaxSpeed(boat.getMaxSpeed());
         boatDTO.setBoatDescription(boat.getBoatDescription());
+        boatDTO.setNavigationEguipment(boat.getNavigationEquimpment());
         return new ResponseEntity<>(boatDTO, HttpStatus.FOUND);
+    }
+
+
+    @PostMapping(value = "/createBoat",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BoatDTO> createBoatWithRes(@RequestBody BoatCDTO boatDTO) throws Exception{
+        Boat boat = new Boat();
+        boat.setBoatCapacity(boatDTO.getBoatCapacity());
+        boat.setBoatAddress(boatDTO.getBoatAddress());
+        boat.setBoatName(boatDTO.getBoatName());
+        boat.setBoatRules(boatDTO.getBoatRules());
+        boat.setBoatType(boatDTO.getBoatType());
+        boat.setBoatDescription(boatDTO.getBoatDescription());
+        boat.setBoatName(boatDTO.getBoatName());
+        boat.setAdditionalEquipment(boatDTO.getAdditionalEquipment());
+        boat.setEngineNumber(boatDTO.getEngineNumber());
+        boat.setEnginePower(boatDTO.getEnginePower());
+        boat.setMaxSpeed(boatDTO.getMaxSpeed());
+        boat.setNavigationEquimpment(boatDTO.getNavigationEguipment());
+        this.boatService.create(boat);
+        BoatDTO boatDTO1 = new BoatDTO(
+                boat.getId(),boat.getBoatName(),boat.getBoatType(),boat.getEngineNumber(),
+                boat.getEnginePower(),boat.getMaxSpeed(),boat.getBoatAddress(),
+                boat.getBoatCapacity(),boat.getBoatRules(),boat.getBoatDescription(),
+                boat.getAdditionalEquipment(),boat.getNavigationEquimpment()
+        );
+        return new ResponseEntity<>(boatDTO1,HttpStatus.CREATED);
+    }
+    @PostMapping(value = "/createBoatRes",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BoatDTO> createBoat(@RequestBody CreateBoatDTO boatDTO) throws Exception{
+        FastReservation fastReservation = new FastReservation();
+        fastReservation.setCapacity(boatDTO.getCapacity());
+        fastReservation.setAdditionalServices(boatDTO.getAdditionalServices());
+        fastReservation.setDuration(boatDTO.getDuration());
+        fastReservation.setPrice(boatDTO.getPrice());
+        fastReservation.setStartDate(boatDTO.getStartDate());
+
+        Boat boat = new Boat();
+        boat.setBoatCapacity(boatDTO.getBoatCapacity());
+        boat.setBoatAddress(boatDTO.getBoatAddress());
+        boat.setBoatName(boatDTO.getBoatName());
+        boat.setBoatRules(boatDTO.getBoatRules());
+        boat.setBoatType(boatDTO.getBoatType());
+        boat.setBoatDescription(boatDTO.getBoatDescription());
+        boat.setBoatName(boatDTO.getBoatName());
+        boat.setAdditionalEquipment(boatDTO.getAdditionalEquipment());
+        boat.setEngineNumber(boatDTO.getEngineNumber());
+        boat.setEnginePower(boatDTO.getEnginePower());
+        boat.setMaxSpeed(boatDTO.getMaxSpeed());
+        boat.getFastReservation().add(fastReservation);
+        this.fastReservationService.create(fastReservation);
+        this.boatService.create(boat);
+        BoatDTO boatDTO1 = new BoatDTO(
+                boat.getId(),boat.getBoatName(),boat.getBoatType(),boat.getEngineNumber(),
+                boat.getEnginePower(),boat.getMaxSpeed(),boat.getBoatAddress(),
+                boat.getBoatCapacity(),boat.getBoatRules(),boat.getBoatDescription(),
+                boat.getAdditionalEquipment(),boat.getNavigationEquimpment()
+        );
+        return new ResponseEntity<>(boatDTO1,HttpStatus.CREATED);
+    }
+    @PostMapping(value = "/createRes",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CreateBoatResDTO> createReservation(@RequestBody CreateBoatResDTO boatDTO) throws Exception{
+        Boat boat = this.boatService.getOne(boatDTO.getBoatId());
+        FastReservation fastReservation = new FastReservation();
+        fastReservation.setCapacity(boatDTO.getCapacity());
+        fastReservation.setAdditionalServices(boatDTO.getAdditionalServices());
+        fastReservation.setDuration(boatDTO.getDuration());
+        fastReservation.setPrice(boatDTO.getPrice());
+        fastReservation.setStartDate(boatDTO.getStartDate());
+        fastReservation.setBoat(boat);
+
+        this.fastReservationService.create(fastReservation);
+        CreateBoatResDTO createBoatResDTO = new CreateBoatResDTO();
+        createBoatResDTO.setBoatId(fastReservation.getBoat().getId());
+        createBoatResDTO.setCapacity(fastReservation.getCapacity());
+        createBoatResDTO.setDuration(fastReservation.getDuration());
+        createBoatResDTO.setPrice(fastReservation.getPrice());
+        createBoatResDTO.setStartDate(fastReservation.getStartDate());
+        return new ResponseEntity<>(createBoatResDTO,HttpStatus.CREATED);
     }
 
 }
