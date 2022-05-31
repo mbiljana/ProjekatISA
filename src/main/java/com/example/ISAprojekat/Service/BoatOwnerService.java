@@ -10,4 +10,5 @@ public interface BoatOwnerService {
     BoatOwner save (BoatOwner boatOwner) throws Exception;
     List<BoatOwner> findAll();
     BoatOwner getOne(Long id);
+    BoatOwner getByUsernameAndPassword(String username, String password);
 }

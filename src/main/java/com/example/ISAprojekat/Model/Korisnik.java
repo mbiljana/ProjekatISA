@@ -45,8 +45,6 @@ public class Korisnik implements Serializable {
     private String password;
     @Column
     private Role role;
-    @Column
-    private boolean isRegistered;
 
 
 

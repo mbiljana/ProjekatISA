@@ -29,7 +29,5 @@ public class RegisterOwnerDTO {
     private String regType;
     private String razlog;
 
-    //private Role role;
-
 
 }

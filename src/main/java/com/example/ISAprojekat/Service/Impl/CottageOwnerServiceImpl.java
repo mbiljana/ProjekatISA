@@ -39,4 +39,10 @@ public class CottageOwnerServiceImpl implements CottageOwnerService {
         CottageOwner cottageOwner = this.cottageOwnerRepository.findById(id).get();
         return cottageOwner;
     }
+
+    @Override
+    public CottageOwner getByUsernameAndPassword(String username, String password) {
+        CottageOwner cottageOwner = this.cottageOwnerRepository.findByUsernameAndPassword(username,password);
+        return cottageOwner;
+    }
 }
