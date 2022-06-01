@@ -1,6 +1,7 @@
 package com.example.ISAprojekat.Model.DTO;
 
 import com.example.ISAprojekat.Model.Adventure;
+import com.example.ISAprojekat.Model.FishingInstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,11 +37,26 @@ public class AdventureDTO {
     }
 
 
-
-    public AdventureDTO(Long id, String adventureName, String adventureRules, String promoDescription, int adventureCapacity, String adventureAddress, String adventureAdditionalServices, String aventureEquipment, String instructorBiography) {
+    public AdventureDTO(String adventureName, String adventureAddress, String promoDescription, String instructorBiography, int adventureCapacity, String adventureRules, String aventureEquipment, String adventureAdditionalServices) {
+        this.adventureName = adventureName;
+        this.adventureAddress = adventureAddress;
+        this.promoDescription = promoDescription;
+        this.instructorBiography = instructorBiography;
+        this.adventureCapacity = adventureCapacity;
+        this.adventureRules = adventureRules;
+        this.aventureEquipment = aventureEquipment;
+        this.adventureAdditionalServices = adventureAdditionalServices;
     }
 
 
     public AdventureDTO(String adventureName, String adventureRules, String promoDescription, int adventureCapacity, String adventureAddress, String adventureAdditionalServices, String aventureEquipment, String instructorBiography) {
+        this.adventureName = adventureName;
+        this.adventureAddress = adventureAddress;
+        this.promoDescription = promoDescription;
+        this.instructorBiography = instructorBiography;
+        this.adventureCapacity = adventureCapacity;
+        this.adventureRules = adventureRules;
+        this.aventureEquipment = aventureEquipment;
+        this.adventureAdditionalServices = adventureAdditionalServices;
     }
 }
