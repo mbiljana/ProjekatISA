@@ -44,12 +44,13 @@ public class Adventure implements Serializable {
 
 
     //lista termina
-    @OneToMany(mappedBy = "adventure",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "adventure")
     private List<Appointment> freeAppointments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "adventure")
+    private List<FastReservation> fastReservation = new ArrayList<>();
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private FishingInstructor fishingInstructor;
 
     public Adventure(Long id, String adventureName, String adventureAddress, String promoDescription, String instructorBiography, int adventureCapacity, String adventureRules, String aventureEquipment, String adventureAdditionalServices) {

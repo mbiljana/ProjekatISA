@@ -1,23 +1,30 @@
 package com.example.ISAprojekat.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table
-public class FishingInstructor extends Korisnik implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class FishingInstructor extends Korisnik{
 
-    //lista usluga
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "fa_fid", referencedColumnName = "id")
-    //private List<Adventure> adventures = new ArrayList<>();
 
-    @OneToMany(mappedBy = "fishingInstructor",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<Adventure> adventures = new HashSet<>();
+    public FishingInstructor(String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
+        super( name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role);
+    }
+
+    //lista avantura
+    @OneToMany(mappedBy = "fishingInstructor")
+    private List<Adventure> adventures = new ArrayList<>();
 
     /*@Column
     private String availableFrom;

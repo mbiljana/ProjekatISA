@@ -74,7 +74,7 @@ public class AdminController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AdminDTO> izmenaAdmina(@RequestBody AdminDTO kDTO) throws Exception {
         Admin admin = adminService.findOne(kDTO.getId());
-        admin.setRole(kDTO.getRole()); //menjamo samo ulogu
+        admin.setRole(kDTO.getRole());
         admin.setName(kDTO.getName());
         admin.setEmailAddress(kDTO.getEmailAddress());
         admin.setSurname(kDTO.getSurname());

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FishingInstructorRepository extends JpaRepository<FishingInstructor, Long> {
-    //List<AdventureAppointment> findAllAdventures();
+    FishingInstructor findByEmailAddressAndPassword(String emailAddress, String password);
 }

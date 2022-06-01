@@ -2,8 +2,11 @@ package com.example.ISAprojekat.Controller;
 
 
 import com.example.ISAprojekat.Model.Adventure;
-import com.example.ISAprojekat.Model.DTO.AdventureDTO;
+import com.example.ISAprojekat.Model.Boat;
+import com.example.ISAprojekat.Model.DTO.*;
+import com.example.ISAprojekat.Model.FastReservation;
 import com.example.ISAprojekat.Service.AdventureService;
+import com.example.ISAprojekat.Service.FastReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,10 +22,12 @@ import java.util.List;
 @RequestMapping(value = "api/adventures")
 public class AdventureController {
     private  AdventureService adventureService;
+    private FastReservationService fastReservationService;
 
     @Autowired
-    public AdventureController(AdventureService adventureService) {
+    public AdventureController(AdventureService adventureService, FastReservationService fastReservationService) {
         this.adventureService = adventureService;
+        this.fastReservationService = fastReservationService;
     }
 
     @GetMapping(value = "/allAdventures")
@@ -106,6 +111,59 @@ public class AdventureController {
 
         return new ResponseEntity<>(tDTO,HttpStatus.OK);
 
+    }
+
+    @PostMapping(value = ("/createAdventureRes"),
+        consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AdventureDTO> createAdventureR(@RequestBody CreateAdventureDTO rDTO) throws Exception{
+        FastReservation fastReservation = new FastReservation();
+        fastReservation.setCapacity(rDTO.getCapacity());
+        fastReservation.setAdditionalServices(rDTO.getAdditionalServices());
+        fastReservation.setDuration(rDTO.getDuration());
+        fastReservation.setPrice(rDTO.getPrice());
+        fastReservation.setStartDate(rDTO.getStartDate());
+        fastReservation.setPlace(rDTO.getPlace());
+
+        Adventure adventure = new Adventure();
+        adventure.setAdventureRules(rDTO.getAdventureRules());
+        adventure.setAdventureName(rDTO.getAdventureName());
+        adventure.setAdventureAddress(rDTO.getAdventureAddress());
+        adventure.setAdventureCapacity(rDTO.getAdventureCapacity());
+        adventure.setInstructorBiography(rDTO.getInstructorBiography());
+        adventure.setAventureEquipment(rDTO.getAventureEquipment());
+        adventure.setAdventureAdditionalServices(rDTO.getAdventureAdditionalServices());
+        adventure.setPromoDescription(rDTO.getPromoDescription());
+        adventure.getFastReservation().add(fastReservation);
+        this.fastReservationService.create(fastReservation);
+        this.adventureService.save(adventure);
+        AdventureDTO adventureDTO = new AdventureDTO(adventure.getId(),adventure.getAdventureName(),adventure.getAdventureRules(),
+                adventure.getPromoDescription(),adventure.getInstructorBiography(),adventure.getAdventureCapacity(),adventure.getAdventureAddress(),
+                adventure.getAventureEquipment(),adventure.getAdventureAdditionalServices());
+        return new ResponseEntity<>(adventureDTO,HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/createReservation",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CreateAdventureResDTO> createReservation(@RequestBody CreateAdventureResDTO aDTO) throws Exception{
+        Adventure adventure = this.adventureService.findOne(aDTO.getAdventureId());
+        FastReservation fastReservation = new FastReservation();
+        fastReservation.setCapacity(aDTO.getCapacity());
+        fastReservation.setAdditionalServices(aDTO.getAdditionalServices());
+        fastReservation.setDuration(aDTO.getDuration());
+        fastReservation.setPrice(aDTO.getPrice());
+        fastReservation.setStartDate(aDTO.getStartDate());
+        fastReservation.setPlace(aDTO.getPlace());
+        fastReservation.setAdventure(adventure);
+
+        this.fastReservationService.create(fastReservation);
+        CreateAdventureResDTO createAdventureResDTO = new CreateAdventureResDTO();
+        createAdventureResDTO.setAdventureId(fastReservation.getAdventure().getId());
+        createAdventureResDTO.setCapacity(fastReservation.getCapacity());
+        createAdventureResDTO.setDuration(fastReservation.getDuration());
+        createAdventureResDTO.setPrice(fastReservation.getPrice());
+        createAdventureResDTO.setStartDate(fastReservation.getStartDate());
+        createAdventureResDTO.setPlace(fastReservation.getPlace());
+        createAdventureResDTO.setAdditionalServices(fastReservation.getAdditionalServices());
+        return new ResponseEntity<>(createAdventureResDTO,HttpStatus.CREATED);
     }
 
 

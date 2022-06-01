@@ -1,5 +1,6 @@
 package com.example.ISAprojekat.Service.Impl;
 
+import com.example.ISAprojekat.Model.BoatOwner;
 import com.example.ISAprojekat.Model.FishingInstructor;
 import com.example.ISAprojekat.Repository.FishingInstructorRepository;
 import com.example.ISAprojekat.Service.FishingInstructorService;
@@ -71,6 +72,12 @@ public class FishingInstructorImpl implements FishingInstructorService {
 
         FishingInstructor izmenjenaUsluga = this.fishingInstructorRepository.save(uslugaZaIzmenu);
         return izmenjenaUsluga;
+    }
+
+    @Override
+    public FishingInstructor getByEmailAddressAndPassword(String emailAddress, String password){
+        FishingInstructor fishingInstructor =this.fishingInstructorRepository.findByEmailAddressAndPassword(emailAddress,password);
+        return fishingInstructor;
     }
 
 

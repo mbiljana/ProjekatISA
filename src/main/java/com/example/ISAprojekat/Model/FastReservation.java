@@ -31,8 +31,13 @@ public class FastReservation implements Serializable {
     @Column
     private String price;
     @Column
+    private String place;
+    @Column
     private String reservation;
     @ManyToOne
     private Boat boat;
+
+    @ManyToOne
+    private Adventure adventure;
 
 }

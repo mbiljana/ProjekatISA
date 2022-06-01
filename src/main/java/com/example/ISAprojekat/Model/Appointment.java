@@ -43,8 +43,8 @@ public class Appointment  {
     private List<String> additionalServices = new ArrayList<String>() ;
    */
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne
     private Adventure adventure;
 
 
