@@ -1,15 +1,13 @@
 package com.example.ISAprojekat.Controller;
 
-import com.example.ISAprojekat.Model.Boat;
-import com.example.ISAprojekat.Model.Cottage;
-import com.example.ISAprojekat.Model.CottageOwner;
+import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.BoatDTO;
 import com.example.ISAprojekat.Model.DTO.CottageDTO;
 import com.example.ISAprojekat.Model.DTO.ZahtevDTO;
-import com.example.ISAprojekat.Model.ZahtevZaReg;
 import com.example.ISAprojekat.Repository.CottageRepository;
 import com.example.ISAprojekat.Service.CottageService;
 import com.example.ISAprojekat.Service.Impl.CottageServiceImpl;
+import com.example.ISAprojekat.Service.OcenaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,10 +25,12 @@ import java.util.List;
 public class CottageController {
 
     private final CottageService cottageService;
+    private final OcenaService ocenaService;
 
     @Autowired
-    public CottageController(CottageService cottageService){
+    public CottageController(CottageService cottageService, OcenaService ocenaService){
         this.cottageService = cottageService;
+        this.ocenaService = ocenaService;
     }
 
     //get all cottages
@@ -38,11 +38,13 @@ public class CottageController {
     public ResponseEntity<List<CottageDTO>> getAllCottages() {
 
         List<Cottage> cottages= this.cottageService.findAll();
-
-        // convert boats to DTOs
+        List<Ocena> ocenas  =this.ocenaService.findAll();
+        float ocena =0;
+        // convert cottages to DTOs
         List<CottageDTO> cottageDTOS = new ArrayList<>();
         for (Cottage c : cottages) {
-            cottageDTOS.add(new CottageDTO(c));
+            ocena = this.ocenaService.srednjaVikendica(ocenas,c.getId());
+            cottageDTOS.add(new CottageDTO(c,ocena));
         }
 
         return new ResponseEntity<>(cottageDTOS, HttpStatus.OK);

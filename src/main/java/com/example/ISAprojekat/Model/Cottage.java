@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -38,7 +40,8 @@ public class Cottage implements Serializable {
 
     @ManyToOne
     private CottageOwner cottageOwner;
-
+    @OneToMany(mappedBy = "cottage")
+    private List<Ocena> ocene = new ArrayList<>();
 
 
 

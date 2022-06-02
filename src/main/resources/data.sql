@@ -49,3 +49,10 @@ INSERT INTO fishing_instructor(id) VALUES (72);
 INSERT INTO fast_reservation(id,start_date,duration,capacity,additional_services,price,boat_id)
 values(88,'2021-02-05',5,4,'some services','14.000',8);
 
+insert into ocena(id,ocena,boat_id,cottage_id)
+values (898,5,8,6);
+insert into ocena(id,ocena,boat_id,cottage_id)
+values (899,3,8,6);
+insert into ocena(id,ocena,boat_id,cottage_id)
+values (897,4,8,6);
+

@@ -21,8 +21,9 @@ public class CottageDTO {
     public int numBeds;
     public String cottageAdditionalServices;
     public String cottageRules;
+    public float srednjaOcena;
 
-    public CottageDTO(Cottage c) {
+    public CottageDTO(Cottage c, float ocena) {
         this.id = c.getId();
         this.cottageName = c.getCottageName();
         this.cottageAddress = c.getCottageAddress();
@@ -31,5 +32,6 @@ public class CottageDTO {
         this.numBeds = c.getNumBeds();
         this.cottageAdditionalServices = c.getCottageAdditionalServices();
         this.cottageRules = c.getCottageRules();
+        this.srednjaOcena = ocena;
     }
 }

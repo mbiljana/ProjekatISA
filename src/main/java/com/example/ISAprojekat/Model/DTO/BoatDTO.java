@@ -25,9 +25,10 @@ public class BoatDTO {
     private String boatDescription;
     private String additionalEquipment;
     private String navigationEguipment;
+    private float srednjaOcena;
 
 
-    public BoatDTO(Boat b) {
+    public BoatDTO(Boat b, float suma) {
         this.id = b.getId();
         this.boatName = b.getBoatName();
         this.boatType = b.getBoatType();
@@ -39,5 +40,21 @@ public class BoatDTO {
         this.boatRules = b.getBoatRules();
         this.boatDescription = b.getBoatDescription();
         this.additionalEquipment = b.getAdditionalEquipment();
+        this.srednjaOcena = suma;
+    }
+
+    public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment) {
+        this.id = id;
+        this.boatName = boatName;
+        this.boatType = boatType;
+        this.engineNumber = engineNumber;
+        this.enginePower = enginePower;
+        this.maxSpeed = maxSpeed;
+        this.boatAddress = boatAddress;
+        this.boatCapacity = boatCapacity;
+        this.boatRules = boatRules;
+        this.boatDescription = boatDescription;
+        this.additionalEquipment = additionalEquipment;
+        this.navigationEguipment = navigationEguipment;
     }
 }

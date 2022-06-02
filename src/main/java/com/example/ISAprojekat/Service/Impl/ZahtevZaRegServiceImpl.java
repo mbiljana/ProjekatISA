@@ -38,4 +38,9 @@ public class ZahtevZaRegServiceImpl implements ZahtevZaRegService {
         List<ZahtevZaReg> zahtevZaRegs = this.zahtevZaRegRepository.findAll();
         return zahtevZaRegs;
     }
+
+    @Override
+    public void delete(Long id) {
+        this.zahtevZaRegRepository.deleteById(id);
+    }
 }

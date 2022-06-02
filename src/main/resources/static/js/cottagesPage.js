@@ -10,6 +10,13 @@ $(document).ready(function(){
             for (i = 0; i < data.length; i++) {
                 var row = "<tr data-id=" + data[i]['id'] + ">";                                  // kreiramo red za tabelu
                 row += "<td>" + data[i]['cottageName'] + "</td>";
+                row += "<td>" + data[i]['cottageAddress'] + "</td>";
+                row += "<td>" + data[i]['cottageDescription'] + "</td>";
+                row += "<td>" + data[i]['numRooms'] + "</td>";
+                row += "<td>" + data[i]['numBeds'] + "</td>";
+                row += "<td>" + data[i]['cottageAdditionalServices'] + "</td>";
+                row += "<td>" + data[i]['cottageRules'] + "</td>";
+                row += "<td>" + data[i]['srednjaOcena'] + "</td>";
                 row += "</tr>";                                     // završavamo kreiranje reda
 
                 $('#regReq').append(row);                        // ubacujemo kreirani red u tabelu čiji je id = employees

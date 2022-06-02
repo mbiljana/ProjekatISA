@@ -4,8 +4,10 @@ import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.Cottage;
 import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Model.FastReservation;
+import com.example.ISAprojekat.Model.Ocena;
 import com.example.ISAprojekat.Service.BoatService;
 import com.example.ISAprojekat.Service.FastReservationService;
+import com.example.ISAprojekat.Service.OcenaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,10 +25,12 @@ public class BoatController {
 
     private final BoatService boatService;
     private final FastReservationService fastReservationService;
+    private final OcenaService ocenaService;
     @Autowired
-    public BoatController(BoatService boatService, FastReservationService fastReservationService){
+    public BoatController(BoatService boatService, FastReservationService fastReservationService, OcenaService ocenaService){
         this.boatService = boatService;
         this.fastReservationService = fastReservationService;
+        this.ocenaService  =ocenaService;
     }
 
 
@@ -35,12 +39,14 @@ public class BoatController {
     @GetMapping(value = "/all")
     public ResponseEntity<List<BoatDTO>> getAllBoats() {
 
-        List<Boat> boats = boatService.findAll();
-
+        List<Boat> boats = this.boatService.findAll();
+        List<Ocena> ocenas  =this.ocenaService.findAll();
+        float ocena =0;
         // convert boats to DTOs
         List<BoatDTO> boatDTOS = new ArrayList<>();
         for (Boat b : boats) {
-            boatDTOS.add(new BoatDTO(b));
+            ocena = this.ocenaService.srednjaBrod(ocenas,b.getId());
+            boatDTOS.add(new BoatDTO(b,ocena));
         }
 
         return new ResponseEntity<>(boatDTOS, HttpStatus.OK);
@@ -132,8 +138,8 @@ public class BoatController {
         fastReservation.setPrice(boatDTO.getPrice());
         fastReservation.setStartDate(boatDTO.getStartDate());
         fastReservation.setBoat(boat);
-
         this.fastReservationService.create(fastReservation);
+        boat.getFastReservation().add(fastReservation);
         CreateBoatResDTO createBoatResDTO = new CreateBoatResDTO();
         createBoatResDTO.setBoatId(fastReservation.getBoat().getId());
         createBoatResDTO.setCapacity(fastReservation.getCapacity());

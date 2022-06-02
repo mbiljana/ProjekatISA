@@ -138,6 +138,7 @@ public class AdminController {
     @PostMapping(value = ("/acceptRequest"), consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegOwnerDTO> acceptRequest(@RequestBody ZahtevDTO dto) throws Exception{
         ZahtevZaReg zahtevZaReg = this.zahtevZaRegService.findOne(dto.getIdKorisnika());
+        List<ZahtevZaReg> zahtevZaRegs = this.zahtevZaRegService.findAll();
         if(zahtevZaReg.getRegType().equals("BoatOwner")) {
             BoatOwner boatOwner = new BoatOwner(
                     zahtevZaReg.getName(), zahtevZaReg.getSurname(), zahtevZaReg.getEmailAddress(),
@@ -147,8 +148,8 @@ public class AdminController {
             );
             this.boatOwnerService.save(boatOwner);
             Admin admin = this.adminService.getByUsernameAndPassword("123", "111");
-            //admin.zahtevi.remove(zahtevZaReg);
-            admin.zahtevi.remove(zahtevZaReg.getId());
+            this.zahtevZaRegService.delete(zahtevZaReg.getId());
+            //admin.zahtevi.remove(zahtevZaReg.getId());
 
             RegOwnerDTO regOwnerDTO = new RegOwnerDTO(boatOwner.getName(), boatOwner.getSurname(), boatOwner.getEmailAddress(),
                     boatOwner.getPhoneNumber(), boatOwner.getCity(), boatOwner.getState(), boatOwner.getHomeAddress(),
@@ -165,7 +166,7 @@ public class AdminController {
             this.cottageOwnerService.save(cottageOwner);
             Admin admin = this.adminService.getByUsernameAndPassword("123", "111");
             admin.zahtevi.remove(zahtevZaReg);
-
+            this.zahtevZaRegService.delete(zahtevZaReg.getId());
             RegOwnerDTO regOwnerDTO = new RegOwnerDTO(cottageOwner.getName(), cottageOwner.getSurname(), cottageOwner.getEmailAddress(),
                     cottageOwner.getPhoneNumber(), cottageOwner.getCity(), cottageOwner.getState(), cottageOwner.getHomeAddress(),
                     cottageOwner.getBirthDate(), cottageOwner.getUsername(), cottageOwner.getPassword());
