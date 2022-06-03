@@ -40,5 +40,15 @@ public class  BoatServiceImpl implements BoatService {
         return  newB;
     }
 
+    @Override
+    public void delete(Long id) {
+        this.boatRepository.deleteById(id);
+    }
+
+    @Override
+    public Boat update(Boat boat) {
+        return null;
+    }
+
 
 }
