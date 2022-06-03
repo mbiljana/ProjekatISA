@@ -37,11 +37,17 @@ public class Cottage implements Serializable {
     private String cottageAdditionalServices;
     @Column
     private String cottageRules;
+    @Column
+    private float latitude;
+    @Column
+    private float longitude;
 
     @ManyToOne
     private CottageOwner cottageOwner;
     @OneToMany(mappedBy = "cottage")
     private List<Ocena> ocene = new ArrayList<>();
+    @OneToMany(mappedBy = "cottage")
+    private List<FastReservationCott> fastReservations = new ArrayList<>();
 
 
 

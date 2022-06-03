@@ -22,6 +22,8 @@ public class CottageDTO {
     public String cottageAdditionalServices;
     public String cottageRules;
     public float srednjaOcena;
+    public float latitude;
+    public float longitude;
 
     public CottageDTO(Cottage c, float ocena) {
         this.id = c.getId();
@@ -33,5 +35,18 @@ public class CottageDTO {
         this.cottageAdditionalServices = c.getCottageAdditionalServices();
         this.cottageRules = c.getCottageRules();
         this.srednjaOcena = ocena;
+        this.latitude = c.getLatitude();
+        this.longitude = c.getLongitude();
+    }
+
+    public CottageDTO(Long id, String cottageName, String cottageAddress, String cottageDescription, int numRooms, int numBeds, String cottageAdditionalServices, String cottageRules) {
+        this.id = id;
+        this.cottageName = cottageName;
+        this.cottageAddress = cottageAddress;
+        this.cottageDescription = cottageDescription;
+        this.numRooms = numRooms;
+        this.numBeds = numBeds;
+        this.cottageAdditionalServices = cottageAdditionalServices;
+        this.cottageRules = cottageRules;
     }
 }

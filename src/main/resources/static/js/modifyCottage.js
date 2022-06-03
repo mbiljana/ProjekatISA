@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-    const kord = new Array();
     $.ajax({
         type: "GET",
         url: "http://localhost:8181/api/cottages/all",
@@ -18,7 +16,6 @@ $(document).ready(function(){
                 row += "<td>" + data[i]['cottageRules'] + "</td>";
                 row += "<td>" + data[i]['srednjaOcena'] + "</td>";
                 row += "</tr>";
-                kord.push(data[i]['latitude'],data[i]['longitude']);
                 $('#regReq').append(row);
             }
         },
@@ -45,25 +42,64 @@ $(document).ready(function(){
     });
 
 
-        ymaps.ready(init);
-        function init(){
-            if(selektovanRed == 6){
-                var myMap = new ymaps.Map("map", {
-                    center: [kord[0],kord[1]],
-                    zoom: 12
-                });
-            }else{
-                var myMap = new ymaps.Map("map", {
-                    center: [4.15,4.15],
-                    zoom: 12
-                });
+
+    $("#change").click(function() {
+        var idCottage = selektovanRed;
+        var name = $("#name").val();
+        var address = $("#address").val();
+        var desc = $("#desc").val();
+        var rooms = $("#rooms").val();
+        var beds = $("#beds").val();
+        var services = $("#services").val();
+        var rules = $("#rules").val();
+        var obj = JSON.stringify({
+            "idCottage" : idCottage,
+            "name" : name,
+            "address" : address,
+            "desc" : desc,
+            "rooms" : rooms,
+            "beds" : beds,
+            "services" : services,
+            "rules" : rules
+
+        });
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8181/api/cottages/update",
+            dataType: "json",
+            contentType: "application/json",
+            data: obj,
+            success: function (data) {
+                console.log("SUCCESS : ", data);
+                window.location.href = "cottagesPage.html";
+            },
+            error: function (data) {
+                alert("Nova greska!");
             }
-        }
+        });
+    });
 
+    $("#delete").click(function() {
+        var obj = JSON.stringify({
+            "idKorisnika" : selektovanRed
 
+        });
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8181/api/cottages/remove",
+            dataType: "json",
+            contentType: "application/json",
+            data: obj,
+            success: function (data) {
+                console.log("SUCCESS : ", data);
+                window.location.href = "cottagesPage.html";
 
-
-
-
+            },
+            error: function (data) {
+                alert("Greška!");
+                console.log("ERROR : ", data);
+            }
+        });
+    });
 
 });

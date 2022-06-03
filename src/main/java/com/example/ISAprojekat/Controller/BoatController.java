@@ -146,6 +146,7 @@ public class BoatController {
         createBoatResDTO.setDuration(fastReservation.getDuration());
         createBoatResDTO.setPrice(fastReservation.getPrice());
         createBoatResDTO.setStartDate(fastReservation.getStartDate());
+        createBoatResDTO.setAdditionalServices(fastReservation.getAdditionalServices());
         return new ResponseEntity<>(createBoatResDTO,HttpStatus.CREATED);
     }
 
