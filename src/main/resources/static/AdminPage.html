@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="font-size: 18px;">
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Register​">
@@ -8,242 +8,231 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>AdminPage</title>
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
-<link rel="stylesheet" href="css/AdminPage.css" media="screen">
+    <link rel="stylesheet" href="css/AdminPage.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="js/prikazKorisnika.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="js/regReq2.js" defer=""></script>
     <meta name="generator" content="Nicepage 3.30.2, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 
-      <script src="js/jquery.min.js"></script>
-      <script src="js/prikazKorisnika.js"></script>
-      <script src="js/prikazAdmina.js"></script>
 
-    
-    
-    
+
+
     <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "",
-		"logo": "#"
-}</script>
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "",
+        "logo": "#"
+    }</script>
     <meta name="theme-color" content="#ec8700">
     <meta property="og:title" content="AdminPage">
     <meta property="og:type" content="website">
-  </head>
-  <body class="u-body"><header class="u-clearfix u-header" id="sec-a7fc"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <h3 class="u-headline u-text u-text-1">
-          <a href="/">adventure</a>
-        </h3>
-        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1" data-responsive-from="XL">
-          <div class="menu-collapse">
+</head>
+<body class="u-body"><header class="u-clearfix u-header" id="sec-a7fc"><div class="u-clearfix u-sheet u-sheet-1">
+    <h3 class="u-headline u-text u-text-1">
+        <a href="/">adventure</a>
+    </h3>
+    <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1" data-responsive-from="XL">
+        <div class="menu-collapse">
             <a class="u-button-style u-nav-link" href="#" style="font-size: calc(1em + 8px);">
-              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 302 302" style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a760"></use></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-a760" x="0px" y="0px" viewBox="0 0 302 302" style="enable-background:new 0 0 302 302;" xml:space="preserve" class="u-svg-content"><g><rect y="36" width="302" height="30"></rect><rect y="236" width="302" height="30"></rect><rect y="136" width="302" height="30"></rect>
+                <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 302 302" style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a760"></use></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-a760" x="0px" y="0px" viewBox="0 0 302 302" style="enable-background:new 0 0 302 302;" xml:space="preserve" class="u-svg-content"><g><rect y="36" width="302" height="30"></rect><rect y="236" width="302" height="30"></rect><rect y="136" width="302" height="30"></rect>
 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
             </a>
-          </div>
-          <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-25 u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../../../../../Desktop/AdminPage/Home.html" style="padding: 8px 0px;">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../../../../../Desktop/AdminPage/About.html" style="padding: 8px 0px;">About</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../../../../../Desktop/AdminPage/Contact.html" style="padding: 8px 0px;">Contact</a>
-</li></ul>
-          </div>
-          <div class="u-custom-menu u-nav-container-collapse">
+        </div>
+        <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-25 u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html" style="padding: 8px 0px;">Home</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="My-profile.html" style="padding: 8px 0px;">My profile</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Requests.html" style="padding: 8px 0px;">Requests</a>
+            </li></ul>
+        </div>
+        <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-              <div class="u-inner-container-layout u-sidenav-overflow">
-                <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../../../../../Desktop/AdminPage/Home.html" style="padding: 8px 0px;">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../../../../../Desktop/AdminPage/About.html" style="padding: 8px 0px;">About</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../../../../../Desktop/AdminPage/Contact.html" style="padding: 8px 0px;">Contact</a>
-</li></ul>
-              </div>
+                <div class="u-inner-container-layout u-sidenav-overflow">
+                    <div class="u-menu-close"></div>
+                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html" style="padding: 8px 0px;">Home</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="My-profile.html" style="padding: 8px 0px;">My profile</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Requests.html" style="padding: 8px 0px;">Requests</a>
+                    </li></ul>
+                </div>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-          </div>
-        </nav>
-        <a class="u-login u-login-1" href="../../../../../../Desktop/AdminPage/LoginPage.html" data-page-id="62029842" title="Login">Login</a>
-        <h1 class="u-text u-text-palette-1-base u-text-2">
-          <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="../../../../../../Desktop/AdminPage/RegisterPage.html" data-page-id="35371704">Register </a>
-        </h1>
-      </div></header>
-    <section class="u-clearfix u-grey-5 u-section-1" id="sec-13da">
-      <div class="u-clearfix u-sheet u-sheet-1">
+        </div>
+    </nav>
+</div></header>
+<section class="u-clearfix u-grey-5 u-section-1" id="sec-13da">
+    <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-layout-cell u-shape-rectangle u-size-60 u-layout-cell-1">
-                <div class="u-container-layout u-container-layout-1">
-                  <div class="u-tab-links-align-left u-tabs u-tabs-1">
-                    <ul class="u-spacing-10 u-tab-list u-unstyled u-tab-list-1" role="tablist">
-                      <li class="u-tab-item u-tab-item-1" role="presentation">
-                        <a class="active u-active-grey-15 u-button-style u-grey-5 u-tab-link u-text-active-black u-text-black u-tab-link-1" id="link-tab-14b7" href="#tab-14b7" role="tab" aria-controls="tab-14b7" aria-selected="true">Details</a>
-                      </li>
-                      <li class="u-tab-item u-tab-item-2" role="presentation">
-                        <a class="u-active-grey-15 u-button-style u-grey-5 u-tab-link u-text-active-black u-text-black u-tab-link-2" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="false">Requests</a>
-                      </li>
-                      <li class="u-tab-item" role="presentation">
-                        <a class="u-active-grey-15 u-button-style u-grey-5 u-tab-link u-text-active-black u-text-black u-tab-link-3" id="link-tab-2917" href="#tab-2917" role="tab" aria-controls="tab-2917" aria-selected="false">Add admin</a>
-                      </li>
-                      <li class="u-tab-item u-tab-item-4" role="presentation">
-                        <a class="u-active-grey-15 u-button-style u-grey-5 u-tab-link u-text-active-black u-text-black u-tab-link-4" id="tab-6e5a" href="#link-tab-6e5a" role="tab" aria-controls="link-tab-6e5a" aria-selected="false">Questions</a>
-                      </li>
-                    </ul>
-                      <div class="u-tab-content">
-                          <div class="u-align-center u-container-style u-grey-5 u-tab-active u-tab-pane u-tab-pane-1" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
-                              <div class="u-container-layout u-container-layout-2">
-                                  <div class="u-table u-table-responsive u-table-1">
-                                      <table class="u-table-entity" id="adminIzmene">
-                                          <colgroup>
-                                              <col width="25%">
-                                              <col width="25%">
-                                              <col width="25%">
-                                              <col width="25%">
-                                          </colgroup>
-                                          <tbody class="u-table-alt-palette-1-light-3 u-table-body">
-                                          <tr style="height: 56px;">
-                                              <td >Name</td>
-                                              <td >Surname</td>
-                                              <td >Username</td>
-                                              <td >Email Address</td>
-                                              <td >Phone Number</td>
-                                              <td >Home Address</td>
-                                              <td >City</td>
-                                              <td >Role</td>
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+                    <div class="u-align-left u-container-style u-layout-cell u-shape-rectangle u-size-60 u-layout-cell-1">
+                        <div class="u-container-layout u-container-layout-1">
+                            <div class="u-tab-links-align-left u-tabs u-tabs-1">
+                                <ul class="u-spacing-10 u-tab-list u-unstyled u-tab-list-1" role="tablist">
+                                    <li class="u-tab-item u-tab-item-1" role="presentation">
+                                        <a class="active u-active-grey-15 u-button-style u-grey-5 u-tab-link u-text-active-black u-text-black u-tab-link-1" id="link-tab-14b7" href="#tab-14b7" role="tab" aria-controls="tab-14b7" aria-selected="true">Details</a>
+                                    </li>
+                                    <li class="u-tab-item u-tab-item-2" role="presentation">
+                                        <a class="u-active-grey-15 u-button-style u-grey-5 u-tab-link u-text-active-black u-text-black u-tab-link-2" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="false">Requests</a>
+                                    </li>
+                                    <li class="u-tab-item" role="presentation">
+                                        <a class="u-active-grey-15 u-button-style u-grey-5 u-tab-link u-text-active-black u-text-black u-tab-link-3" id="link-tab-2917" href="#tab-2917" role="tab" aria-controls="tab-2917" aria-selected="false">Add admin</a>
+                                    </li>
+                                    <li class="u-tab-item u-tab-item-4" role="presentation">
+                                        <a class="u-active-grey-15 u-button-style u-grey-5 u-tab-link u-text-active-black u-text-black u-tab-link-4" id="tab-6e5a" href="#link-tab-6e5a" role="tab" aria-controls="link-tab-6e5a" aria-selected="false">Questions</a>
+                                    </li>
+                                </ul>
+                                <div class="u-tab-content">
+                                    <div class="u-align-center u-container-style u-grey-5 u-tab-active u-tab-pane u-tab-pane-1" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
+                                        <div class="u-container-layout u-container-layout-2">
+                                            <div class="u-table u-table-responsive u-table-1">
+                                                <table class="u-table-entity" id="listaKorisnika1">
+                                                    <colgroup>
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                    </colgroup>
+                                                    <tbody class="u-table-alt-palette-1-light-3 u-table-body">
+                                                    <tr style="height: 56px;">
+                                                        <td>Id</td>
+                                                        <td>Name</td>
+                                                        <td>Surname</td>
+                                                        <td>Username</td>
+                                                        <td>Email</td>
+                                                        <td>Phone</td>
+                                                        <td>Password</td>
+                                                        <td>Role</td>
+                                                    </tr>
 
-                                          </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="u-container-style u-grey-5 u-tab-pane u-tab-pane-2" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
+                                        <div class="u-container-layout u-container-layout-3">
+                                            <p class="u-text u-text-default u-text-1">Received registration requests</p>
+                                            <div class="u-table u-table-responsive u-table-2">
+                                                <table class="u-table-entity" id="regReq">
+                                                    <colgroup>
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                    </colgroup>
+                                                    <tbody class="u-table-alt-palette-1-light-3 u-table-body">
+                                                    <tr style="height: 56px;">
+                                                        <td>Id</td>
+                                                        <td>Name</td>
+                                                        <td>Surname</td>
+                                                        <td>Email</td>
+                                                        <td>Phone</td>
+                                                        <td>Role</td>
+                                                        <td>Reason</td>
+                                                    </tr>
 
-                                          </tbody>
-                                      </table>
-                                      <div class="form-group1" >
-                                          <h5 for="Role1" >Role1:</h5>
-                                          <input id="role1"  name="role1" type="enum"  class="registar " >
-                                      </div>
-                                      <div class="form-group1">
-                                          <h5 for="Role1">Role2:</h5>
-                                          <input id="role2"  name="role2" type="enum"  class="registar " >
-                                      </div>
-                                  </div>
-                                  <button class="u-btn u-btn-submit u-button-style">Submit changes</button>
-                              </div>
-                          </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <a id="accept" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">ADD AS ADMIN</a>
+                                        </div>
+                                    </div>
+                                    <div class="u-container-style u-grey-5 u-tab-pane u-tab-pane-3" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
+                                        <div class="u-container-layout u-container-layout-4">
+                                            <p class="u-text u-text-default u-text-2">Choose user and add them as admin.</p>
+                                            <div class="u-table u-table-responsive u-table-3">
+                                                <table class="u-table-entity">
+                                                    <colgroup>
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                        <col width="25%">
+                                                    </colgroup>
+                                                    <tbody class="u-table-alt-palette-1-light-3 u-table-body">
+                                                    <tr style="height: 56px;">
+                                                        <td class="u-border-1 u-border-grey-75 u-table-cell">Name</td>
+                                                        <td class="u-border-1 u-border-grey-75 u-table-cell">Surname</td>
+                                                        <td class="u-border-1 u-border-grey-75 u-table-cell">Email</td>
+                                                        <td class="u-border-1 u-border-grey-75 u-table-cell">Role</td>
+                                                    </tr>
 
-
-
-
-                      <div class="u-container-style u-grey-5 u-tab-pane u-tab-pane-2" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
-                        <div class="u-container-layout u-container-layout-3">
-                          <h5 class="u-text u-text-default u-text-2">RECEIVED REQUESTS</h5>
-                          <div class="u-border-3 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-1"></div>
-                        </div>
-                      </div>
-                      <div class="u-container-style u-grey-5 u-tab-pane u-tab-pane-3" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
-                        <div class="u-container-layout u-container-layout-4">
-                          <p class="u-text u-text-default u-text-3">Choose user and add them as admin.</p>
-                          <div class="u-table u-table-responsive u-table-1">
-                            <table class="u-table-entity" id="listaKorisnika1">
-                              <colgroup>
-                                <col width="25%">
-                                <col width="25%">
-                                <col width="25%">
-                                <col width="25%">
-                                  <col width="25%">
-                                  <col width="25%">
-                              </colgroup>
-                              <tbody class="u-table-alt-palette-1-light-3 u-table-body">
-                                <tr style="height: 56px;">
-                                  <td >Id</td>
-                                  <td >Name</td>
-                                    <td >Surname</td>
-                                    <td >Username</td>
-                                  <td >Email Address</td>
-                                    <td >Role</td>
-
-                                </tr>
-
-                              </tbody>
-
-                            </table>
-                              <div class="form-group1">
-                                  <h5 for="Role">Role:</h5>
-                                  <input id="role"  name="role" type="enum"  class="registar " >
-                              </div>
-                          </div>
-                            <button id="izmeni" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-4"  >ADD AS ADMIN</button>
-
-
-                        </div>
-                      </div>
-
-                        <div class="u-container-style u-grey-5 u-tab-pane u-tab-pane-4" id="link-tab-6e5a" role="tabpanel" aria-labelledby="tab-6e5a">
-                        <div class="u-container-layout u-container-layout-5">
-                          <p class="u-text u-text-default u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                          <a href="" class="u-btn u-button-style u-btn-7"><span class="u-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><g><g><g><path d="M491.422,138.859c-13.008-26.609-32.129-49.151-56.831-66.999C390.803,40.221,329.047,23.5,256,23.5     S121.197,40.221,77.409,71.859c-24.702,17.848-43.823,40.39-56.831,66.999C6.924,166.791,0,199.305,0,235.5     c0,78.285,32.285,138.172,93.614,174.195c-8.483,29.931-19.492,48.07-19.591,48.231l-18.984,30.521l35.956,0.053H91.1     c0.104,0.001,0.208,0.001,0.319,0.001c11.347,0,63.406-2.448,105.735-44.91c18.66,2.596,38.403,3.909,58.846,3.909     c73.047,0,134.803-16.723,178.591-48.36c24.702-17.848,43.823-40.39,56.831-66.999C505.076,304.208,512,271.693,512,235.5     C512,199.305,505.076,166.791,491.422,138.859z M411.164,366.716C374.237,393.396,320.583,407.5,256,407.5     c-22.19,0-43.364-1.686-62.935-5.009l-11.135-1.891l-7.369,8.559c-15.834,18.391-34.114,28.21-49.632,33.439     c4.03-10.872,8.111-23.919,11.404-38.786l3.394-15.32l-14.072-6.941C68.818,353.515,40,304.375,40,235.5     c0-57.903,20.468-102.051,60.836-131.217C137.763,77.602,191.417,63.5,256,63.5s118.237,14.103,155.164,40.783     C451.532,133.448,472,177.596,472,235.5S451.532,337.549,411.164,366.716z"></path><rect x="236" y="327.5" width="40" height="40"></rect><path d="M264.01,105.994c-22.998-2.518-45.895,4.748-62.838,19.936C184.539,140.839,175,162.187,175,184.5h40     c0-11.122,4.571-21.346,12.871-28.786c8.616-7.724,19.905-11.261,31.781-9.958c18.319,2.008,33.077,16.6,35.093,34.699     c1.622,14.574-4.888,28.78-16.991,37.072C250.983,235.87,235,265.766,235,297.5h40c0-18.534,9.481-36.094,25.363-46.975     c24.317-16.662,37.397-45.207,34.136-74.497C330.429,139.477,300.784,110.023,264.01,105.994z"></path>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <a href="https://nicepage.com/c/counter-html-templates" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-2">ADD AS ADMIN</a>
+                                        </div>
+                                    </div>
+                                    <div class="u-container-style u-grey-5 u-tab-pane u-tab-pane-4" id="link-tab-6e5a" role="tabpanel" aria-labelledby="tab-6e5a">
+                                        <div class="u-container-layout u-container-layout-5">
+                                            <p class="u-text u-text-default u-text-3">Sample text. Click to select the text box. Click again or double click to start editing the text. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                            <a href="" class="u-btn u-button-style u-btn-3"><span class="u-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><g><g><g><path d="M491.422,138.859c-13.008-26.609-32.129-49.151-56.831-66.999C390.803,40.221,329.047,23.5,256,23.5     S121.197,40.221,77.409,71.859c-24.702,17.848-43.823,40.39-56.831,66.999C6.924,166.791,0,199.305,0,235.5     c0,78.285,32.285,138.172,93.614,174.195c-8.483,29.931-19.492,48.07-19.591,48.231l-18.984,30.521l35.956,0.053H91.1     c0.104,0.001,0.208,0.001,0.319,0.001c11.347,0,63.406-2.448,105.735-44.91c18.66,2.596,38.403,3.909,58.846,3.909     c73.047,0,134.803-16.723,178.591-48.36c24.702-17.848,43.823-40.39,56.831-66.999C505.076,304.208,512,271.693,512,235.5     C512,199.305,505.076,166.791,491.422,138.859z M411.164,366.716C374.237,393.396,320.583,407.5,256,407.5     c-22.19,0-43.364-1.686-62.935-5.009l-11.135-1.891l-7.369,8.559c-15.834,18.391-34.114,28.21-49.632,33.439     c4.03-10.872,8.111-23.919,11.404-38.786l3.394-15.32l-14.072-6.941C68.818,353.515,40,304.375,40,235.5     c0-57.903,20.468-102.051,60.836-131.217C137.763,77.602,191.417,63.5,256,63.5s118.237,14.103,155.164,40.783     C451.532,133.448,472,177.596,472,235.5S451.532,337.549,411.164,366.716z"></path><rect x="236" y="327.5" width="40" height="40"></rect><path d="M264.01,105.994c-22.998-2.518-45.895,4.748-62.838,19.936C184.539,140.839,175,162.187,175,184.5h40     c0-11.122,4.571-21.346,12.871-28.786c8.616-7.724,19.905-11.261,31.781-9.958c18.319,2.008,33.077,16.6,35.093,34.699     c1.622,14.574-4.888,28.78-16.991,37.072C250.983,235.87,235,265.766,235,297.5h40c0-18.534,9.481-36.094,25.363-46.975     c24.317-16.662,37.397-45.207,34.136-74.497C330.429,139.477,300.784,110.023,264.01,105.994z"></path>
 </g>
 </g>
-</g></svg><img></span>&nbsp;ask a question 
-                          </a>
+</g></svg><img></span>&nbsp;ask a question
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <section class="u-align-center u-clearfix u-section-2" id="sec-40b1">
-      <div class="u-clearfix u-sheet u-sheet-1"></div>
-    </section>
-    <section class="u-align-center u-clearfix u-section-3" id="sec-d138">
-      <div class="u-clearfix u-sheet u-sheet-1"></div>
-    </section>
-    
-    
-    <footer class="u-clearfix u-footer u-grey-80" id="sec-e26f"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="#" class="u-image u-logo u-image-1" src="" data-image-width="600" data-image-height="443">
-          <img src="#" class="u-logo-image u-logo-image-1">
-        </a>
-        <div class="u-align-left u-border-1 u-border-white u-expanded-width u-line u-line-horizontal u-opacity u-opacity-30 u-line-1"></div>
-        <div class="u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-gutter-30 u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
+    </div>
+</section>
+<section class="u-align-center u-clearfix u-section-2" id="sec-40b1">
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+</section>
+<section class="u-align-center u-clearfix u-section-3" id="sec-d138">
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+</section>
+
+
+<footer class="u-clearfix u-footer u-grey-80" id="sec-e26f"><div class="u-clearfix u-sheet u-sheet-1">
+    <a href="#" class="u-image u-logo u-image-1" src="" data-image-width="600" data-image-height="443">
+        <img src="#" class="u-logo-image u-logo-image-1">
+    </a>
+    <div class="u-align-left u-border-1 u-border-white u-expanded-width u-line u-line-horizontal u-opacity u-opacity-30 u-line-1"></div>
+    <div class="u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-gutter-30 u-layout-wrap u-layout-wrap-1">
+        <div class="u-gutter-0 u-layout">
             <div class="u-layout-row">
-              <div class="u-align-left-lg u-align-left-md u-align-left-sm u-align-left-xl u-container-style u-layout-cell u-left-cell u-size-15 u-size-30-md u-layout-cell-1">
-                <div class="u-container-layout u-container-layout-1">
-                  <p class="u-small-text u-text u-text-variant u-text-1">Mountain Adventure is a Trekking &amp; Tour</p>
+                <div class="u-align-left-lg u-align-left-md u-align-left-sm u-align-left-xl u-container-style u-layout-cell u-left-cell u-size-15 u-size-30-md u-layout-cell-1">
+                    <div class="u-container-layout u-container-layout-1">
+                        <p class="u-small-text u-text u-text-variant u-text-1">Mountain Adventure is a Trekking &amp; Tour</p>
+                    </div>
                 </div>
-              </div>
-              <div class="u-align-left-md u-align-left-xl u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2">
-                  <p class="u-small-text u-text u-text-variant u-text-2">Sample footer text</p>
+                <div class="u-align-left-md u-align-left-xl u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-2">
+                    <div class="u-container-layout u-container-layout-2">
+                        <p class="u-small-text u-text u-text-variant u-text-2">Sample footer text</p>
+                    </div>
                 </div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-3">
-                <div class="u-container-layout u-container-layout-3">
-                  <p class="u-small-text u-text u-text-variant u-text-3">Sample footer text</p>
+                <div class="u-align-left u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-3">
+                    <div class="u-container-layout u-container-layout-3">
+                        <p class="u-small-text u-text u-text-variant u-text-3">Sample footer text</p>
+                    </div>
                 </div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-15 u-size-30-md u-layout-cell-4">
-                <div class="u-container-layout u-container-layout-4">
-                  <p class="u-small-text u-text u-text-variant u-text-4">Sample footer text</p>
+                <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-15 u-size-30-md u-layout-cell-4">
+                    <div class="u-container-layout u-container-layout-4">
+                        <p class="u-small-text u-text u-text-variant u-text-4">Sample footer text</p>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+    </div>
+</div></footer>
+<section class="u-backlink u-clearfix u-grey-80">
+    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
         <span>Website Templates</span>
-      </a>
-      <p class="u-text">
+    </a>
+    <p class="u-text">
         <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
+    </p>
+    <a class="u-link" href="" target="_blank">
         <span>Website Builder Software</span>
-      </a>. 
-    </section>
-  </body>
+    </a>.
+</section>
+</body>
 </html>

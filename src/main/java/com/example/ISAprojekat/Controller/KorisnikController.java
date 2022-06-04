@@ -98,6 +98,7 @@ public class KorisnikController {
                 zahtevZaReg.setPhoneNumber(DTO.getPhoneNumber());
                 zahtevZaReg.setUsername(DTO.getUsername());
                 zahtevZaReg.setSurname(DTO.getSurname());
+                zahtevZaReg.setRazlog(DTO.getRazlog());
                 ZahtevZaRegDTO zahtevZaRegDTO = new ZahtevZaRegDTO(DTO.getName(),DTO.getSurname(),
                         DTO.getEmailAddress(),DTO.getPhoneNumber(),DTO.getCity(),
                         DTO.getState(),DTO.getHomeAddress(),DTO.getBirthDate(),

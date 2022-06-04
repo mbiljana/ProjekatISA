@@ -54,7 +54,9 @@ $(document).ready(function(){
             data: obj,
             success: function (data) {
                 console.log("SUCCESS : ", data);
-                window.location.href = "index.html";
+
+                window.location.href = "AdminPage.html";
+                $(selektovanRed).remove();  // ne znam kako da obrisem red
 
             },
             error: function (data) {
