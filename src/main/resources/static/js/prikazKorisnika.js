@@ -18,6 +18,8 @@ $(document).ready(function(){
                 row += "<td>" + data[i]['surname'] + "</td>";
                 row += "<td>" + data[i]['username'] + "</td>";
                 row += "<td>" + data[i]['emailAddress'] + "</td>";
+                row += "<td>" + data[i]['phoneNumber'] + "</td>";
+                row += "<td>" + data[i]['password'] + "</td>";
                 row += "<td>" + data[i]['role'] + "</td>";
                 row += "</tr>";                                     // završavamo kreiranje reda
 
