@@ -10,4 +10,5 @@ public interface ZahtevZaRegService {
     ZahtevZaReg save (ZahtevZaReg zahtevZaReg) throws Exception;
     ZahtevZaReg findOne(Long id);
     List<ZahtevZaReg> findAll();
+    void delete(Long id);
 }

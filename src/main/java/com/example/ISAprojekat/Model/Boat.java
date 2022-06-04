@@ -49,7 +49,8 @@ public class Boat  implements Serializable{
     private BoatOwner boatOwner;
     @OneToMany(mappedBy = "boat")
     private List<FastReservation> fastReservation = new ArrayList<>();
-
+    @OneToMany(mappedBy = "boat")
+    private List<Ocena> ocene = new ArrayList<>();
 
 
 

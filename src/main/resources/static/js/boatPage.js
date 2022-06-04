@@ -16,6 +16,7 @@ $(document).ready(function(){
                 row += "<td>" + data[i]['boatDescription'] + "</td>";
                 row += "<td>" + data[i]['additionalEquipment'] + "</td>";
                 row += "<td>" + data[i]['navigationEguipment'] + "</td>";
+                row += "<td>" + data[i]['srednjaOcena'] + "</td>";
                 row += "</tr>";                                     // završavamo kreiranje reda
 
                 $('#regReq').append(row);                        // ubacujemo kreirani red u tabelu čiji je id = employees

@@ -1,8 +1,19 @@
+
+INSERT INTO cottage(id,cottage_additional_services,cottage_address,cottage_description,cottage_name,cottage_rules,num_beds,num_rooms,latitude,longitude)
+VALUES (5,'#petfriendly','Zlatibor, Zlatiborska 112a','Small cottage in the woods.','Cottage1','No smoking',3,3,43.7262501,19.6938721);
+
+INSERT INTO cottage(id,cottage_additional_services,cottage_address,cottage_description,cottage_name,cottage_rules,num_beds,num_rooms,latitude,longitude)
+VALUES (6,'#pool #spacenter','Kopaonik, Kopaonička 16b','Luxary cottage in the city center.','Cottage2','Pets not allowed.',3,5,43.7262501,19.6938721);
+
+INSERT INTO cottage(id,cottage_additional_services,cottage_address,cottage_description,cottage_name,cottage_rules,num_beds,num_rooms,latitude,longitude)
+VALUES (7,'#freeparking #WIFI','Jahorina, Jahorinska 55','Small cottage by the lake.','Cottage3','Check-in before 12am.',3,2,43.7262501,19.6938721);
+
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
 VALUES (72,'1997-02-05','bg','@2','sdfa','bla','111',234,4,'srb','qwe','123');
 
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
 VALUES (73,'1997-02-05','bg','@2','sdfa','bla','13',234,4,'srb','qwe','10');
+
 
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
 VALUES (74,'1997-02-05','bg','@2','sdfa','bla','111',234,1,'srb','qwe','123');
@@ -53,7 +64,18 @@ include stability, strength and durability to survive fishing ventures across va
 
 INSERT INTO boat_owner(id) VALUES (76);
 
+
 INSERT INTO cottage_owner(id) VALUES  (77);
 
 insert into zahtev_za_reg(id, birth_date, city, email_address, home_address, name, password, phone_number, razlog, reg_type, state, surname, username) VALUES
 (1,'2022-02-02','hg','hg','hg','hg','hg',15,'hg','BOATOWNER','hg','hg','hg');
+
+insert into ocena(id,ocena,boat_id,cottage_id)
+values (898,5,8,6);
+insert into ocena(id,ocena,boat_id,cottage_id)
+values (899,3,8,6);
+insert into ocena(id,ocena,boat_id,cottage_id)
+values (897,4,8,6);
+INSERT INTO cottage_owner(id) VALUES  (77);
+
+
