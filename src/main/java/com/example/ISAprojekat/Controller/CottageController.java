@@ -118,6 +118,7 @@ public class CottageController {
         createCottageResDTO.setDuration(fastReservation.getDuration());
         createCottageResDTO.setPrice(fastReservation.getPrice());
         createCottageResDTO.setStartDate(fastReservation.getStartDate());
+        createCottageResDTO.setAdditionalServices(fastReservation.getAdditionalServices());
         return new ResponseEntity<>(createCottageResDTO,HttpStatus.CREATED);
     }
 

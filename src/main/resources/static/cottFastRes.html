@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create cottage reservation</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/cottFastRes.js"></script>
+
+  <style>
+    #regReq {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #regReq td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #regReq tr:nth-child(even){background-color: #f2f2f2;}
+
+    #regReq tr:hover {background-color: #ddd;}
+
+    #regReq th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <div class="container">
+    <table id="regReq" class="display" >
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Description</th>
+        <th>Rooms</th>
+        <th>Beds</th>
+        <th>Services</th>
+        <th>Rules</th>
+        <th>Rating</th>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="form-group1">
+  <h5 for="startDate">Start date:</h5>
+  <input id="startDate" name="startDate" type="date" class="registar" >
+</div>
+<div class="form-group1">
+  <h5 for="duration">Duration:</h5>
+  <input id="duration"  name="duration" type="text"  class="registar " >
+</div>
+<div class="form-group1">
+  <h5 for="capacity">Capacity:</h5>
+  <input id="capacity"  name="capacity" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+  <h5 for="additionalServices">Additional services:</h5>
+  <input id="additionalServices"  name="additionalServices" type="text"  class="registar " >
+</div>
+
+
+<div class="form-group1">
+  <h5 for="price">Price:</h5>
+  <input id="price"  name="price" type="text"  class="registar " >
+</div>
+<button id="res">Create action</button>
+</body>
+</html>

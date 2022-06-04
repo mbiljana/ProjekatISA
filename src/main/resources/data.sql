@@ -16,11 +16,11 @@ VALUES (2,'#lunchBreakIncluded #transportIncluded','Tarinska 25b',20,'Tara rafti
 INSERT INTO adventure(id,adventure_additional_services,adventure_address,adventure_capacity,adventure_name,adventure_rules,aventure_equipment,instructor_biography,promo_description)
 VALUES (3,'#lunchBreakIncluded #transportIncluded','Vršačka 12b',20,'Tara rafting','Bring swimsuits.','Boats, inflatable vests','Instructor is a professional fisherman with a longterm experience.','This is a once in a lifetime opportunity to experience rafting while fishing.');
 
-INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed)
+INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,latitude,longitude)
 VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
 include stability, strength and durability to survive fishing ventures across various kinds of waterways',
         'Blue Moon','Pets are not allowed.','Fishing boat',
-        'WKC4B','100 horsepower',100);
+        'WKC4B','100 horsepower',100,43.7262501,19.6938721 );
 
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
 VALUES (73,'1997-02-05','bg','@','sdf','bla','111',234,1,'srb','qwe','123');

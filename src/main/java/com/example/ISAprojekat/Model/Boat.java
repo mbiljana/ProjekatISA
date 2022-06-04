@@ -44,6 +44,10 @@ public class Boat  implements Serializable{
     private String additionalEquipment;
     @Column
     private String navigationEquimpment;
+    @Column
+    private float latitude;
+    @Column
+    private float longitude;
 
     @ManyToOne
     private BoatOwner boatOwner;

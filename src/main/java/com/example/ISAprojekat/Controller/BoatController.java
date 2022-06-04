@@ -150,4 +150,39 @@ public class BoatController {
         return new ResponseEntity<>(createBoatResDTO,HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BoatUpdateDTO> updateCottage(@RequestBody BoatUpdateIdDTO boatDTO) {
+        Boat boat = this.boatService.getOne(boatDTO.getId());
+        boat.setBoatName(boatDTO.getBoatName());
+        boat.setBoatType(boatDTO.getBoatType());
+        boat.setBoatRules(boatDTO.getBoatRules());
+        boat.setBoatDescription(boatDTO.getBoatDescription());
+        boat.setNavigationEquimpment(boatDTO.getNavigationEguipment());
+        boat.setMaxSpeed(boatDTO.getMaxSpeed());
+        boat.setEnginePower(boatDTO.getEnginePower());
+        boat.setEngineNumber(boatDTO.getEngineNumber());
+        boat.setBoatAddress(boatDTO.getBoatAddress());
+        boat.setBoatCapacity(boatDTO.getBoatCapacity());
+        boat.setAdditionalEquipment(boatDTO.getAdditionalEquipment());
+        this.boatService.update(boat);
+        BoatUpdateDTO boatUpdateDTO = new BoatUpdateDTO(
+                boat.getBoatName(),boat.getBoatType(), boat.getEngineNumber(),
+                boat.getEnginePower(),boat.getMaxSpeed(),boat.getBoatAddress(),
+                boat.getBoatCapacity(),boat.getBoatRules(),boat.getBoatDescription(),
+                boat.getAdditionalEquipment(),boat.getNavigationEquimpment()
+        );
+        return new ResponseEntity<>(boatUpdateDTO, HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/remove",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> removal(@RequestBody IdDTO id) {
+        this.boatService.delete(id.getIdKorisnika());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+
 }
