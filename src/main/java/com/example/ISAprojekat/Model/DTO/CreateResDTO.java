@@ -22,4 +22,5 @@ public class CreateResDTO {
     private Date endDate;
     private Long offerId;
     private Long korId;
+    private int duration;
 }

@@ -8,7 +8,8 @@ $(document).on("submit","form",function(event){
     var numBeds = $("#numBeds").val();
     var cottageAdditionalServices = $("#cottageAdditionalServices").val();
     var cottageRules = $("#cottageRules").val();
-    var newFitnesCentarJSON=formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,numBeds,cottageAdditionalServices,cottageRules);
+    var conditions = $("#conditions").val();
+    var newFitnesCentarJSON=formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,numBeds,cottageAdditionalServices,cottageRules,conditions);
 
     $.ajax({
         type: "POST",
@@ -23,7 +24,7 @@ $(document).on("submit","form",function(event){
     });
 
 });
-function formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,numBeds,cottageAdditionalServices,cottageRules){
+function formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,numBeds,cottageAdditionalServices,cottageRules,conditions){
     return JSON.stringify({
         "cottageName" : cottageName,
         "cottageAddress" : cottageAddress,
@@ -31,7 +32,8 @@ function formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,num
         "numRooms" : numRooms,
         "numBeds" : numBeds,
         "cottageAdditionalServices" : cottageAdditionalServices,
-        "cottageRules" : cottageRules
+        "cottageRules" : cottageRules,
+        "conditions" :conditions
     });
 
 }

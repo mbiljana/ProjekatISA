@@ -12,7 +12,8 @@ $(document).on("submit","form",function(event){
         var boatDescription = $("#boatDescription").val();
         var additionalEquipment = $("#additionalEquipment").val();
         var navigationEguipment = $("#navigationEguipment").val();
-        var newFitnesCentarJSON=formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment);
+        var conditions= $("#conditions").val();
+        var newFitnesCentarJSON=formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions);
 
         $.ajax({
             type: "POST",
@@ -27,7 +28,7 @@ $(document).on("submit","form",function(event){
         });
 
     });
-    function formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment){
+    function formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions){
     return JSON.stringify({
         "boatName" : boatName,
         "boatType" : boatType,
@@ -39,7 +40,8 @@ $(document).on("submit","form",function(event){
         "boatRules" : boatRules,
         "boatDescription" : boatDescription,
         "additionalEquipment" : additionalEquipment,
-        "navigationEguipment" : navigationEguipment
+        "navigationEguipment" : navigationEguipment,
+        "conditions" : conditions
     });
 
     }

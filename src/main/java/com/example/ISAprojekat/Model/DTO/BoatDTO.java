@@ -25,6 +25,7 @@ public class BoatDTO {
     private String boatDescription;
     private String additionalEquipment;
     private String navigationEguipment;
+    private String conditions;
     private float srednjaOcena;
 
 
@@ -41,9 +42,10 @@ public class BoatDTO {
         this.boatDescription = b.getBoatDescription();
         this.additionalEquipment = b.getAdditionalEquipment();
         this.srednjaOcena = suma;
+        this.conditions = b.getCancelCondition();
     }
 
-    public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment) {
+    public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions) {
         this.id = id;
         this.boatName = boatName;
         this.boatType = boatType;
@@ -56,5 +58,6 @@ public class BoatDTO {
         this.boatDescription = boatDescription;
         this.additionalEquipment = additionalEquipment;
         this.navigationEguipment = navigationEguipment;
+        this.conditions = conditions;
     }
 }

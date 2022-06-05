@@ -67,4 +67,26 @@ public class KorisnikServiceImpl implements KorisnikService {
         return promenjen;
     }
 
+    @Override
+    public Korisnik modify(Korisnik korisnik) throws Exception {
+        Korisnik updated = this.korisnikRepository.findById(korisnik.getId()).get();
+        updated.setName(korisnik.getName());
+        updated.setSurname(korisnik.getSurname());
+        updated.setUsername(korisnik.getUsername());
+        updated.setEmailAddress(korisnik.getEmailAddress());
+        updated.setCity(korisnik.getCity());
+        updated.setHomeAddress(korisnik.getHomeAddress());
+        updated.setState(korisnik.getState());
+        korisnik.setPhoneNumber(korisnik.getPhoneNumber());
+        korisnik.setPassword(korisnik.getPassword());
+        Korisnik promenjen = korisnikRepository.save(updated);
+        return promenjen;
+    }
+
+    @Override
+    public Korisnik findByUsername(String username) {
+        Korisnik korisnik = this.korisnikRepository.findByUsername(username);
+        return korisnik;
+    }
+
 }

@@ -43,6 +43,8 @@ public class Cottage implements Serializable {
     private float longitude;
     @Column
     private float price;
+    @Column
+    private String cancelCondition;
 
     @ManyToOne
     private CottageOwner cottageOwner;
@@ -52,6 +54,7 @@ public class Cottage implements Serializable {
     private List<FastReservationCott> fastReservations = new ArrayList<>();
     @OneToOne
     private CottageReservation cottageReservation;
+
 
 
 

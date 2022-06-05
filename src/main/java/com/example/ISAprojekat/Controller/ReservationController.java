@@ -1,10 +1,7 @@
 package com.example.ISAprojekat.Controller;
 
 import com.example.ISAprojekat.Model.*;
-import com.example.ISAprojekat.Model.DTO.BoatCDTO;
-import com.example.ISAprojekat.Model.DTO.BoatDTO;
-import com.example.ISAprojekat.Model.DTO.CreateResDTO;
-import com.example.ISAprojekat.Model.DTO.ReservationDTO;
+import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,28 +33,35 @@ public class ReservationController {
     }
 
     @GetMapping(value = "/allBoat")
-    public ResponseEntity<List<ReservationDTO>> getAllReservations() {
+    public ResponseEntity<List<ResIncomeDTO>> getAllReservations() {
 
         List<BoatReservation> reservations = this.boatReservationService.findAll();
         // convert boats to DTOs
-        List<ReservationDTO> reservationDTOS = new ArrayList<>();
+        List<ResIncomeDTO> incomeDTO = new ArrayList<>();
         for (BoatReservation b : reservations) {
-            reservationDTOS.add(new ReservationDTO(b));
+                ResIncomeDTO resIncomeDTO = new ResIncomeDTO(
+                        b.getResName(), b.getStartDate(),
+                        b.getBoat().getPrice() * b.getDuration()
+                );
+                incomeDTO.add(resIncomeDTO);
         }
-
-        return new ResponseEntity<>(reservationDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(incomeDTO, HttpStatus.OK);
     }
     @GetMapping(value = "/allCottage")
-    public ResponseEntity<List<ReservationDTO>> getAllReservationsCottage() {
+    public ResponseEntity<List<ResIncomeDTO>> getAllReservationsCottage() {
 
         List<CottageReservation> reservations = this.cottageReservationService.findAll();
         // convert boats to DTOs
-        List<ReservationDTO> reservationDTOS = new ArrayList<>();
+        List<ResIncomeDTO> incomeDTOS = new ArrayList<>();
         for (CottageReservation b : reservations) {
-            reservationDTOS.add(new ReservationDTO(b));
+            ResIncomeDTO resIncomeDTO = new ResIncomeDTO(
+                    b.getResName(), b.getStartDate(),
+                    b.getCottage().getPrice()*b.getDuration()
+            );
+            incomeDTOS.add(resIncomeDTO);
         }
 
-        return new ResponseEntity<>(reservationDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(incomeDTOS, HttpStatus.OK);
     }
 
     @PostMapping(value = "/createBoatRes",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -72,7 +78,8 @@ public class ReservationController {
         CreateResDTO resDTO1 = new CreateResDTO(
                 reservation.getId(),reservation.getResName(),
                 reservation.getStartDate(),reservation.getEndDate(),
-                reservation.getBoat().getId(),reservation.getRegKorisnik().getId()
+                reservation.getBoat().getId(),reservation.getRegKorisnik().getId(),
+                reservation.getDuration()
         );
         return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
     }
@@ -91,10 +98,12 @@ public class ReservationController {
         CreateResDTO resDTO1 = new CreateResDTO(
                 reservation.getId(),reservation.getResName(),
                 reservation.getStartDate(),reservation.getEndDate(),
-                reservation.getCottage().getId(),reservation.getRegKorisnik().getId()
+                reservation.getCottage().getId(),reservation.getRegKorisnik().getId(),
+                reservation.getDuration()
         );
         return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
     }
+
 
 
 

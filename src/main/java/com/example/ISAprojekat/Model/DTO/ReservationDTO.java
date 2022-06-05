@@ -23,6 +23,7 @@ public class ReservationDTO {
     private Date endDate;
     private Long offerId;
     private Long korisnikId;
+    private int duration;
 
     public ReservationDTO(BoatReservation b) {
         this.resName = b.getResName();
@@ -30,6 +31,7 @@ public class ReservationDTO {
         this.endDate = b.getEndDate();
         this.offerId = b.getBoat().getId();
         this.korisnikId = b.getRegKorisnik().getId();
+        this.duration = b.getDuration();
     }
     public ReservationDTO(CottageReservation b) {
         this.resName = b.getResName();
@@ -37,5 +39,6 @@ public class ReservationDTO {
         this.endDate = b.getEndDate();
         this.offerId = b.getCottage().getId();
         this.korisnikId = b.getRegKorisnik().getId();
+        this.duration = b.getDuration();
     }
 }

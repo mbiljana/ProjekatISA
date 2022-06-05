@@ -92,7 +92,7 @@ public class BoatController {
                 boat.getId(),boat.getBoatName(),boat.getBoatType(),boat.getEngineNumber(),
                 boat.getEnginePower(),boat.getMaxSpeed(),boat.getBoatAddress(),
                 boat.getBoatCapacity(),boat.getBoatRules(),boat.getBoatDescription(),
-                boat.getAdditionalEquipment(),boat.getNavigationEquimpment()
+                boat.getAdditionalEquipment(),boat.getNavigationEquimpment(),boat.getCancelCondition()
         );
         return new ResponseEntity<>(boatDTO1,HttpStatus.CREATED);
     }

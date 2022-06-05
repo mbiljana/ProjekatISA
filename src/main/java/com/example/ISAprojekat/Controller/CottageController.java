@@ -73,11 +73,13 @@ public class CottageController {
         cottage.setCottageAdditionalServices(cottageDTO.getCottageAdditionalServices());
         cottage.setNumBeds(cottageDTO.getNumBeds());
         cottage.setNumRooms(cottageDTO.getNumRooms());
+        cottage.setCancelCondition(cottageDTO.getConditions());
         this.cottageService.save(cottage);
         CottageDTO cottageDTO1 = new CottageDTO(
                 cottage.getId(), cottage.getCottageName(), cottage.getCottageAddress(),
                 cottage.getCottageDescription(),cottage.getNumRooms(),cottage.getNumBeds(),
-                cottage.getCottageAdditionalServices(), cottage.getCottageRules()
+                cottage.getCottageAdditionalServices(), cottage.getCottageRules(),
+                cottage.getCancelCondition()
         );
         return new ResponseEntity<>(cottageDTO1,HttpStatus.CREATED);
     }
