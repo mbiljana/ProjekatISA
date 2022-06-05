@@ -2,6 +2,7 @@ package com.example.ISAprojekat.Model.DTO;
 
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.BoatReservation;
+import com.example.ISAprojekat.Model.CottageReservation;
 import com.example.ISAprojekat.Model.RegKorisnik;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,13 @@ public class ReservationDTO {
         this.startDate = b.getStartDate();
         this.endDate = b.getEndDate();
         this.offerId = b.getBoat().getId();
+        this.korisnikId = b.getRegKorisnik().getId();
+    }
+    public ReservationDTO(CottageReservation b) {
+        this.resName = b.getResName();
+        this.startDate = b.getStartDate();
+        this.endDate = b.getEndDate();
+        this.offerId = b.getCottage().getId();
         this.korisnikId = b.getRegKorisnik().getId();
     }
 }

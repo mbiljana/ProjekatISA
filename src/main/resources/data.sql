@@ -64,3 +64,5 @@ values (897,4,8,6);
 insert into boat_reservation(id,end_date,res_name,start_date,boat_id,reg_korisnik_id)
 values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,108);
 
+insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id)
+ values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,108);

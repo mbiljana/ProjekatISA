@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cottage reservation for clients</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/cottRes.js"></script>
+    <style>
+        #regReq {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #regReq td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #regReq tr:nth-child(even){background-color: #f2f2f2;}
+
+        #regReq tr:hover {background-color: #ddd;}
+
+        #regReq th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="container">
+        <table id="regReq" class="display" >
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Description</th>
+                <th>Rooms</th>
+                <th>Beds</th>
+                <th>Services</th>
+                <th>Rules</th>
+                <th>Rating</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="form-group1">
+    <h5 for="resName">Offer name:</h5>
+    <input id="resName" name="resName" type="text" class="registar" >
+</div>
+<div class="form-group1">
+    <h5 for="startDate">Start date:</h5>
+    <input id="startDate"  name="startDate" type="date"  class="registar " >
+</div>
+<div class="form-group1">
+    <h5 for="endDate">End date:</h5>
+    <input id="endDate"  name="endDate" type="date"  class="registar " >
+</div>
+<div class="form-group1">
+    <h5 for="korisnikId">Id korisnika:</h5>
+    <input id="korisnikId"  name="korisnikId" type="text"  class="registar " >
+</div>
+
+<button id="res">Create reservation</button>
+
+</body>
+</html>

@@ -33,13 +33,25 @@ public class ReservationController {
         this.cottageReservationService = cottageReservationService;
     }
 
-    @GetMapping(value = "/all")
+    @GetMapping(value = "/allBoat")
     public ResponseEntity<List<ReservationDTO>> getAllReservations() {
 
         List<BoatReservation> reservations = this.boatReservationService.findAll();
         // convert boats to DTOs
         List<ReservationDTO> reservationDTOS = new ArrayList<>();
         for (BoatReservation b : reservations) {
+            reservationDTOS.add(new ReservationDTO(b));
+        }
+
+        return new ResponseEntity<>(reservationDTOS, HttpStatus.OK);
+    }
+    @GetMapping(value = "/allCottage")
+    public ResponseEntity<List<ReservationDTO>> getAllReservationsCottage() {
+
+        List<CottageReservation> reservations = this.cottageReservationService.findAll();
+        // convert boats to DTOs
+        List<ReservationDTO> reservationDTOS = new ArrayList<>();
+        for (CottageReservation b : reservations) {
             reservationDTOS.add(new ReservationDTO(b));
         }
 
