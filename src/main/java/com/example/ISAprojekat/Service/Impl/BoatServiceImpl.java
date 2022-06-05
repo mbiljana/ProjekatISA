@@ -2,6 +2,7 @@ package com.example.ISAprojekat.Service.Impl;
 
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.BoatOwner;
+import com.example.ISAprojekat.Model.Cottage;
 import com.example.ISAprojekat.Model.FastReservation;
 import com.example.ISAprojekat.Repository.BoatRepository;
 import com.example.ISAprojekat.Service.BoatService;
@@ -47,7 +48,8 @@ public class  BoatServiceImpl implements BoatService {
 
     @Override
     public Boat update(Boat boat) {
-        return null;
+        Boat newBoat = this.boatRepository.save(boat);
+        return newBoat;
     }
 
 

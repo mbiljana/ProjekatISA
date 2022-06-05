@@ -18,4 +18,5 @@ public class CottageCDTO {
     public String cottageAdditionalServices;
     public String cottageRules;
     public float srednjaOcena;
+    public String conditions;
 }

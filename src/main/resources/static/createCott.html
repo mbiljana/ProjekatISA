@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new cottage</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/cottage.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="w3-xlarge"><b>Add a new cottage </b></h1>
+    <div class="modal-dialog text-center">
+        <div class="col-sm-12">
+            <div class="modal-content">
+                <h2 class="text-center">Fill in the form</h2>
+                <form id="addCottForm" >
+                    <div class="form-group1">
+                        <h5 for="cottageName">Cottage name:</h5>
+                        <input id="cottageName" name="cottageName" type="text" class="registar" placeholder="Name">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="cottageAddress">Cottage address:</h5>
+                        <input id="cottageAddress" name="cottageAddress" type="text" class="registar" placeholder="Address">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="cottageDescription">Description:</h5>
+                        <input id="cottageDescription" name="cottageDescription" type="text" class="registar" placeholder="Description">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="numRooms">Number of rooms:</h5>
+                        <input id="numRooms" name="numRooms" type="text" class="registar" placeholder="Number of rooms">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="numBeds">Number of beds:</h5>
+                        <input id="numBeds" name="numBeds" type="text" class="registar" placeholder="Number of beds">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="cottageAdditionalServices">Additional services:</h5>
+                        <input id="cottageAdditionalServices" name="cottageAdditionalServices"type="text" class="registar" placeholder="Bonus services">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="cottageRules">Rules:</h5>
+                        <input id="cottageRules" name="cottageRules"type="text" class="registar" placeholder="Rules">
+                    </div>
+                    <div class="form-group1">
+                        <h5 for="conditions">Cancelation policy:</h5>
+                        <input id="conditions" name="conditions"type="text" class="registar" placeholder="Cancelation">
+                    </div>
+                    <div>
+                        <button id="formBetn" type="submit" value="Register" class="btn btn-success">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

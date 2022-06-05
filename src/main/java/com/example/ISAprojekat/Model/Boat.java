@@ -44,6 +44,16 @@ public class Boat  implements Serializable{
     private String additionalEquipment;
     @Column
     private String navigationEquimpment;
+    @Column
+    private float latitude;
+    @Column
+    private float longitude;
+    @Column
+    private float price;
+    @Column
+    private String cancelCondition;
+    @OneToOne
+    private BoatReservation boatReservation;
 
     @ManyToOne
     private BoatOwner boatOwner;

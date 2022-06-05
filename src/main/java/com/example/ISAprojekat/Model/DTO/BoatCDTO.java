@@ -21,4 +21,5 @@ public class BoatCDTO {
     private String boatDescription;
     private String additionalEquipment;
     private String navigationEguipment;
+    private String conditions;
 }
