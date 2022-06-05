@@ -17,7 +17,7 @@ INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, passw
 VALUES (72,'1997-02-05','bg','@2','sdfa','bla','111',234,4,'srb','qwe','123');
 
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (73,'1997-02-05','bg','@2','sdfa','bla','11',234,4,'srb','qwe','11');
+VALUES (73,'1997-02-05','bg','@2','sdfa','bla','13',234,4,'srb','qwe','10');
 
 INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,latitude,longitude,price,cancel_condition)
 VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
@@ -33,7 +33,10 @@ INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, passw
 VALUES (76,'1997-02-05','bg','@2','sdfa','bla','1',234,4,'srb','qwe','1');
 
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (77,'1997-02-05','bg','@2','sdfa','bla','11',234,4,'srb','qwe','11');
+VALUES (77,'1997-02-05','bg','@2','sdfa','bla','11',234,3,'srb','qwe','11');
+
+INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
+VALUES (78,'1997-02-05','bg','@2','sdfa','bla','71',234,0,'srb','qwe','41');
 
 INSERT INTO fishing_instructor(id) values (72);
 INSERT INTO fishing_instructor(id) values (73);
@@ -77,6 +80,12 @@ include stability, strength and durability to survive fishing ventures across va
 
 INSERT INTO boat_owner(id) VALUES (76);
 
+
+INSERT INTO cottage_owner(id) VALUES  (77);
+
+insert into zahtev_za_reg(id, birth_date, city, email_address, home_address, name, password, phone_number, razlog, reg_type, state, surname, username) VALUES
+(1,'2022-02-02','hg','hg','hg','hg','hg',15,'hg','BOATOWNER','hg','hg','hg');
+
 insert into ocena(id,ocena,boat_id,cottage_id)
 values (898,5,8,6);
 insert into ocena(id,ocena,boat_id,cottage_id)
@@ -90,3 +99,4 @@ values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,108,5);
 
 insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration)
  values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,108,4);
+
