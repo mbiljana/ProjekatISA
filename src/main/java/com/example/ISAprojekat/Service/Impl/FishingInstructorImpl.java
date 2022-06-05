@@ -1,9 +1,8 @@
 package com.example.ISAprojekat.Service.Impl;
 
-import com.example.ISAprojekat.Model.Adventure;
+import com.example.ISAprojekat.Model.BoatOwner;
 import com.example.ISAprojekat.Model.FishingInstructor;
 import com.example.ISAprojekat.Repository.FishingInstructorRepository;
-import com.example.ISAprojekat.Repository.KorisnikRepository;
 import com.example.ISAprojekat.Service.FishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +38,12 @@ public class FishingInstructorImpl implements FishingInstructorService {
         return fishingInstructorRepository.findAll();
     }
 
+    /*@Override
+    public List<AdventureAppointment> findAllAdventures(){
+        return fishingInstructorRepository.findAllAdventures();
+    }*/
+
+
     @Override
     public FishingInstructor findOne(Long id){
         FishingInstructor fishingInstructor = this.fishingInstructorRepository.findById(id).get();
@@ -67,6 +72,12 @@ public class FishingInstructorImpl implements FishingInstructorService {
 
         FishingInstructor izmenjenaUsluga = this.fishingInstructorRepository.save(uslugaZaIzmenu);
         return izmenjenaUsluga;
+    }
+
+    @Override
+    public FishingInstructor getByEmailAddressAndPassword(String emailAddress, String password){
+        FishingInstructor fishingInstructor =this.fishingInstructorRepository.findByEmailAddressAndPassword(emailAddress,password);
+        return fishingInstructor;
     }
 
 

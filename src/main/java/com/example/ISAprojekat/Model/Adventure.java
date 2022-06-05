@@ -1,6 +1,7 @@
 package com.example.ISAprojekat.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -40,11 +43,19 @@ public class Adventure implements Serializable {
     private String adventureAdditionalServices;
 
 
-    //uslovi otkazivanja
+    //lista termina
+    @OneToMany(mappedBy = "adventure")
+    private List<Appointment> freeAppointments = new ArrayList<>();
 
-    /*
+    @OneToMany(mappedBy = "adventure")
+    private List<FastReservation> fastReservation = new ArrayList<>();
+
     @ManyToOne
     private FishingInstructor fishingInstructor;
-*/
 
+    public Adventure(Long id, String adventureName, String adventureAddress, String promoDescription, String instructorBiography, int adventureCapacity, String adventureRules, String aventureEquipment, String adventureAdditionalServices) {
+    }
+
+    public Adventure(String adventureName, String adventureAddress, String promoDescription, String instructorBiography, int adventureCapacity, String adventureRules, String aventureEquipment, String adventureAdditionalServices) {
+    }
 }
