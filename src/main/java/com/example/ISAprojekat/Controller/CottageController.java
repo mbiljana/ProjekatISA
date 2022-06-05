@@ -101,13 +101,14 @@ public class CottageController {
     }
 
     @PostMapping(value = "/createResCott",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateCottageResDTO> createReservation(@RequestBody CreateCottageResDTO cottDTO) throws Exception{
+    public ResponseEntity<CreateCottageResDTO> createReservation(@RequestBody FastResCottDTO cottDTO) throws Exception{
         Cottage cottage = this.cottageService.getOne(cottDTO.getCottId());
+        float price = cottage.getPrice() * cottDTO.getDuration();
         FastReservationCott fastReservation = new FastReservationCott();
         fastReservation.setCapacity(cottDTO.getCapacity());
         fastReservation.setAdditionalServices(cottDTO.getAdditionalServices());
         fastReservation.setDuration(cottDTO.getDuration());
-        fastReservation.setPrice(cottDTO.getPrice());
+        fastReservation.setPrice(price);
         fastReservation.setStartDate(cottDTO.getStartDate());
         fastReservation.setCottage(cottage);
         this.fastReservationCottService.create(fastReservation);

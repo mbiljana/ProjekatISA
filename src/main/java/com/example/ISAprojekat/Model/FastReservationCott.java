@@ -25,7 +25,7 @@ public class FastReservationCott implements Serializable {
     @Column
     private String additionalServices;
     @Column
-    private String price;
+    private float price;
     @ManyToOne
     private Cottage cottage;
 }

@@ -48,6 +48,10 @@ public class Boat  implements Serializable{
     private float latitude;
     @Column
     private float longitude;
+    @Column
+    private float price;
+    @OneToOne
+    private BoatReservation boatReservation;
 
     @ManyToOne
     private BoatOwner boatOwner;

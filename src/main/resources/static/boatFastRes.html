@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create cottage reservation</title>
+    <title>Create fast reservation for a boat</title>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.validate.min.js"></script>
-  <script src="js/cottFastRes.js"></script>
-
+  <script src="js/boatFastRes.js"></script>
   <style>
     #regReq {
       font-family: Arial, Helvetica, sans-serif;
@@ -33,21 +32,22 @@
   </style>
 </head>
 <body>
-<div>
-  <div class="container">
-    <table id="regReq" class="display" >
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Description</th>
-        <th>Rooms</th>
-        <th>Beds</th>
-        <th>Services</th>
-        <th>Rules</th>
-        <th>Rating</th>
-      </tr>
-    </table>
-  </div>
+<div class="container">
+  <h2 class="w3-xlarge"><b>Boats</b></h2>
+  <table id="regReq" style="width:100%" class="display">
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Address</th>
+      <th>Rules</th>
+      <th>Description</th>
+      <th>Additional</th>
+      <th>Equipment</th>
+      <th>Rating</th>
+
+    </tr>
+
+  </table>
 </div>
 <div class="form-group1">
   <h5 for="startDate">Start date:</h5>
@@ -68,5 +68,9 @@
 </div>
 
 <button id="res">Create action</button>
+
+
+
+
 </body>
 </html>

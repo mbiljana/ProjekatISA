@@ -14,23 +14,19 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FastReservation implements Serializable {
+public class CottageReservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
+    private String resName;
+    @Column
     private Date startDate;
     @Column
-    //duration in days
-    private int duration;
-    @Column
-    private int capacity;
-    @Column
-    private String additionalServices;
-    @Column
-    private float price;
-    @ManyToOne
-    private Boat boat;
-
+    private Date endDate;
+    @OneToOne
+    private Cottage cottage;
+    @OneToOne
+    private RegKorisnik regKorisnik;
 }

@@ -6,16 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateBoatResDTO {
+public class FastReservationDTO {
     private Long boatId;
     private Date startDate;
     private int duration;
     private int capacity;
     private String additionalServices;
-    private float price;
 }
