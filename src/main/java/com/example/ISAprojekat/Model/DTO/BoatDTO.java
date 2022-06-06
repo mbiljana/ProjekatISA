@@ -27,6 +27,8 @@ public class BoatDTO {
     private String navigationEguipment;
     private String conditions;
     private float srednjaOcena;
+    public float latitude;
+    public float longitude;
 
 
     public BoatDTO(Boat b, float suma) {
@@ -43,6 +45,8 @@ public class BoatDTO {
         this.additionalEquipment = b.getAdditionalEquipment();
         this.srednjaOcena = suma;
         this.conditions = b.getCancelCondition();
+        this.latitude =b.getLatitude();
+        this.longitude = b.getLongitude();
     }
 
     public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions) {

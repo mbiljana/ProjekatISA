@@ -43,7 +43,7 @@ INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_descrip
 VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
 include stability, strength and durability to survive fishing ventures across various kinds of waterways',
         'Blue Moon','Pets are not allowed.','Fishing boat',
-        'WKC4B','100 horsepower',100,'no returns',4.5,4.5,500);
+        'WKC4B','100 horsepower',100,'no returns',42.9868853,19.5180992,500);
 
 INSERT INTO boat_owner(id) VALUES (76);
 

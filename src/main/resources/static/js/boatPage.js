@@ -44,8 +44,8 @@ $(document).ready(function(){
         console.log("Selektovan red ", selektovanRed);      // ispis u konzolu radi provere
     });
 
-    ymaps.ready(init);
-    function init(){
+    ymaps.ready(ini);
+    function ini(){
         if(selektovanRed == 8){
             var myMap = new ymaps.Map("mapa", {
                 center: [kord[0],kord[1]],
