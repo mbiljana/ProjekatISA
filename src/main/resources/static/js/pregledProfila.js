@@ -9,7 +9,28 @@ $(document).ready(function(){
     korisnik += "<th>" + localStorage.getItem('emailAddress') + "</th>";
     korisnik += "<th>" + localStorage.getItem('username') + "</th>";
     korisnik += "</tr>";
-    $('#regReq').append(korisnik);
+});
+
+$.ajax({
+    type: "GET",
+    url: "http://localhost:8181/api/korisnik/username",
+    dataType: "json",
+    success: function (korisnik) {                              // ova f-ja se izvršava posle uspešnog zahteva
+        console.log("SUCCESS:\n", korisnik);                    // ispisujemo u konzoli povratnu vrednost radi provere
+            var row = "<tr data-id=" + data[i]['id'] + ">";                                  // kreiramo red za tabelu
+            row += "<td>" + data[i]['resName'] + "</td>";
+            row += "<td>" + data[i]['startDate'] + "</td>";
+            row += "<td>" + data[i]['income'] + "</td>";
+            row += "<td>" + data[i]['numPeople'] + "</td>";
+            row += "</tr>";
+            $('#regReq').append(row);
+    },
+    error: function (response) {
+        alert("Dogodila se greska, pogledaj konzolu");
+        console.log("ERROR : ", data);
+
+    }
+
 });
 
 let selektovanRed = 0;

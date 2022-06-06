@@ -14,5 +14,6 @@ public class ResIncomeDTO {
     private String resName;
     private Date startDate;
     private float income;
+    private int numPeople;
 
 }

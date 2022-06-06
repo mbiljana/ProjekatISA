@@ -12,6 +12,7 @@ $(document).ready(function(){
                 row += "<td>" + data[i]['resName'] + "</td>";
                 row += "<td>" + data[i]['startDate'] + "</td>";
                 row += "<td>" + data[i]['income'] + "</td>";
+                row += "<td>" + data[i]['numPeople'] + "</td>";
                 row += "</tr>";
                 names.push(data[i]['resName']);
                 incomes.push(data[i]['income']);
@@ -49,17 +50,60 @@ $(document).ready(function(){
 
     });
 
+    let selektovanRed = 0;
+    let staraBoja = null;
+    $("#regReq").on('click', 'tr:not(:first-child)', function() {
+        if (staraBoja != null) {
+            $('#regReq tr[data-id=' + selektovanRed + ']').css('background-color', staraBoja); // vracamo staru boju
+        }
+        selektovanRed = this.dataset.id;// cuvamo id selektovanog termina
+        broj = selektovanRed;
+        staraBoja = $(this).css('background-color');        // cuvamo staru boju da bi vratili kad se odselektuje
+
+        $(this).css('background-color', '#a6c9e2');         // postavljamo novu boju
+        console.log("Selektovan red ", selektovanRed);      // ispis u konzolu radi provere
+    });
+
     var xValues = ['Cottage1','Cottage2'];
     var yValues = [200,160];
+    var xVals = ['2022-12-09','2022-12-10'];
+    var yVals = [5,4];
+
+    var barColors = [
+        "rgba(0,0,255,1.0)",
+        "rgba(0,0,255,0.8)",
+        "rgba(0,0,255,0.6)",
+        "rgba(0,0,255,0.4)",
+        "rgba(0,0,255,0.2)",
+    ];
+
 
     var myChart = new Chart("myChart", {
         type: "bar",
         data: {labels: xValues,
             datasets: [{
+                backgroundColor: barColors,
                 data: yValues
             }]},
-        options: {}
+        options: {
+            text: "Income"
+        }
     });
+
+
+    var newChart = new Chart("newChart", {
+        type: "pie",
+        data: {labels: xVals,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yVals
+            }]},
+        options: {
+            text: "Income"
+        }
+    });
+
+
 
 
 

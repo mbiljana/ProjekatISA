@@ -55,10 +55,10 @@ insert into ocena(id,ocena,boat_id,cottage_id)
 values (897,4,8,6);
 INSERT INTO cottage_owner(id) VALUES  (77);
 
-insert into boat_reservation(id,end_date,res_name,start_date,boat_id,reg_korisnik_id,duration)
-values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,108,5);
+insert into boat_reservation(id,end_date,res_name,start_date,boat_id,reg_korisnik_id,duration,num_people)
+values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,108,5,10);
 
-insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration)
- values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,108,4);
-insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration)
-values(1025,'2022-10-10', 'Cottage reservation for two','2022-12-10',6,108,5);
+insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people)
+ values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,108,4,5);
+insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people)
+values(1025,'2022-10-10', 'Cottage reservation for two','2022-12-10',6,108,5,4);

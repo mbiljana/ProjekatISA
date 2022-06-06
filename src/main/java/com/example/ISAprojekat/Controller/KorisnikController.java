@@ -184,6 +184,23 @@ public class KorisnikController {
         return new ResponseEntity<>(reportDTO1,HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<IzmenaProfilaDTO> getUser(@PathVariable("username") String username)
+    {
+        Korisnik korisnik = this.korisnikService.findByUsername(username);
+        IzmenaProfilaDTO korisnikDTO = new IzmenaProfilaDTO();
+        korisnikDTO.setUsername(korisnik.getUsername());
+        korisnikDTO.setSurname(korisnik.getSurname());
+        korisnikDTO.setState(korisnik.getState());
+        korisnikDTO.setCity(korisnik.getCity());
+        korisnikDTO.setHomeAddress(korisnik.getHomeAddress());
+        korisnikDTO.setEmailAddress(korisnik.getEmailAddress());
+        korisnikDTO.setPassword(korisnik.getPassword());
+        korisnikDTO.setPhoneNumber(korisnik.getPhoneNumber());
+
+        return new ResponseEntity<>(korisnikDTO, HttpStatus.OK);
+    }
+
 
 
 

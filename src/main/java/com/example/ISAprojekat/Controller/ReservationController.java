@@ -41,7 +41,7 @@ public class ReservationController {
         for (BoatReservation b : reservations) {
                 ResIncomeDTO resIncomeDTO = new ResIncomeDTO(
                         b.getResName(), b.getStartDate(),
-                        b.getBoat().getPrice() * b.getDuration()
+                        b.getBoat().getPrice() * b.getDuration(), b.getNumPeople()
                 );
                 incomeDTO.add(resIncomeDTO);
         }
@@ -56,7 +56,7 @@ public class ReservationController {
         for (CottageReservation b : reservations) {
             ResIncomeDTO resIncomeDTO = new ResIncomeDTO(
                     b.getResName(), b.getStartDate(),
-                    b.getCottage().getPrice()*b.getDuration()
+                    b.getCottage().getPrice()*b.getDuration(),b.getNumPeople()
             );
             incomeDTOS.add(resIncomeDTO);
         }

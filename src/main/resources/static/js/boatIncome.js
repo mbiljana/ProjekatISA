@@ -11,6 +11,7 @@ $(document).ready(function(){
                 row += "<td>" + data[i]['resName'] + "</td>";
                 row += "<td>" + data[i]['startDate'] + "</td>";
                 row += "<td>" + data[i]['income'] + "</td>";
+                row += "<td>" + data[i]['numPeople'] + "</td>";
                 row += "</tr>";
                 $('#regReq').append(row);
             }
@@ -48,10 +49,19 @@ $(document).ready(function(){
     var xValues = ['Boat1'];
     var yValues = [2500];
 
+    var barColors = [
+        "rgba(0,0,255,1.0)",
+        "rgba(0,0,255,0.8)",
+        "rgba(0,0,255,0.6)",
+        "rgba(0,0,255,0.4)",
+        "rgba(0,0,255,0.2)",
+    ];
+
     var myChart = new Chart("myChart", {
         type: "bar",
         data: {labels: xValues,
             datasets: [{
+                backgroundColor: barColors,
                 data: yValues
             }]},
         options: {}
