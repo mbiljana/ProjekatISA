@@ -60,5 +60,18 @@ $(document).ready(function(){
     }
 
 
+    $("#img").click(function() {
+        if(selektovanRed == 8){
+            document.getElementById("image1").src = "images/boat1.jpg";
+            document.getElementById("image2").src = "images/bi1.jpg";
+            document.getElementById("image3").src = "images/s1.jpg";
+        }else {
+            document.getElementById("image1").src = "images/boat2.jpg";
+            document.getElementById("image2").src = "images/bi3.jpg";
+            document.getElementById("image3").src = "images/s11.jpg";
+        }
+
+    });
+
 
 });

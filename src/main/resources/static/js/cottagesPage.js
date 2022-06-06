@@ -60,6 +60,28 @@ $(document).ready(function(){
             }
         }
 
+    $("#img").click(function() {
+        if(selektovanRed == 5){
+            document.getElementById("image1").src = "images/cott.jpg";
+            document.getElementById("image2").src = "images/int1.jpg";
+            document.getElementById("image3").src = "images/n1.jpg";
+        }else if(selektovanRed == 6){
+            document.getElementById("image1").src = "images/cott2.jpg";
+            document.getElementById("image2").src = "images/int2.jpg";
+            document.getElementById("image3").src = "images/n2.jpg";
+        }else if(selektovanRed == 7){
+            document.getElementById("image1").src = "images/cott3.jpg";
+            document.getElementById("image2").src = "images/int3.jpg";
+            document.getElementById("image3").src = "images/n3.jpg";
+        }else{
+            document.getElementById("image1").src = "images/cott4.jpg";
+            document.getElementById("image2").src = "images/int4.jpg";
+            document.getElementById("image3").src = "images/n4.jpg";
+        }
+
+        });
+
+
 
 
 

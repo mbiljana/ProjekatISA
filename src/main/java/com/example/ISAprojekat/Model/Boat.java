@@ -52,6 +52,9 @@ public class Boat  implements Serializable{
     private float price;
     @Column
     private String cancelCondition;
+
+
+
     @OneToOne
     private BoatReservation boatReservation;
 
