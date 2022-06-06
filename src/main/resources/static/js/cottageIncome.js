@@ -1,5 +1,6 @@
 $(document).ready(function(){
-
+    const names = [];
+    const incomes = [];
     $.ajax({
         type: "GET",
         url: "http://localhost:8181/api/reservations/allCottage",
@@ -12,7 +13,10 @@ $(document).ready(function(){
                 row += "<td>" + data[i]['startDate'] + "</td>";
                 row += "<td>" + data[i]['income'] + "</td>";
                 row += "</tr>";
+                names.push(data[i]['resName']);
+                incomes.push(data[i]['income']);
                 $('#regReq').append(row);
+
             }
         },
         error: function (response) {
@@ -44,5 +48,22 @@ $(document).ready(function(){
         });
 
     });
+
+    var xValues = ['Cottage1','Cottage2'];
+    var yValues = [200,160];
+
+    var myChart = new Chart("myChart", {
+        type: "bar",
+        data: {labels: xValues,
+            datasets: [{
+                data: yValues
+            }]},
+        options: {}
+    });
+
+
+
+
+
 
 });

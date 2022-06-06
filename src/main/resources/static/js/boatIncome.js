@@ -45,5 +45,17 @@ $(document).ready(function(){
 
     });
 
+    var xValues = ['Boat1'];
+    var yValues = [2500];
+
+    var myChart = new Chart("myChart", {
+        type: "bar",
+        data: {labels: xValues,
+            datasets: [{
+                data: yValues
+            }]},
+        options: {}
+    });
+
 
 });
