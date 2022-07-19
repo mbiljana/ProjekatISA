@@ -56,7 +56,7 @@ $(document).ready(function(){
                 console.log("SUCCESS : ", data);
 
                 window.location.href = "AdminPage.html";
-                $(selektovanRed).remove();  // ne znam kako da obrisem red
+                $(selektovanRed).remove();  // radi!!!!
 
             },
             error: function (data) {
