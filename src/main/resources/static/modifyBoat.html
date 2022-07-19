@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modify boats</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/modifyBoat.js"></script>
+    <style>
+        #regReq {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #regReq td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #regReq tr:nth-child(even){background-color: #f2f2f2;}
+
+        #regReq tr:hover {background-color: #ddd;}
+
+        #regReq th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="w3-xlarge"><b>Boats</b></h2>
+    <table id="regReq" style="width:100%" class="display">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Address</th>
+            <th>Rules</th>
+            <th>Description</th>
+            <th>Additional</th>
+            <th>Equipment</th>
+            <th>Rating</th>
+
+        </tr>
+
+    </table>
+</div>
+<div class="modal-dialog text-center">
+    <button id="delete">Remove</button>
+</div>
+<div class="form-group1">
+    <h5 for="boatName">Name:</h5>
+    <input id="boatName" name="boatName" type="text" class="registar" >
+</div>
+<div class="form-group1">
+    <h5 for="boatType">Type:</h5>
+    <input id="boatType"  name="boatType" type="text"  class="registar " >
+</div>
+<div class="form-group1">
+    <h5 for="engineNumber">Engine number:</h5>
+    <input id="engineNumber"  name="engineNumber" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+    <h5 for="enginePower">Engine power:</h5>
+    <input id="enginePower"  name="enginePower" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+    <h5 for="maxSpeed">Max speed:</h5>
+    <input id="maxSpeed"  name="maxSpeed" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+    <h5 for="boatAddress">Address:</h5>
+    <input id="boatAddress"  name="boatAddress" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+    <h5 for="boatCapacity">Capacity:</h5>
+    <input id="boatCapacity"  name="boatCapacity" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+    <h5 for="boatRules">Rules:</h5>
+    <input id="boatRules"  name="boatRules" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+    <h5 for="boatDescription">Description:</h5>
+    <input id="boatDescription"  name="boatDescription" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+    <h5 for="additionalEquipment">Additional equipment:</h5>
+    <input id="additionalEquipment"  name="additionalEquipment" type="text"  class="registar " >
+</div>
+
+<div class="form-group1">
+    <h5 for="navigationEguipment">Navigation equipment:</h5>
+    <input id="navigationEguipment"  name="navigationEguipment" type="text"  class="registar " >
+</div>
+<button id="change">Update</button>
+
+</body>
+</html>

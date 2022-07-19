@@ -3,6 +3,7 @@ package com.example.ISAprojekat.Controller;
 
 import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.*;
+import com.example.ISAprojekat.Repository.ReportRepository;
 import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,16 +26,18 @@ public class KorisnikController {
     private final BoatOwnerService boatOwnerService;
     private final CottageOwnerService cottageOwnerService;
     private final ZahtevZaRegService zahtevZaRegService;
-   private AdminService adminService;
-    private KorisnikService korisnikService;
+   private final AdminService adminService;
+    private final KorisnikService korisnikService;
+    private final ReportService reportService;
 
     @Autowired
-    public KorisnikController(AdminService adminService, KorisnikService korisnikService,BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService,ZahtevZaRegService zahtevZaRegService){
+    public KorisnikController(AdminService adminService, KorisnikService korisnikService,BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService,ZahtevZaRegService zahtevZaRegService,ReportService reportService){
         this.adminService = adminService;
         this.korisnikService = korisnikService;
         this.boatOwnerService = boatOwnerService;
         this.cottageOwnerService = cottageOwnerService;
         this.zahtevZaRegService = zahtevZaRegService;
+        this.reportService = reportService;
     }
 
     //ne znam sta ovo radi
@@ -147,9 +150,40 @@ public class KorisnikController {
         }
     }
 
+    @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<IzmenaProfilaDTO> updateUser(@RequestBody IzmenaProfilaDTO izmenaDTO) throws Exception {
+        Korisnik korisnik = this.korisnikService.findByUsername(izmenaDTO.getUsername());
+        korisnik.setName(izmenaDTO.getName());
+        korisnik.setPassword(izmenaDTO.getPassword());
+        korisnik.setHomeAddress(izmenaDTO.getHomeAddress());
+        korisnik.setCity(izmenaDTO.getCity());
+        korisnik.setState(izmenaDTO.getState());
+        korisnik.setPhoneNumber(izmenaDTO.getPhoneNumber());
+        korisnik.setSurname(izmenaDTO.getSurname());
+        korisnik.setEmailAddress(izmenaDTO.getEmailAddress());
+        korisnik.setUsername(izmenaDTO.getUsername());
+        this.korisnikService.modify(korisnik);
+        IzmenaProfilaDTO izmenaProfilaDTO = new IzmenaProfilaDTO(
+               korisnik.getName(),korisnik.getSurname(),korisnik.getHomeAddress(),
+                korisnik.getEmailAddress(),korisnik.getPassword(),korisnik.getCity(),
+                korisnik.getState(),korisnik.getUsername(),korisnik.getPhoneNumber()
+        );
+        return new ResponseEntity<>(izmenaProfilaDTO, HttpStatus.OK);
+    }
 
 
 
+    @PostMapping(value = "/report", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ReportDTO> createReport(@RequestBody ReportDTO reportDTO){
+        Report report = new Report();
+        Admin admin = this.adminService.getByUsernameAndPassword("123","111");
+        report.setReport(reportDTO.getReport());
+        report.setAdmin(admin);
+        this.reportService.create(report);
+        admin.reports.add(report);
+        ReportDTO reportDTO1 = new ReportDTO(report.getReport());
+        return new ResponseEntity<>(reportDTO1,HttpStatus.CREATED);
+    }
 
 
 

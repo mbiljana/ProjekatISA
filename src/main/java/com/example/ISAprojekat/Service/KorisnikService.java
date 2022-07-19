@@ -15,5 +15,7 @@ public interface KorisnikService {
     Korisnik findOne(Long id);
 
     Korisnik update(Korisnik korisnik) throws Exception;
+    Korisnik modify(Korisnik korisnik) throws Exception;
+    Korisnik findByUsername(String username);
 
 }

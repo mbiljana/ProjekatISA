@@ -73,11 +73,13 @@ public class CottageController {
         cottage.setCottageAdditionalServices(cottageDTO.getCottageAdditionalServices());
         cottage.setNumBeds(cottageDTO.getNumBeds());
         cottage.setNumRooms(cottageDTO.getNumRooms());
+        cottage.setCancelCondition(cottageDTO.getConditions());
         this.cottageService.save(cottage);
         CottageDTO cottageDTO1 = new CottageDTO(
                 cottage.getId(), cottage.getCottageName(), cottage.getCottageAddress(),
                 cottage.getCottageDescription(),cottage.getNumRooms(),cottage.getNumBeds(),
-                cottage.getCottageAdditionalServices(), cottage.getCottageRules()
+                cottage.getCottageAdditionalServices(), cottage.getCottageRules(),
+                cottage.getCancelCondition()
         );
         return new ResponseEntity<>(cottageDTO1,HttpStatus.CREATED);
     }
@@ -101,13 +103,14 @@ public class CottageController {
     }
 
     @PostMapping(value = "/createResCott",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateCottageResDTO> createReservation(@RequestBody CreateCottageResDTO cottDTO) throws Exception{
+    public ResponseEntity<CreateCottageResDTO> createReservation(@RequestBody FastResCottDTO cottDTO) throws Exception{
         Cottage cottage = this.cottageService.getOne(cottDTO.getCottId());
+        float price = cottage.getPrice() * cottDTO.getDuration();
         FastReservationCott fastReservation = new FastReservationCott();
         fastReservation.setCapacity(cottDTO.getCapacity());
         fastReservation.setAdditionalServices(cottDTO.getAdditionalServices());
         fastReservation.setDuration(cottDTO.getDuration());
-        fastReservation.setPrice(cottDTO.getPrice());
+        fastReservation.setPrice(price);
         fastReservation.setStartDate(cottDTO.getStartDate());
         fastReservation.setCottage(cottage);
         this.fastReservationCottService.create(fastReservation);
@@ -118,6 +121,7 @@ public class CottageController {
         createCottageResDTO.setDuration(fastReservation.getDuration());
         createCottageResDTO.setPrice(fastReservation.getPrice());
         createCottageResDTO.setStartDate(fastReservation.getStartDate());
+        createCottageResDTO.setAdditionalServices(fastReservation.getAdditionalServices());
         return new ResponseEntity<>(createCottageResDTO,HttpStatus.CREATED);
     }
 

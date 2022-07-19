@@ -22,4 +22,7 @@ public class Admin extends Korisnik {
 
     @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL,orphanRemoval = true)
     public List<ZahtevZaReg> zahtevi = new ArrayList<>();
+
+    @OneToMany(mappedBy = "admin")
+    public List<Report> reports = new ArrayList<>();
 }

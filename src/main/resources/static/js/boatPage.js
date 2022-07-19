@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    const kord = new Array();
     $.ajax({
         type: "GET",
         url: "http://localhost:8181/api/boats/all",
@@ -18,6 +19,7 @@ $(document).ready(function(){
                 row += "<td>" + data[i]['navigationEguipment'] + "</td>";
                 row += "<td>" + data[i]['srednjaOcena'] + "</td>";
                 row += "</tr>";                                     // završavamo kreiranje reda
+                kord.push(data[i]['latitude'],data[i]['longitude']);
 
                 $('#regReq').append(row);                        // ubacujemo kreirani red u tabelu čiji je id = employees
             }
@@ -42,7 +44,20 @@ $(document).ready(function(){
         console.log("Selektovan red ", selektovanRed);      // ispis u konzolu radi provere
     });
 
-
+    ymaps.ready(init);
+    function init(){
+        if(selektovanRed == 8){
+            var myMap = new ymaps.Map("mapa", {
+                center: [kord[0],kord[1]],
+                zoom: 12
+            });
+        }else{
+            var myMap = new ymaps.Map("mapa", {
+                center: [4.15,4.15],
+                zoom: 12
+            });
+        }
+    }
 
 
 
