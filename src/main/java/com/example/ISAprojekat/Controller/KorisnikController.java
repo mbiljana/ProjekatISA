@@ -3,7 +3,7 @@ package com.example.ISAprojekat.Controller;
 
 import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.*;
-import com.example.ISAprojekat.Repository.ReportRepository;
+import com.example.ISAprojekat.Repository.KorisnikRepository;
 import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,15 +28,17 @@ public class KorisnikController {
     private final ZahtevZaRegService zahtevZaRegService;
    private final AdminService adminService;
     private final KorisnikService korisnikService;
+    private final KorisnikRepository korisnikRepository;
     private final ReportService reportService;
 
     @Autowired
-    public KorisnikController(AdminService adminService, KorisnikService korisnikService,BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService,ZahtevZaRegService zahtevZaRegService,ReportService reportService){
+    public KorisnikController(AdminService adminService, KorisnikService korisnikService, BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService, ZahtevZaRegService zahtevZaRegService, KorisnikRepository korisnikRepository, ReportService reportService){
         this.adminService = adminService;
         this.korisnikService = korisnikService;
         this.boatOwnerService = boatOwnerService;
         this.cottageOwnerService = cottageOwnerService;
         this.zahtevZaRegService = zahtevZaRegService;
+        this.korisnikRepository = korisnikRepository;
         this.reportService = reportService;
     }
 
@@ -152,7 +154,7 @@ public class KorisnikController {
 
     @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<IzmenaProfilaDTO> updateUser(@RequestBody IzmenaProfilaDTO izmenaDTO) throws Exception {
-        Korisnik korisnik = this.korisnikService.findByUsername(izmenaDTO.getUsername());
+        Korisnik korisnik = this.korisnikRepository.findByUsername(izmenaDTO.getUsername());
         korisnik.setName(izmenaDTO.getName());
         korisnik.setPassword(izmenaDTO.getPassword());
         korisnik.setHomeAddress(izmenaDTO.getHomeAddress());

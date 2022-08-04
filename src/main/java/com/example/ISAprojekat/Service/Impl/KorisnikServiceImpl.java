@@ -1,10 +1,12 @@
 package com.example.ISAprojekat.Service.Impl;
 
-import com.example.ISAprojekat.Model.BoatOwner;
-import com.example.ISAprojekat.Model.Korisnik;
+import com.example.ISAprojekat.Model.*;
+import com.example.ISAprojekat.Model.DTO.UserAuthentificationRequestDTO;
 import com.example.ISAprojekat.Service.KorisnikService;
+import com.example.ISAprojekat.Service.RoleService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.example.ISAprojekat.Model.Korisnikk;
 import com.example.ISAprojekat.Repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,12 +14,18 @@ import java.util.List;
 
 @Service
 public class KorisnikServiceImpl implements KorisnikService {
-    private final KorisnikRepository korisnikRepository;
 
     @Autowired
-    public KorisnikServiceImpl(KorisnikRepository korisnikRepository){
-        this.korisnikRepository = korisnikRepository;
-    }
+    private KorisnikRepository korisnikRepository;
+
+    @Autowired
+    private KorisnikService korisnikService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public Korisnik getByUsernameAndPassword(String username, String password) {
@@ -36,6 +44,8 @@ public class KorisnikServiceImpl implements KorisnikService {
         return korisnikRepository.findAll();
     }
 
+
+
     @Override
     public Korisnik findOne(Long id) {
 
@@ -43,13 +53,35 @@ public class KorisnikServiceImpl implements KorisnikService {
         return korisnik;
     }
 
-    @Override
+
+    /*@Override
     public Korisnik save(Korisnik korisnik) throws Exception {
         if(korisnik.getId() != null){
             throw new Exception("ID must be unique!");
         }
         Korisnik newK = korisnikRepository.save(korisnik);
         return  newK;
+    }*/
+
+    @Override
+    public Korisnik save(UserAuthentificationRequestDTO userRequest) {
+        Korisnik u = new Korisnik();
+        u.setUsername(userRequest.getUsername());
+
+        // pre nego sto postavimo lozinku u atribut hesiramo je kako bi se u bazi nalazila hesirana lozinka
+        // treba voditi racuna da se koristi isi password encoder bean koji je postavljen u AUthenticationManager-u kako bi koristili isti algoritam
+        u.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+
+        u.setName(userRequest.getName());
+        u.setSurname(userRequest.getSurname());
+        u.setEnabled(true);
+        u.setEmailAddress(userRequest.getEmailAddress());
+
+        // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
+        List<Uloga> roles = roleService.findByName("ROLE_USER");
+        u.setUloge(roles);
+
+        return this.korisnikRepository.save(u);
     }
 
     @Override
@@ -83,10 +115,11 @@ public class KorisnikServiceImpl implements KorisnikService {
         return promenjen;
     }
 
-    @Override
-    public Korisnik findByUsername(String username) {
-        Korisnik korisnik = this.korisnikRepository.findByUsername(username);
-        return korisnik;
+
+    public Korisnik findByEmail(String username) throws UsernameNotFoundException {
+        return korisnikRepository.findByEmailAddress(username);
     }
+
+
 
 }

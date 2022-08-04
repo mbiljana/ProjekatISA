@@ -1,13 +1,18 @@
 package com.example.ISAprojekat.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -19,11 +24,13 @@ import java.util.List;
 @NoArgsConstructor
 
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Korisnik implements Serializable {
+public class Korisnik implements UserDetails {
+    private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Column(name = "ime")
+    @Column
     private String name;
     @Column
     private String surname;
@@ -45,8 +52,16 @@ public class Korisnik implements Serializable {
     private String password;
     @Column
     private Role role;
+    @Column
+    private boolean enabled;
+    @Column
+    private Timestamp lastPasswordResetDate;
 
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_uloge",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Uloga> uloge;
 
     public Korisnik(String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
         this.name = name;
@@ -71,6 +86,62 @@ public class Korisnik implements Serializable {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public Korisnik(Long id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
+    }
+
+
+    public void setPassword(String password) {
+            Timestamp now = new Timestamp(new Date().getTime());
+            this.setLastPasswordResetDate(now);
+            this.password = password;
+
+    }
+
+
+    public Timestamp getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
+
+    public void setLastPasswordResetDate(Timestamp lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public List<Uloga> getUloge() {
+        return uloge;
+    }
+
+    public void setUloge(List<Uloga> uloge) {
+        this.uloge = uloge;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.uloge;
+    }
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 }
 

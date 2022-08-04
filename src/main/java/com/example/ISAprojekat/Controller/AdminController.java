@@ -3,13 +3,16 @@ package com.example.ISAprojekat.Controller;
 import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.Admin;
 import com.example.ISAprojekat.Model.DTO.*;
+//import com.example.ISAprojekat.Repository.SystemPropertyRepository;
 import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class AdminController {
     private final CottageOwnerService cottageOwnerService;
     private final ZahtevZaRegService zahtevZaRegService;
 
+
     @Autowired
     public AdminController(AdminService adminService, KorisnikService korisnikService, BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService, ZahtevZaRegService zahtevZaRegService){
         this.adminService = adminService;
@@ -29,6 +33,7 @@ public class AdminController {
         this.boatOwnerService = boatOwnerService;
         this.cottageOwnerService = cottageOwnerService;
         this.zahtevZaRegService = zahtevZaRegService;
+
     }
 
 
@@ -51,7 +56,8 @@ public class AdminController {
     }
 
     @GetMapping(value = "/allAdmins")
-    public ResponseEntity<List<AdminDTO>> getAllAdmins() {
+    public ResponseEntity<List<AdminDTO>> getAllAdmins(Principal principal) {
+
 
         List<Admin> korisnici = adminService.findAll();
 
@@ -136,7 +142,9 @@ public class AdminController {
 
 
     @PostMapping(value = ("/acceptRequest"), consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RegOwnerDTO> acceptRequest(@RequestBody ZahtevDTO dto) throws Exception{
+    public ResponseEntity<RegOwnerDTO> acceptRequest(@RequestBody ZahtevDTO dto, Principal principal) throws Exception{
+        final String ikikiki="ikjijijijijij";
+
         ZahtevZaReg zahtevZaReg = this.zahtevZaRegService.findOne(dto.getIdKorisnika());
         List<ZahtevZaReg> zahtevZaRegs = this.zahtevZaRegService.findAll();
         if(zahtevZaReg.getRegType().equals("BoatOwner")) {
@@ -192,6 +200,8 @@ public class AdminController {
         }
         return new ResponseEntity<>(zahtevZaRegDTOS, HttpStatus.OK);
     }
+
+
 
 
 }
