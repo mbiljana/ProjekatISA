@@ -70,4 +70,9 @@ public class AdventureServiceImpl implements AdventureService {
         return adventureRepository.findAllByAdventureName(adventureName);
     }
 
+    @Override
+    public List<Adventure> getAllAdventuresFromInstructor(String email) {
+        return adventureRepository.getAdventuresByFishingInstructor_EmailAddress(email);
+    }
+
 }

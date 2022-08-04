@@ -1,11 +1,16 @@
 package com.example.ISAprojekat.Service.Impl;
 
+import com.example.ISAprojekat.Model.Adventure;
 import com.example.ISAprojekat.Model.BoatOwner;
 import com.example.ISAprojekat.Model.FishingInstructor;
+import com.example.ISAprojekat.Model.UnavailablePeriod;
 import com.example.ISAprojekat.Repository.FishingInstructorRepository;
 import com.example.ISAprojekat.Service.FishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -14,7 +19,7 @@ public class FishingInstructorImpl implements FishingInstructorService {
     private final FishingInstructorRepository fishingInstructorRepository;
 
     @Autowired
-    public FishingInstructorImpl(FishingInstructorRepository fishingInstructorRepository){
+    private FishingInstructorImpl(FishingInstructorRepository fishingInstructorRepository){
         this.fishingInstructorRepository = fishingInstructorRepository;
     }
 
@@ -79,7 +84,6 @@ public class FishingInstructorImpl implements FishingInstructorService {
         FishingInstructor fishingInstructor =this.fishingInstructorRepository.findByEmailAddressAndPassword(emailAddress,password);
         return fishingInstructor;
     }
-
 
 
 }

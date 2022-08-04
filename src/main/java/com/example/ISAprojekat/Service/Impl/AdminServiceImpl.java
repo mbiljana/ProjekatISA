@@ -1,14 +1,13 @@
 package com.example.ISAprojekat.Service.Impl;
 
-import com.example.ISAprojekat.Model.Admin;
-import com.example.ISAprojekat.Model.Boat;
-import com.example.ISAprojekat.Model.BoatOwner;
-import com.example.ISAprojekat.Model.Korisnik;
+import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Repository.AdminRepository;
 import com.example.ISAprojekat.Service.AdminService;
+import com.example.ISAprojekat.Service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -19,6 +18,9 @@ public class AdminServiceImpl implements AdminService {
     public AdminServiceImpl(AdminRepository adminRepository){
         this.adminRepository = adminRepository;
     }
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public Admin getByUsernameAndPassword(String username, String password) {
@@ -63,5 +65,7 @@ public class AdminServiceImpl implements AdminService {
         Admin promenjen = adminRepository.save(updated);
         return promenjen;
     }
+
+
 
 }

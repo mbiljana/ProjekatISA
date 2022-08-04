@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface AdventureRepository extends JpaRepository<Adventure, Long> {
     List<Adventure> findAllByAdventureName(String adventureName);
-
+    List<Adventure> getAdventuresByFishingInstructor_EmailAddress(String email);
 }
