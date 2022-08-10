@@ -14,7 +14,7 @@ import java.util.Date;
 public class FastReservationCott implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     @Column
     private Date startDate;
     @Column

@@ -27,7 +27,7 @@ public class  BoatServiceImpl implements BoatService {
     }
 
     @Override
-    public Boat getOne(Long id) {
+    public Boat getOne(Integer id) {
         Boat boat = this.boatRepository.findById(id).get();
         return boat;
     }
@@ -42,7 +42,7 @@ public class  BoatServiceImpl implements BoatService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         this.boatRepository.deleteById(id);
     }
 

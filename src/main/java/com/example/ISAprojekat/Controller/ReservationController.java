@@ -1,17 +1,18 @@
 package com.example.ISAprojekat.Controller;
 
 import com.example.ISAprojekat.Model.*;
-import com.example.ISAprojekat.Model.DTO.*;
+import com.example.ISAprojekat.Model.DTO.CreateResDTO;
+import com.example.ISAprojekat.Model.DTO.ResIncomeDTO;
+import com.example.ISAprojekat.Model.DTO.ReservationDTO;
 import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -22,15 +23,20 @@ public class ReservationController {
     private final RegKorisnikService regKorisnikService;
     private final CottageService cottageService;
     private final CottageReservationService cottageReservationService;
+    private final FastReservationService fastReservationService;
 
     @Autowired
-    public ReservationController(BoatService boatService, BoatReservationService boatReservationService, RegKorisnikService regKorisnikService, CottageService cottageService, CottageReservationService cottageReservationService){
+    public ReservationController(BoatService boatService, BoatReservationService boatReservationService, RegKorisnikService regKorisnikService, CottageService cottageService, CottageReservationService cottageReservationService,
+                                 FastReservationService fastReservationService){
         this.boatReservationService = boatReservationService;
         this.boatService = boatService;
         this.regKorisnikService = regKorisnikService;
         this.cottageService = cottageService;
         this.cottageReservationService = cottageReservationService;
+        this.fastReservationService = fastReservationService;
     }
+
+
 
     @GetMapping(value = "/allBoat")
     public ResponseEntity<List<ResIncomeDTO>> getAllReservations() {
@@ -104,7 +110,22 @@ public class ReservationController {
         return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
     }
 
+   /* @PostMapping(value = "/createByAdvertiser")
+    @PreAuthorize("hasAnyRole('COTTAGE_OWNER, SHIP_OWNER, INSTRUCTOR')")
+    public ResponseEntity<ReservationDTO> saveReservationByAdvertiser(@RequestBody ReservationDTO reservationDTO) {
+        FastReservation reservation = modelMapper.map(reservationDTO, FastReservation.class);
+        //reservation.setRentingEntity(this.entityService.getEntityById(reservationDTO.getEntityId()));
+        //reservation.getRentingEntity().setVersion(reservationDTO.getEntityVersion());
+        ReservationDTO createdReservation = fastReservationService.saveReservationCreatedByAdvertiser(reservation, reservationDTO.getEntityId());
+        return new ResponseEntity<>(createdReservation, HttpStatus.CREATED);
+    }*/
 
+    @GetMapping(value = "/booked/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyRole('COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR', 'ADMIN')")
+    public ResponseEntity<Boolean> isEntityBooked(@PathVariable("id") Integer id) {
+        Boolean isBooked = fastReservationService.isEntityBookedNow(id);
+        return new ResponseEntity<>(isBooked, HttpStatus.OK);
+    }
 
 
 }

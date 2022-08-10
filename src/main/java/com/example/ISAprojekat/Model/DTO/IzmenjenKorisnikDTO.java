@@ -13,8 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class IzmenjenKorisnikDTO {
     //izmena uloga
-    private Long id;
-    private Long idTermina;
+    private Integer id;
+    private Integer idTermina;
     private Role role;
     //private String name;
 

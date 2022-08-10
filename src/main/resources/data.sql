@@ -1,4 +1,5 @@
 /*lozinke za korisnika su hešovane: 123
+  Lozinke su hesovane pomocu BCrypt algoritma https://www.dailycred.com/article/bcrypt-calculator
 
 #problem je kada hoćemo u nekoj tabeli da imamo referencu na id od korisnika, ne rade zahtevi sa tokenima
 #npr. adventure -> fishing_instructor_id, pa sam uklonila sve reference
@@ -109,4 +110,36 @@ insert into user_uloge(user_id, role_id) VALUES (3,2);
 
 #insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,duration)
 #values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,4);
+
+
+insert into address(address_id, city, country, latitude, longitude, postal_code, street_name, street_number)
+values (1,'Vrsac','Srbija','30.045','27.045','26300','Studenicka','16b');
+
+insert into address(address_id, city, country, latitude, longitude, postal_code, street_name, street_number)
+values (2,'Vrsac','Srbija','30.045','27.045','26300','Studenicka','16b');
+
+insert into address(address_id, city, country, latitude, longitude, postal_code, street_name, street_number)
+values (3,'Vrsac','Srbija','30.045','27.045','26300','Studenicka','16b');
+
+
+insert into registration_request(id, name, surname, email_address, biography, explanation, role_id, address_id,password)
+values(1,'bla','bla','bla','bla','bla',1,1,'bla');
+
+insert into registration_request(id, name, surname, email_address, biography, explanation, role_id, address_id,password)
+values(2,'bla','bla','bla','bla','bla',2,2,'bla');
+
+insert into delete_request(delete_request_id,content,reg_user_id) values (1,'Illegal usage of images',2);
+
+
+INSERT INTO renting_entity(entity_id, average_grade, cancellation_percentage, description, name, version,address_id)
+VALUES (1, 4.8, 15, 'Prelepa vikendica uz pogled na jezero', 'Marijina vikendica',0 ,2);
+
+insert into fast_reservation(id, additional_services, capacity, duration, place, price, start_date,entity_id)
+values (1,'bla',4,45,'bla',45,now(),1);
+
+insert into report(report_id, content, is_bad_review, not_appeared, reg_user_id, entity_id)
+values (1,'bla',0,0,3,1);
+
+insert into revision(revision_id, content, is_approved, mark, reservation_id)
+values (1,'bl',0,1,1);
 

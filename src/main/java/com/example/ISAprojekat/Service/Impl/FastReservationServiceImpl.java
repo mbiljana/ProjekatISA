@@ -7,6 +7,7 @@ import com.example.ISAprojekat.Service.FastReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,7 +20,7 @@ public class FastReservationServiceImpl implements FastReservationService {
     }
 
     @Override
-    public FastReservation getOne(Long id) {
+    public FastReservation getOne(Integer id) {
         FastReservation fastReservation = this.fastReservationRepository.findById(id).get();
         return fastReservation;
     }
@@ -39,10 +40,19 @@ public class FastReservationServiceImpl implements FastReservationService {
         return  newFR;
     }
 
+    @Override
+    public Boolean isEntityBookedNow(Integer id) {
+        List<FastReservation> reservations = fastReservationRepository.getReservationByRentingEntity_Id(id);
+        for(FastReservation r : reservations) {
+            if(r.getStartDate().before(new Date()) && r.getReservationEndTime().after(new Date()) && !r.getCanceled()) return true;
+        }
+        return false;
+    }
+
 
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         this.fastReservationRepository.deleteById(id);
     }
 }

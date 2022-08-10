@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FishingInstructorDTO {
-    private Long id;
+    private Integer id;
     private String name;
     private String surname;
     private String emailAddress;

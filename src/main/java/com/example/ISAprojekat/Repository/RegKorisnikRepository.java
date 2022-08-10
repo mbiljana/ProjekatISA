@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RegKorisnikRepository extends JpaRepository<RegKorisnik,Long> {
+public interface RegKorisnikRepository extends JpaRepository<RegKorisnik,Integer> {
 }

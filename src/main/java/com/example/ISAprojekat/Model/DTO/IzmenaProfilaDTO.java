@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class IzmenaProfilaDTO {
+    private Integer id;
     private String name;
     private String surname;
     private String homeAddress;
@@ -19,4 +20,18 @@ public class IzmenaProfilaDTO {
     private String state;
     private String username;
     private String phoneNumber;
+
+
+
+    public IzmenaProfilaDTO( String name, String surname, String homeAddress, String emailAddress, String password, String city, String state, String username, String phoneNumber) {
+        this.name = name;
+        this.surname = surname;
+        this.homeAddress = homeAddress;
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.city = city;
+        this.state = state;
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+    }
 }

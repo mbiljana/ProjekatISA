@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateCottageResDTO {
-    private Long cottId;
+    private Integer cottId;
     private Date startDate;
     private int duration;
     private int capacity;

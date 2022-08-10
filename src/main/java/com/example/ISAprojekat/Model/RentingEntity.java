@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -134,5 +135,13 @@ public class RentingEntity {
     @Override
     public String toString() {
         return "RentingEntity{}";
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

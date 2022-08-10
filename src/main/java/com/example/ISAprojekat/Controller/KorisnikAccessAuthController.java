@@ -7,15 +7,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.ISAprojekat.Model.DTO.IzmenaProfilaDTO;
+import com.example.ISAprojekat.Model.DTO.KorisnikDTO;
+import com.example.ISAprojekat.Model.DTO.UserTokenState;
 import com.example.ISAprojekat.Repository.KorisnikRepository;
+import com.example.ISAprojekat.Utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Service.KorisnikService;
@@ -29,23 +35,91 @@ public class KorisnikAccessAuthController {
     @Autowired
     private KorisnikService userService;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     private KorisnikRepository userRepository;
+
+    @Autowired
+    private TokenUtils tokenUtils;
 
     // Za pristup ovoj metodi neophodno je da ulogovani korisnik ima ADMIN ulogu
     // Ukoliko nema, server ce vratiti gresku 403 Forbidden
     // Korisnik jeste autentifikovan, ali nije autorizovan da pristupi resursu
     @GetMapping("/user/{userId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Korisnik loadById(@PathVariable Long userId) {
+    public Korisnik loadById(@PathVariable Integer userId) {
         return this.userService.findOne(userId);
+    }
+
+    @GetMapping(value="/getById/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+    public ResponseEntity<KorisnikDTO> getById(@PathVariable Integer id){
+        Korisnik user = userService.findOne(id);
+        KorisnikDTO userDTO = new KorisnikDTO(user.getId(), user.getName(), user.getSurname(), user.getPhoneNumber(), user.getEmailAddress(), user.getPassword(), user.getUserStatus(), user.isEnabled(), user.getLastPasswordResetDate());
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
+    @GetMapping(value="/getByEmail/{email}")
+    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+    public ResponseEntity<KorisnikDTO> getByEmail(@PathVariable("email") String email){
+        Korisnik user = userService.getByEmailAddress(email);
+        KorisnikDTO userDTO = new KorisnikDTO(user.getId(), user.getName(), user.getSurname(), user.getPhoneNumber(), user.getEmailAddress(), user.getPassword(), user.getUserStatus(), user.isEnabled(), user.getLastPasswordResetDate());
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
+    //po username-u
+    @GetMapping(value="/getLoggedUser")
+    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+    public ResponseEntity<KorisnikDTO> getLoggedUser(Principal principal){
+        KorisnikDTO user=userService.getProfileInfo(principal.getName());
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping("/user/all")
     @PreAuthorize("hasRole('ADMIN')")
     public List<Korisnik> loadAll() {
         return this.userService.findAll();
+    }
+
+    /* transactional
+    @DeleteMapping("/deleteUser/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> deleteUser(@PathVariable("id") Integer id) {
+        deleteUserService.deleteUser(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }*/
+
+    @PutMapping (value="/changePassword/{password}")
+    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+    public ResponseEntity<UserTokenState> changePassword(@PathVariable String password, Principal principal) throws InterruptedException {
+        String email = principal.getName();
+        userService.updatePassword(principal.getName(), password);
+        SecurityContextHolder.clearContext();
+        Thread.sleep(1000);
+        Authentication authentication = null;
+        try {
+            authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    email, password));
+        }
+        catch (Exception ex){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        Korisnik user = (Korisnik) authentication.getPrincipal();
+        String jwt = tokenUtils.generateToken(user.getUsername());
+        int expiresIn = tokenUtils.getExpiredIn();
+        return ResponseEntity.ok(new UserTokenState(jwt, expiresIn,user.getUloge().get(1).getName()));
+    }
+
+    //ne radi
+    //ne moze da castuje admina za korisnika u serviceImpl
+    @GetMapping("/passwordChanged")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Boolean> hasAdminChangedInitialPassword(Principal admin) {
+        Boolean initialPasswordChanged = userService.hasAdminChangedInitialPassword(admin.getName());
+        return new ResponseEntity<>(initialPasswordChanged, HttpStatus.OK);
     }
 
     @GetMapping("/whoami")
@@ -59,6 +133,13 @@ public class KorisnikAccessAuthController {
         Map<String, String> fooObj = new HashMap<>();
         fooObj.put("foo", "bar");
         return fooObj;
+    }
+
+    @PutMapping(value="/update")
+    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+    public ResponseEntity<Void> updateUser(@RequestBody IzmenaProfilaDTO user) throws Exception {
+        userService.updateDTO(user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

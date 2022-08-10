@@ -16,11 +16,11 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class CreateResDTO {
-    private Long id;
+    private Integer id;
     private String resName;
     private Date startDate;
     private Date endDate;
-    private Long offerId;
-    private Long korId;
+    private Integer offerId;
+    private Integer korId;
     private int duration;
 }

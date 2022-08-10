@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class CreateAdventureResDTO {
-    private Long adventureId;
+    private Integer adventureId;
     private Date startDate;
     private int duration;
     private int capacity;

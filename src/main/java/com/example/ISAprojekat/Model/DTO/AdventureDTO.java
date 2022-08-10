@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdventureDTO {
-    private Long id;
+    private Integer id;
     private String adventureName;
     private String adventureAddress;
     private String promoDescription;

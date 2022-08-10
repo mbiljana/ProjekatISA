@@ -7,10 +7,10 @@ import java.util.List;
 public interface FishingInstructorService {
 
     FishingInstructor save(FishingInstructor fishingInstructor) throws Exception;
-    void delete(Long id);
+    void delete(Integer id);
     public List<FishingInstructor> findAll();
     FishingInstructor update(FishingInstructor fishingInstructor) throws Exception;
-    FishingInstructor findOne(Long id);
+    FishingInstructor findOne(Integer id);
     FishingInstructor getByEmailAddressAndPassword(String emailAddress, String password);
 
 }

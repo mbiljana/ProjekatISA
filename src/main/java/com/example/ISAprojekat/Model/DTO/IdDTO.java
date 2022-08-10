@@ -10,5 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class IdDTO {
-    private Long idKorisnika;
+    private Integer idKorisnika;
 }

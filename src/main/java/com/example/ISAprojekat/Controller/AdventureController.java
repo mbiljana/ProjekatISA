@@ -70,7 +70,7 @@ public class AdventureController {
 
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteTermin(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTermin(@PathVariable Integer id) {
         this.adventureService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

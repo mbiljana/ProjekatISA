@@ -34,12 +34,12 @@ public class AdventureServiceImpl implements AdventureService {
 
     //brisanje postojeceg treninga preko id-a
     @Override
-    public void delete(Long id){
+    public void delete(Integer id){
         adventureRepository.deleteById(id);
     }
 
     @Override
-    public Adventure findOne(Long id){
+    public Adventure findOne(Integer id){
         Adventure appointment = this.adventureRepository.findById(id).get();
         return appointment;
         //return treningRepository.getOne(id);

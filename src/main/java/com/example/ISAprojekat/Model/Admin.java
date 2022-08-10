@@ -13,16 +13,27 @@ import java.util.List;
 @Getter
 @Setter
 public class Admin extends Korisnik {
+
+    private boolean initialPasswordChanged;
     public Admin() {
     }
 
-    public Admin(Long id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
-        super(id, name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role);
+    public Admin(Korisnik user, boolean initialPasswordChanged) {
+        super(user);
+        this.initialPasswordChanged = initialPasswordChanged;
+    }
+
+    public boolean isInitialPasswordChanged() {
+        return initialPasswordChanged;
+    }
+
+    public void setInitialPasswordChanged(boolean initialPasswordChanged) {
+        this.initialPasswordChanged = initialPasswordChanged;
     }
 
     @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL,orphanRemoval = true)
     public List<ZahtevZaReg> zahtevi = new ArrayList<>();
 
-    @OneToMany(mappedBy = "admin")
-    public List<Report> reports = new ArrayList<>();
+    /*@OneToMany(mappedBy = "admin")
+    public List<Report> reports = new ArrayList<>();*/
 }
