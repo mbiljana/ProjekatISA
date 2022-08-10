@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BoatRepository extends JpaRepository<Boat, Long> {
+public interface BoatRepository extends JpaRepository<Boat, Integer> {
 
 
 }

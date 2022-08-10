@@ -20,7 +20,7 @@ public class CottageServiceImpl implements CottageService {
     }
 
     @Override
-    public Cottage getOne(Long id) {
+    public Cottage getOne(Integer id) {
         Cottage cottage = this.cottageRepository.findById(id).get();
         return cottage;
     }
@@ -41,7 +41,7 @@ public class CottageServiceImpl implements CottageService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         this.cottageRepository.deleteById(id);
     }
 

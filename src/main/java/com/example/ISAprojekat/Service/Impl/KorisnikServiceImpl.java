@@ -1,6 +1,8 @@
 package com.example.ISAprojekat.Service.Impl;
 
 import com.example.ISAprojekat.Model.*;
+import com.example.ISAprojekat.Model.DTO.IzmenaProfilaDTO;
+import com.example.ISAprojekat.Model.DTO.KorisnikDTO;
 import com.example.ISAprojekat.Model.DTO.UserAuthentificationRequestDTO;
 import com.example.ISAprojekat.Service.KorisnikService;
 import com.example.ISAprojekat.Service.RoleService;
@@ -34,8 +36,26 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
     @Override
+    public Korisnik getByUsername(String username) {
+        Korisnik korisnik = this.korisnikRepository.findByUsername(username);
+        return korisnik;
+    }
+
+    @Override
     public Korisnik getByEmailAddressAndPassword(String emailAddress, String password) {
         Korisnik korisnik =this.korisnikRepository.findByEmailAddressAndPassword(emailAddress,password);
+        return korisnik;
+    }
+
+    @Override
+    public Korisnik getByEmailAddress(String email) {
+        Korisnik korisnik =this.korisnikRepository.findByEmailAddress(email);
+        return korisnik;
+    }
+
+    @Override
+    public KorisnikDTO getProfileInfo(String username){
+        KorisnikDTO korisnik =this.korisnikRepository.myProfileInformation(username);
         return korisnik;
     }
 
@@ -47,7 +67,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
     @Override
-    public Korisnik findOne(Long id) {
+    public Korisnik findOne(Integer id) {
 
         Korisnik korisnik = this.korisnikRepository.findById(id).get();
         return korisnik;
@@ -100,6 +120,40 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
     @Override
+    public void updateDTO (IzmenaProfilaDTO korisnik) throws Exception{
+        Korisnik updated = korisnikRepository.findById(korisnik.getId()).get();
+        if(korisnik.getId() == null){
+            throw  new Exception("Greska! Nepostojeci korisnik!");
+        }
+        updated.setName(korisnik.getName());
+        updated.setSurname(korisnik.getSurname());
+        updated.setUsername(korisnik.getUsername());
+        updated.setEmailAddress(korisnik.getEmailAddress());
+        korisnikRepository.save(updated);
+    }
+
+    @Override
+    public boolean hasAdminChangedInitialPassword(String username) {
+        Korisnik user = korisnikRepository.findByUsername(username);
+        Admin admin = (Admin) user;
+        return admin.isInitialPasswordChanged();
+    }
+
+    @Override
+    public void updatePassword(String username, String password) {
+        Korisnik user= korisnikRepository.findByUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+
+        if(user.getUloge().get(1).equals("ROLE_ADMIN")) {
+            Admin admin = (Admin) user;
+            admin.setInitialPasswordChanged(true);
+            korisnikRepository.save(admin);
+        } else {
+            korisnikRepository.save(user);
+        }
+    }
+
+    @Override
     public Korisnik modify(Korisnik korisnik) throws Exception {
         Korisnik updated = this.korisnikRepository.findById(korisnik.getId()).get();
         updated.setName(korisnik.getName());
@@ -116,10 +170,10 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
 
-    public Korisnik findByEmail(String username) throws UsernameNotFoundException {
+
+    public Korisnik ByEmailAddress(String username) throws UsernameNotFoundException {
         return korisnikRepository.findByEmailAddress(username);
     }
-
 
 
 }

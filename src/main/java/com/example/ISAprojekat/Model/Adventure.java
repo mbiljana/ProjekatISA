@@ -22,7 +22,7 @@ public class Adventure implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    Integer id;
     @Column
     private String adventureName;
     @Column

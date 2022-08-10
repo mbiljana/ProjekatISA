@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoatUpdateIdDTO {
-    private Long id;
+    private Integer id;
     private String boatName;
     private String boatType;
     private String engineNumber;

@@ -50,7 +50,7 @@ public class CottageController {
 
     //get one cottage
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CottageDTO> getCottage(@PathVariable("id")Long id){
+    public ResponseEntity<CottageDTO> getCottage(@PathVariable("id")Integer id){
         Cottage cottage = this.cottageService.getOne(id);
         CottageDTO cottageDTO = new CottageDTO();
        cottageDTO.setCottageRules(cottage.getCottageRules());

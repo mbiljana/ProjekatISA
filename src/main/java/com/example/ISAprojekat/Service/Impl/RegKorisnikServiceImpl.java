@@ -16,7 +16,7 @@ public class RegKorisnikServiceImpl implements RegKorisnikService {
     }
 
     @Override
-    public RegKorisnik getOne(Long id) {
+    public RegKorisnik getOne(Integer id) {
         RegKorisnik regKorisnik = this.regKorisnikRepository.findById(id).get();
         return regKorisnik;
     }

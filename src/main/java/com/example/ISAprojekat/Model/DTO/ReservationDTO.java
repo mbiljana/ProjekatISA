@@ -21,8 +21,8 @@ public class ReservationDTO {
     private String resName;
     private Date startDate;
     private Date endDate;
-    private Long offerId;
-    private Long korisnikId;
+    private Integer offerId;
+    private Integer korisnikId;
     private int duration;
 
     public ReservationDTO(BoatReservation b) {

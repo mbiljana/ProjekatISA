@@ -54,7 +54,7 @@ public class BoatController {
 
     //get one boat
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BoatDTO> getBoat(@PathVariable("id")Long id){
+    public ResponseEntity<BoatDTO> getBoat(@PathVariable("id")Integer id){
         Boat boat = this.boatService.getOne(id);
         BoatDTO boatDTO = new BoatDTO();
         boatDTO.setBoatAddress(boat.getBoatAddress());

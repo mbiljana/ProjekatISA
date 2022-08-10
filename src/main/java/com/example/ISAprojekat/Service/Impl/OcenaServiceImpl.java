@@ -24,7 +24,7 @@ public class OcenaServiceImpl implements OcenaService {
     }
 
     @Override
-    public Ocena findOne(Long id) {
+    public Ocena findOne(Integer id) {
         Ocena ocena  = this.ocenaRepository.findById(id).get();
         return ocena;
     }
@@ -36,7 +36,7 @@ public class OcenaServiceImpl implements OcenaService {
     }
 
     @Override
-    public float srednjaVikendica(List<Ocena> ocenas, Long cott_id) {
+    public float srednjaVikendica(List<Ocena> ocenas, Integer cott_id) {
         float suma =0;
         int velicina = ocenas.size();
         for(Ocena o : ocenas) {
@@ -49,7 +49,7 @@ public class OcenaServiceImpl implements OcenaService {
     }
 
     @Override
-    public float srednjaBrod(List<Ocena> ocenas, Long boat_id) {
+    public float srednjaBrod(List<Ocena> ocenas, Integer boat_id) {
         float suma =0;
         int velicina = ocenas.size();
         for(Ocena o : ocenas) {

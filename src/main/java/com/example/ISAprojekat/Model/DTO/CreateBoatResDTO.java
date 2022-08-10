@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateBoatResDTO {
-    private Long boatId;
+    private Integer boatId;
     private Date startDate;
     private int duration;
     private int capacity;

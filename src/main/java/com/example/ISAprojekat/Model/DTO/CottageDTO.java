@@ -13,7 +13,7 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CottageDTO {
-    Long id;
+    Integer id;
     public String cottageName;
     public String cottageAddress;
     public String cottageDescription;
@@ -41,7 +41,7 @@ public class CottageDTO {
         this.conditions = c.getCancelCondition();
     }
 
-    public CottageDTO(Long id, String cottageName, String cottageAddress, String cottageDescription, int numRooms, int numBeds, String cottageAdditionalServices, String cottageRules, String cond) {
+    public CottageDTO(Integer id, String cottageName, String cottageAddress, String cottageDescription, int numRooms, int numBeds, String cottageAdditionalServices, String cottageRules, String cond) {
         this.id = id;
         this.cottageName = cottageName;
         this.cottageAddress = cottageAddress;

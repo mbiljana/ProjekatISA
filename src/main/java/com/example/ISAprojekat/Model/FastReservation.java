@@ -15,12 +15,11 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class FastReservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Column
     private Date startDate;
@@ -35,11 +34,40 @@ public class FastReservation implements Serializable {
     private float price;
     @Column
     private String place;
+    @Column
+    private Boolean isCanceled = false;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "entity_id")
     private RentingEntity rentingEntity;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "reg_user_id")
+    private Client client;
+
+
+    public FastReservation(Integer id, Date startDate, int duration, int capacity, String additionalServices, float price, String place, Boolean isCanceled, RentingEntity rentingEntity, Client client, Boat boat, Adventure adventure) {
+        this.id = id;
+        this.startDate = startDate;
+        this.duration = duration;
+        this.capacity = capacity;
+        this.additionalServices = additionalServices;
+        this.price = price;
+        this.place = place;
+        this.isCanceled = isCanceled;
+        this.rentingEntity = rentingEntity;
+        this.client = client;
+        this.boat = boat;
+        this.adventure = adventure;
+    }
+
+    public FastReservation(Date startDate, int duration, int capacity, float price, RentingEntity rentingEntity) {
+        this.startDate = startDate;
+        this.duration = duration;
+        this.capacity = capacity;
+        this.price = price;
+        this.rentingEntity = rentingEntity;
+    }
 
     @ManyToOne
     private Boat boat;
@@ -75,6 +103,14 @@ public class FastReservation implements Serializable {
                 return true;
 
         return false;
+    }
+
+    public Boolean getCanceled() {
+        return isCanceled;
+    }
+
+    public void setCanceled(Boolean canceled) {
+        isCanceled = canceled;
     }
 
     @Override

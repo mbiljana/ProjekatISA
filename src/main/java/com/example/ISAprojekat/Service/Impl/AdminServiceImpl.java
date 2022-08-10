@@ -29,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin findOne(Long id) {
+    public Admin findOne(Integer id) {
 
         Admin admin = this.adminRepository.findById(id).get();
         return admin;
@@ -41,7 +41,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin getOne(Long id) {
+    public Admin getOne(Integer id) {
         Admin admin = this.adminRepository.findById(id).get();
         return admin;
     }

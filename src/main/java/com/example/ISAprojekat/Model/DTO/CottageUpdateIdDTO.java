@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CottageUpdateIdDTO {
     //private Long idKorisnika;
-    private Long idCottage;
+    private Integer idCottage;
     private String name;
     private String address;
     private String desc;

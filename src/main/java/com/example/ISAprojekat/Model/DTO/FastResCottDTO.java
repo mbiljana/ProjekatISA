@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FastResCottDTO {
-    private Long cottId;
+    private Integer cottId;
     private Date startDate;
     private int duration;
     private int capacity;

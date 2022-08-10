@@ -34,7 +34,7 @@ public class FishingInstructorImpl implements FishingInstructorService {
 
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
 
     }
 
@@ -50,7 +50,7 @@ public class FishingInstructorImpl implements FishingInstructorService {
 
 
     @Override
-    public FishingInstructor findOne(Long id){
+    public FishingInstructor findOne(Integer id){
         FishingInstructor fishingInstructor = this.fishingInstructorRepository.findById(id).get();
         return fishingInstructor;
         //return treningRepository.getOne(id);

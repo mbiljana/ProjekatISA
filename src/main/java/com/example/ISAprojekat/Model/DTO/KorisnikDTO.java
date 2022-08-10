@@ -1,44 +1,73 @@
 package com.example.ISAprojekat.Model.DTO;
 
-import com.example.ISAprojekat.Model.Korisnik;
-import com.example.ISAprojekat.Model.Role;
+import com.example.ISAprojekat.Model.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class KorisnikDTO {
-    private Long id;
+    private Integer id;
     private String name;
     private String surname;
     private String emailAddress;
     private String phoneNumber;
-    private String city;
-    private String state;
-    private String homeAddress;
-    private Date birthDate; //mozda ne treba
     private String username;
     private String password;
-    private Role role;
+    private Timestamp lastPasswordResetDate;
+    private Address address;
+    private Uloga role;
+    private UserStatus status;
 
-    public KorisnikDTO(Korisnik a) {
-        this.id = a.getId();
-        this.name = a.getName();
-        this.surname = a.getSurname();
-        this.emailAddress = a.getEmailAddress();
-        this.phoneNumber = a.getPhoneNumber();
-        this.city = a.getCity();
-        this.state = a.getState();
-        this.homeAddress = a.getHomeAddress();
-        this.birthDate = a.getBirthDate();
-        this.username = a.getUsername();
-        this.password = a.getPassword();
-        this.role = a.getRole();
+    public KorisnikDTO(Integer id, String name, String surname, String phoneNumber, String emailAddress, String password, UserStatus userStatus, boolean enabled, Uloga uloga, Timestamp lastPasswordResetDate, Address address) {
+    }
+    public KorisnikDTO(Korisnik user){
+        this.id = user.getId();
+        this.name = user.getName();
+        this.surname = user.getSurname();
+        this.emailAddress = user.getEmailAddress();
+        this.phoneNumber = user.getPhoneNumber();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.lastPasswordResetDate = user.getLastPasswordResetDate();
+        //this.address = user.getAddress();
+        //this.role = user.getUloga();
+        this.status = user.getUserStatus();
+    }
+
+    public KorisnikDTO(Integer id, String name, String surname, String emailAddress, String phoneNumber, String username, String password, Timestamp lastPasswordResetDate, Address address, Uloga role, UserStatus status) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+        this.lastPasswordResetDate = lastPasswordResetDate;
+        this.address = address;
+        this.role = role;
+        this.status = status;
+    }
+
+
+    public KorisnikDTO(Integer id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
+    }
+
+    public KorisnikDTO(Integer id, String name, String surname, String phoneNumber, String emailAddress, String password, UserStatus userStatus, boolean enabled, Timestamp lastPasswordResetDate) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+        this.lastPasswordResetDate = lastPasswordResetDate;
+        this.role = role;
+        this.status = status;
     }
 }

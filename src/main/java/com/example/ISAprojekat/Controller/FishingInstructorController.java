@@ -24,7 +24,7 @@ public class FishingInstructorController {
     private ZahtevZaRegService zahtevZaRegService;
     private AdminService adminService;
 
-
+//ceo se menja
     @Autowired
     public FishingInstructorController(FishingInstructorService fishingInstructorService, AdventureService adventureService, ZahtevZaRegService zahtevZaRegService,
                                        AdminService adminService) {

@@ -175,17 +175,17 @@ public class KorisnikController {
 
 
 
-    @PostMapping(value = "/report", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+   /* @PostMapping(value = "/report", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ReportDTO> createReport(@RequestBody ReportDTO reportDTO){
         Report report = new Report();
         Admin admin = this.adminService.getByUsernameAndPassword("123","111");
-        report.setReport(reportDTO.getReport());
-        report.setAdmin(admin);
+        report.setContent(reportDTO.getContent());
+        //report.setAdmin(admin);
         this.reportService.create(report);
         admin.reports.add(report);
-        ReportDTO reportDTO1 = new ReportDTO(report.getReport());
+        ReportDTO reportDTO1 = new ReportDTO(report.getContent());
         return new ResponseEntity<>(reportDTO1,HttpStatus.CREATED);
-    }
+    }*/
 
 
 

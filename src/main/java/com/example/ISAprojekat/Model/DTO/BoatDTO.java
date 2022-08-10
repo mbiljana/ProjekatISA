@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BoatDTO {
 
-    Long id;
+    Integer id;
     private String boatName;
     private String boatType;
     private String engineNumber;
@@ -45,7 +45,7 @@ public class BoatDTO {
         this.conditions = b.getCancelCondition();
     }
 
-    public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions) {
+    public BoatDTO(Integer id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions) {
         this.id = id;
         this.boatName = boatName;
         this.boatType = boatType;

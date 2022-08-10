@@ -22,7 +22,7 @@ public class Cottage implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    Integer id;
     @Column
     private String cottageName;
     @Column

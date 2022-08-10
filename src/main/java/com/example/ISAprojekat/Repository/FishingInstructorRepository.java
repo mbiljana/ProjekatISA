@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FishingInstructorRepository extends JpaRepository<FishingInstructor, Long> {
+public interface FishingInstructorRepository extends JpaRepository<FishingInstructor, Integer> {
     FishingInstructor findByEmailAddressAndPassword(String emailAddress, String password);
 
    /* @Query(value = "select fi from FishingInstructor fi left join fetch fi.unavailablePeriods where fi.email = :email")
