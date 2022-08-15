@@ -10,7 +10,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -20,42 +22,26 @@ import java.util.List;
 @NoArgsConstructor
 public class Adventure implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
-    @Column
-    private String adventureName;
-    @Column
-    private String adventureAddress;
-    @Column
-    private String promoDescription;
-    @Column
-    private String instructorBiography;
-    @Column
-    private int adventureCapacity;
-    @Column
-    private String adventureRules;
-    //termini;
-    @Column
-    private String aventureEquipment;
-    //cenovnik
-    @Column
-    private String adventureAdditionalServices;
+    @Column(unique=false, nullable=false)
+    private int maxPersons;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "adventure_fishing_equipment", joinColumns = @JoinColumn(name = "entity_id"))
+    @Column(name = "fishing_equipment")
+    private Set<String> fishingEquipment = new HashSet<String>();
 
-    //lista termina
-    @OneToMany(mappedBy = "adventure")
-    private List<Appointment> freeAppointments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "adventure")
-    private List<FastReservation> fastReservation = new ArrayList<>();
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
+    @JoinColumn(name = "reg_user_id")
     private FishingInstructor fishingInstructor;
+    @Id
+    private Integer id;
 
-    public Adventure(Long id, String adventureName, String adventureAddress, String promoDescription, String instructorBiography, int adventureCapacity, String adventureRules, String aventureEquipment, String adventureAdditionalServices) {
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Adventure(String adventureName, String adventureAddress, String promoDescription, String instructorBiography, int adventureCapacity, String adventureRules, String aventureEquipment, String adventureAdditionalServices) {
+    public Integer getId() {
+        return id;
     }
 }

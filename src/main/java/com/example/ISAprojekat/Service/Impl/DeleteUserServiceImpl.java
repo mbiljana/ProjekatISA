@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 public class DeleteUserServiceImpl implements DeleteUserService {
-    @Autowired
+   /* @Autowired
     private KorisnikRepository korisnikRepository;
 
 
@@ -52,6 +52,6 @@ public class DeleteUserServiceImpl implements DeleteUserService {
         //this.verificationTokenService.DeleteTokenByUser(registrationRequestRepository.getById(id));
         userRepository.delete(registeredUser);
     }*/
-        }
-    }
+        //}
+   // }
 }

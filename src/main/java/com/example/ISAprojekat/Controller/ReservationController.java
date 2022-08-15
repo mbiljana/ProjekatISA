@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "api/reservations")
 public class ReservationController {
-    private final BoatService boatService;
+    /*private final BoatService boatService;
     private final BoatReservationService boatReservationService;
     private final RegKorisnikService regKorisnikService;
     private final CottageService cottageService;
@@ -120,12 +120,12 @@ public class ReservationController {
         return new ResponseEntity<>(createdReservation, HttpStatus.CREATED);
     }*/
 
-    @GetMapping(value = "/booked/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    /*@GetMapping(value = "/booked/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAnyRole('COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR', 'ADMIN')")
     public ResponseEntity<Boolean> isEntityBooked(@PathVariable("id") Integer id) {
         Boolean isBooked = fastReservationService.isEntityBookedNow(id);
         return new ResponseEntity<>(isBooked, HttpStatus.OK);
     }
-
+*/
 
 }

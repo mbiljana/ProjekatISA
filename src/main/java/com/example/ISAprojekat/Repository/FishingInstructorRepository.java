@@ -10,12 +10,12 @@ import org.springframework.stereotype.Repository;
 public interface FishingInstructorRepository extends JpaRepository<FishingInstructor, Integer> {
     FishingInstructor findByEmailAddressAndPassword(String emailAddress, String password);
 
-   /* @Query(value = "select fi from FishingInstructor fi left join fetch fi.unavailablePeriods where fi.email = :email")
+    @Query(value = "select fi from FishingInstructor fi left join fetch fi.unavailablePeriods where fi.emailAddress = :email")
     FishingInstructor fetchByEmail(@Param("email") String email);
 
     @Query(value = "select fi from FishingInstructor fi left join fetch fi.unavailablePeriods where fi.id = :id")
     FishingInstructor fetchInstructorWithUnavailablePeriodsById(@Param("id") Integer id);
 
     @Query(value = "select fi from Adventure re left join re.fishingInstructor fi left join fetch fi.unavailablePeriods where re.id = :id")
-    FishingInstructor fetchByAdventureId(@Param("id") Integer id);*/
+    FishingInstructor fetchByAdventureId(@Param("id") Integer id);
 }

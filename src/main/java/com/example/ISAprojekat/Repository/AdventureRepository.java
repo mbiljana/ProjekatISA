@@ -10,10 +10,13 @@ import java.util.List;
 
 @Repository
 public interface AdventureRepository extends JpaRepository<Adventure, Integer> {
-    List<Adventure> findAllByAdventureName(String adventureName);
-    List<Adventure> getAdventuresByFishingInstructor_EmailAddress(String email);
+    //List<Adventure> findAllByAdventureName(String adventureName);
+    //List<Adventure> getAdventuresByFishingInstructor_EmailAddress(String email);
     List<Adventure> getAdventuresByFishingInstructor_Id(Integer id);
 
     @Query("select a from Adventure a left join fetch a.fishingInstructor where a.id = :id")
     Adventure fetchInstructorByAdventureId(@Param("id") Integer id);
+
+    /*@Query(value = "select a from Adventure a left join fetch a.sales where a.fishingInstructor.emailAddress = :email")
+    List<Adventure> fetchAdventuresByFishingInstructor_Email(@Param("email") String email);*/
 }

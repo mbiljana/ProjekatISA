@@ -21,7 +21,7 @@ public class Report implements Serializable {
     private Integer id;
     @Column
     private String content;
-
+/*
     @Column(unique=false, nullable=false)
     private boolean isBadReview;
 
@@ -94,5 +94,5 @@ public class Report implements Serializable {
 
     public void setRentingEntity(RentingEntity rentingEntity) {
         this.rentingEntity = rentingEntity;
-    }
+    }*/
 }

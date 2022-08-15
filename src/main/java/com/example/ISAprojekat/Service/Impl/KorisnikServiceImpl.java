@@ -98,7 +98,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         u.setEmailAddress(userRequest.getEmailAddress());
 
         // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
-        List<Uloga> roles = roleService.findByName("ROLE_USER");
+        List<Uloga> roles = roleService.findByName("ROLE_ADMIN");
         u.setUloge(roles);
 
         return this.korisnikRepository.save(u);
