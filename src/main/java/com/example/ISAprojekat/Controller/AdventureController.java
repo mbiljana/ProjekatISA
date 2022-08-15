@@ -30,7 +30,7 @@ public class AdventureController {
         this.fastReservationService = fastReservationService;
     }
 
-    @GetMapping(value = "/allAdventures")
+   /* @GetMapping(value = "/allAdventures")
     public ResponseEntity<List<AdventureDTO>> getAllAdventures() {
 
         List<Adventure> boats = adventureService.findAll();
@@ -44,7 +44,7 @@ public class AdventureController {
         return new ResponseEntity<>(boatDTOS, HttpStatus.OK);
     }
 
-    //ne radi
+    /*ne radi
     @PostMapping(value = ("/create"),
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -65,10 +65,10 @@ public class AdventureController {
                 adventure.getAdventureRules(),adventure.getAventureEquipment(), adventure.getAdventureAdditionalServices());
         return new ResponseEntity<>(adventureDTO, HttpStatus.CREATED);
 
-    }
+    }*/
 
 
-
+/*
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteTermin(@PathVariable Integer id) {
         this.adventureService.delete(id);
@@ -164,7 +164,7 @@ public class AdventureController {
         createAdventureResDTO.setPlace(fastReservation.getPlace());
         createAdventureResDTO.setAdditionalServices(fastReservation.getAdditionalServices());
         return new ResponseEntity<>(createAdventureResDTO,HttpStatus.CREATED);
-    }
+    }*/
 
 
 }

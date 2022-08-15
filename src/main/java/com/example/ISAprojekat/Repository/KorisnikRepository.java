@@ -2,9 +2,11 @@ package com.example.ISAprojekat.Repository;
 
 
 import com.example.ISAprojekat.Model.Admin;
+import com.example.ISAprojekat.Model.Client;
 import com.example.ISAprojekat.Model.DTO.KorisnikDTO;
 import com.example.ISAprojekat.Model.FishingInstructor;
 import com.example.ISAprojekat.Model.Korisnik;
+import com.example.ISAprojekat.Model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,4 +24,19 @@ public interface KorisnikRepository extends JpaRepository<Korisnik, Integer> {
 
     @Query("select new com.example.ISAprojekat.Model.DTO.KorisnikDTO(u) from Korisnik u where u.username = ?1")
     KorisnikDTO myProfileInformation(String username);
+
+    @Query(value = "select fi from FishingInstructor fi left join fetch fi.unavailablePeriods where fi.id = :id")
+    FishingInstructor fetchInstructorWithUnavailablePeriodsById(@Param("id") Integer id);
+
+    @Query(value = "select fi from Adventure re left join re.fishingInstructor fi left join fetch fi.unavailablePeriods where re.id = :id")
+    FishingInstructor fetchByAdventureId(@Param("id") Integer id);
+
+    /*@Query(value = "select c from Client c left join fetch c.subscriptions")
+    List<Client> fetchAllClients();
+
+    @Query(value="select client from Client client left join fetch client.subscriptions where client.email = ?1" )
+    Client fetchClientWithSubscriptions(String email);
+
+    @Query(value = "select client from Client client where ?1 in (select s.id from client.subscriptions s)")
+    List<Client> fetchClientsSubscribedToEntity(Integer id);*/
 }

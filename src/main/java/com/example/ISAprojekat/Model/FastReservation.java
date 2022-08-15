@@ -41,9 +41,9 @@ public class FastReservation implements Serializable {
     @JoinColumn(name = "entity_id")
     private RentingEntity rentingEntity;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    /*@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "reg_user_id")
-    private Client client;
+    private Client client;*/
 
 
     public FastReservation(Integer id, Date startDate, int duration, int capacity, String additionalServices, float price, String place, Boolean isCanceled, RentingEntity rentingEntity, Client client, Boat boat, Adventure adventure) {
@@ -56,7 +56,7 @@ public class FastReservation implements Serializable {
         this.place = place;
         this.isCanceled = isCanceled;
         this.rentingEntity = rentingEntity;
-        this.client = client;
+        //this.client = client;
         this.boat = boat;
         this.adventure = adventure;
     }

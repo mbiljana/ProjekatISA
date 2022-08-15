@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,6 +33,9 @@ public class RentingEntity {
     private double averageGrade = 0;
 
     private double cancellationPercentage;
+
+    /*@ManyToMany(mappedBy = "subscriptions")
+    List<Client> clientList;*/
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "renting_entity_images", joinColumns = @JoinColumn(name = "entity_id"))

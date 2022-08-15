@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.List;
 
 //implementiran GrantedAuthority kojim se definišu uloge za autentifikaciju
 @Entity
-@Table(name="ULOGA")
+@Table
 public class Uloga  implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
@@ -19,6 +20,9 @@ public class Uloga  implements GrantedAuthority {
     Long id;
     @Column(name="name")
     String name;
+
+    /*@ManyToMany(mappedBy = "uloge")
+    List<Korisnik>korisnikList;*/
 
     @JsonIgnore
     @Override

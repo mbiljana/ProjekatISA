@@ -12,7 +12,7 @@ import javax.persistence.QueryHint;
 import java.util.List;
 
 public interface RevisionRepository extends JpaRepository<Revision,Integer> {
-    List<Revision> findAllByOrderByIdAsc();
+    /*List<Revision> findAllByOrderByIdAsc();
 
     void deleteAllByReservation_Id(Integer id);
 
@@ -22,5 +22,5 @@ public interface RevisionRepository extends JpaRepository<Revision,Integer> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select r from Revision r where r.id = :id")
     @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value ="0")})
-    Revision findOneById(@Param("id") Integer id);
+    Revision findOneById(@Param("id") Integer id);*/
 }

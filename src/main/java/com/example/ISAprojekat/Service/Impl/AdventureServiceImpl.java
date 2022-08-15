@@ -10,9 +10,9 @@ import java.util.List;
 
 @Service
 public class AdventureServiceImpl implements AdventureService {
-    private final AdventureRepository adventureRepository;
+    //private final AdventureRepository adventureRepository;
 
-    @Autowired
+    /*@Autowired
     public AdventureServiceImpl(AdventureRepository adventureRepository){
         this.adventureRepository = adventureRepository;
     }
@@ -73,6 +73,6 @@ public class AdventureServiceImpl implements AdventureService {
     @Override
     public List<Adventure> getAllAdventuresFromInstructor(String email) {
         return adventureRepository.getAdventuresByFishingInstructor_EmailAddress(email);
-    }
+    }*/
 
 }

@@ -10,10 +10,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class AdventureDTO {
-    private Integer id;
+    /*private Integer id;
     private String adventureName;
     private String adventureAddress;
     private String promoDescription;
@@ -58,5 +56,5 @@ public class AdventureDTO {
         this.adventureRules = adventureRules;
         this.aventureEquipment = aventureEquipment;
         this.adventureAdditionalServices = adventureAdditionalServices;
-    }
+    }*/
 }

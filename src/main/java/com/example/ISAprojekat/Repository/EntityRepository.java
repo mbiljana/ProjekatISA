@@ -16,13 +16,13 @@ import java.util.List;
 public interface EntityRepository extends JpaRepository<RentingEntity,Integer> {
 
     /*@Query("SELECT distinct e FROM RentingEntity e LEFT JOIN FETCH e.images where type(e) = ?1")
-    <T extends RentingEntity> List<T> getEntityByClass(Class<?> type);
+    <T extends RentingEntity> List<T> getEntityByClass(Class<?> type);*/
 
-    /*@Query("select entity" +
+   /* @Query("select entity" +
             " from RentingEntity entity,Client client LEFT JOIN FETCH entity.images " +
             "where client.emailAddress = ?1 and entity in (" +
-            "select e from client.subscriptions e)")*/
-    /*<T extends RentingEntity> List<T> findSubscriptions(String email);
+            "select e from client.subscriptions e)")
+    <T extends RentingEntity> List<T> findSubscriptions(String email);*/
 
     @Query(value = "select e from RentingEntity e left join fetch e.sales where e.id = :id")
     <T extends RentingEntity> T fetchById(@Param("id") Integer id);
@@ -36,20 +36,20 @@ public interface EntityRepository extends JpaRepository<RentingEntity,Integer> {
     @Query(value = "select e from RentingEntity e left join fetch e.sales where e.id = :id")
     <T extends RentingEntity> T fetchWithSales(@Param("id") Integer id);
 
-   /* @Query("select sub" +
+    /*@Query("select sub" +
             " from Client client left join client.subscriptions sub on sub.id = ?2 where client.emailAddress = ?1")
-    RentingEntity checkIfSubscribed(String email,Integer entityId);
+    RentingEntity checkIfSubscribed(String email,Integer entityId);*/
 
-    @Query(value="select distinct(e) from Sale sale left join sale.rentingEntity e " +
+    /*@Query(value="select distinct(e) from Sale sale left join sale.rentingEntity e " +
             "left join fetch e.images where type(e) = ?1")
-    <T extends RentingEntity> List<T> getEntitiesOnSale(Class<?> type);
+    <T extends RentingEntity> List<T> getEntitiesOnSale(Class<?> type);*/
 
-    @Query("SELECT e  FROM RentingEntity e LEFT JOIN FETCH e.images LEFT JOIN FETCH e.unavailablePeriods where type(e) = ?1")
-    <T extends RentingEntity> List<T> getEntityByClassWithPeriods(Class<?> type);
+   /* @Query("SELECT e  FROM RentingEntity e LEFT JOIN FETCH e.images LEFT JOIN FETCH e.unavailablePeriods where type(e) = ?1")
+    <T extends RentingEntity> List<T> getEntityByClassWithPeriods(Class<?> type);*/
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "0")})
     RentingEntity findLockedById(Integer id);
 
-    RentingEntity findByName(String name);*/
+    RentingEntity findByName(String name);
 }

@@ -11,6 +11,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Sale {
     @Id
     @SequenceGenerator(name = "saleSeqGen", sequenceName = "saleSeqGen", initialValue = 1, allocationSize = 1)

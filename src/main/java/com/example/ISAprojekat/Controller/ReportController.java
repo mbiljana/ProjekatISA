@@ -25,7 +25,7 @@ import java.util.Set;
 @RequestMapping(value = "/report", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class ReportController {
-    @Autowired
+    /*@Autowired
     private ReportService reportService;
 
     @Autowired
@@ -39,10 +39,10 @@ public class ReportController {
     @PostMapping("/add")
     @PreAuthorize("hasAnyRole('COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','ADMIN')")
     public ResponseEntity<String> addNewReport(Principal user, @RequestBody ReportDTO reportDTO)  {
-        Report report = new Report(reportDTO.getContent(), reportDTO.isBadReview(), reportDTO.isNotAppeared(),
-                new Client(this.userService.getByUsername(reportDTO.getEntityName())),
-                this.entityService.getEntityById(reportDTO.getRentingEntityId()));
-        this.reportService.save(report);
+        //Report report = new Report(reportDTO.getContent(), reportDTO.isBadReview(), reportDTO.isNotAppeared(),
+                //new Client(this.userService.getByUsername(reportDTO.getEntityName())),
+                //this.entityService.getEntityById(reportDTO.getRentingEntityId()));
+        //this.reportService.save(report);
         return new ResponseEntity<>("Report sent to administrator!", HttpStatus.CREATED);
     }
 
@@ -58,5 +58,5 @@ public class ReportController {
             DTOs.add(dto);
         }
         return new ResponseEntity<>(DTOs, HttpStatus.OK);
-    }
+    }*/
 }
