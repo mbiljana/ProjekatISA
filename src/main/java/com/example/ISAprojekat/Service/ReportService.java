@@ -5,7 +5,7 @@ import com.example.ISAprojekat.Model.Report;
 import java.util.List;
 
 public interface ReportService {
-   /* Report create(Report report);
+    Report create(Report report);
     void save(Report report);
-    List<Report> getAllReports();*/
+    List<Report> getAllReports();
 }

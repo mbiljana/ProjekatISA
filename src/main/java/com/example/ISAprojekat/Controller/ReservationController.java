@@ -108,9 +108,9 @@ public class ReservationController {
                 reservation.getDuration()
         );
         return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
-    }
+    }*/
 
-   /* @PostMapping(value = "/createByAdvertiser")
+    /*@PostMapping(value = "/createByAdvertiser")
     @PreAuthorize("hasAnyRole('COTTAGE_OWNER, SHIP_OWNER, INSTRUCTOR')")
     public ResponseEntity<ReservationDTO> saveReservationByAdvertiser(@RequestBody ReservationDTO reservationDTO) {
         FastReservation reservation = modelMapper.map(reservationDTO, FastReservation.class);
@@ -125,7 +125,7 @@ public class ReservationController {
     public ResponseEntity<Boolean> isEntityBooked(@PathVariable("id") Integer id) {
         Boolean isBooked = fastReservationService.isEntityBookedNow(id);
         return new ResponseEntity<>(isBooked, HttpStatus.OK);
-    }
-*/
+    }*/
+
 
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReportRepository extends JpaRepository<Report,Integer> {
-    //void deleteAllByRentingEntity_Id(Integer id);
+    void deleteAllByRentingEntity_Id(Integer id);
 
-    //void deleteAllByClient_Id(Integer id);
+    void deleteAllByClient_Id(Integer id);
 }

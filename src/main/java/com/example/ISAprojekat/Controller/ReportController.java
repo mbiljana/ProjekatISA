@@ -25,7 +25,7 @@ import java.util.Set;
 @RequestMapping(value = "/report", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class ReportController {
-    /*@Autowired
+    @Autowired
     private ReportService reportService;
 
     @Autowired
@@ -58,5 +58,5 @@ public class ReportController {
             DTOs.add(dto);
         }
         return new ResponseEntity<>(DTOs, HttpStatus.OK);
-    }*/
+    }
 }

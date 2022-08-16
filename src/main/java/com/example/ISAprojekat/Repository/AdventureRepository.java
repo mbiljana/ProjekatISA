@@ -17,6 +17,6 @@ public interface AdventureRepository extends JpaRepository<Adventure, Integer> {
     @Query("select a from Adventure a left join fetch a.fishingInstructor where a.id = :id")
     Adventure fetchInstructorByAdventureId(@Param("id") Integer id);
 
-    /*@Query(value = "select a from Adventure a left join fetch a.sales where a.fishingInstructor.emailAddress = :email")
-    List<Adventure> fetchAdventuresByFishingInstructor_Email(@Param("email") String email);*/
+    @Query(value = "select a from Adventure a left join fetch a.sales where a.fishingInstructor.emailAddress = :emailAddress")
+    List<Adventure> fetchAdventuresByFishingInstructorEmailAddress(@Param("emailAddress") String email);
 }

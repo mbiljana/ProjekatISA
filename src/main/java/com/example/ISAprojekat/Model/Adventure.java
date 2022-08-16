@@ -20,7 +20,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Adventure implements Serializable {
+public class Adventure extends RentingEntity {
 
     @Column(unique=false, nullable=false)
     private int maxPersons;

@@ -19,11 +19,6 @@ VALUES (1,'#freeparking #WIFI','Jahorina, Jahorinska 55','Small cottage by the l
 #INSERT INTO korisnik(id, birth_date,enabled,city,email_address, home_address, name, password, phone_number, role,state, surname, username,last_password_reset_date)
 #VALUES (73,'1997-02-05',true,'bg','@2','sdfa','bla','13',234,4,'srb','qwe','10',now());
 
-INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,latitude,longitude,price,cancel_condition)
-VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
-include stability, strength and durability to survive fishing ventures across various kinds of waterways',
-        'Blue Moon','Pets are not allowed.','Fishing boat',
-        'WKC4B','100 horsepower',100,43.7262501,19.6938721, 100,'payback 3 days before');
 
 
 #INSERT INTO korisnik(id, birth_date,enabled,city,email_address, home_address, name, password, phone_number, role,state, surname, username, last_password_reset_date)
@@ -83,25 +78,32 @@ insert into zahtev_za_reg(id, birth_date, city, email_address, home_address, nam
 #insert into ocena(id,ocena,boat_id,cottage_id)
 #values (897,4,8,6);
 
-insert into boat_reservation(id,end_date,res_name,start_date,boat_id,duration)
-values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,5);
+#insert into boat_reservation(id,end_date,res_name,start_date,boat_id,duration)
+#values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,5);
 
 insert into korisnik(id,username, password, name, surname,birth_date,city,email_address,enabled,home_address,phone_number,role,state,last_password_reset_date)
 values (2,'user', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Pera', 'Peric','2022-12-12', 'Vrsac', 'user@gmail.com',true, 'Cara Dusana 37', '123456789',1, 'Srbija', now());
 
 insert into korisnik(id,username, password, name, surname,birth_date,city,email_address,enabled,home_address,phone_number,role,state, last_password_reset_date)
-values (3,'admin', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Marko', 'Maric','2022-12-12', 'Novi Sad', 'user@gmail.com',true, 'Cara Dusana 37', '123456789',1, 'Srbija', now());
+values (3,'admin', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Marko', 'Maric','2022-12-12', 'Novi Sad', 'user@gmail.com',true, 'Cara Dusana 37', '123456789',4, 'Srbija', now());
+
+insert into korisnik(id,username, password, name, surname,birth_date,city,email_address,enabled,home_address,phone_number,role,state, last_password_reset_date)
+values (4,'instructor', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Marko', 'Maric','2022-12-12', 'Novi Sad', 'user@gmail.com',true, 'Cara Dusana 37', '123456789',4, 'Srbija', now());
+
+#insert into fishing_instructor(short_biography, id) values ('bla', 4);
+
 
 
 insert into uloga (name) values ('ROLE_CLIENT');
 insert into uloga (name) values ('ROLE_ADMIN');
+insert into uloga(name) values ('ROLE_INSTRUCTOR');
 
 
 
 insert into user_uloge(user_id, role_id) VALUES (2,1);
 insert into user_uloge(user_id, role_id) VALUES (3,1);
 insert into user_uloge(user_id, role_id) VALUES (3,2);
-
+insert into user_uloge(user_id, role_id) VALUES (4,3);
 
 #insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,duration)
 #values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,4);
@@ -129,19 +131,29 @@ insert into delete_request(delete_request_id,content,reg_user_id) values (1,'Ill
 #VALUES (1,1,34,1);
 
 #insert into rent_entity(client_id, entity_id) values (1,1);
+insert into renting_entity(entity_id, average_grade, cancellation_percentage, description, name, version, address_id)
+values(1,2,33,'ble','ble',3,1);
 
-#insert into fast_reservation(id, additional_services, capacity, duration, place, price, start_date,entity_id)
-#values (1,'bla',4,45,'bla',45,now(),1);
+INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,latitude,longitude,price,cancel_condition)
+VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
+include stability, strength and durability to survive fishing ventures across various kinds of waterways',
+        'Blue Moon','Pets are not allowed.','Fishing boat',
+        'WKC4B','100 horsepower',100,43.7262501,19.6938721, 100,'payback 3 days before');
 
-#insert into report(report_id, content, is_bad_review, not_appeared, reg_user_id, entity_id)
-#values (1,'bla',0,0,3,1);
+#insert into adventure(max_persons, entity_id, reg_user_id) values (4,1,4);
+
+#insert into fast_reservation(id, additional_services, capacity, duration, is_canceled, place, price, start_date, adventure_entity_id, boat_id, entity_id)
+#values(1,'nsto',4,44,0,'ceds',33,now(),1,8,1);
+
+
+insert into report(report_id, content, is_bad_review, not_appeared, reg_user_id, entity_id)
+values (1,'bla',0,0,2,1);
 
 #insert into revision(revision_id, content, is_approved, mark, reservation_id)
 #values (1,'bl',0,1,1);
 
-insert into renting_entity(entity_id, average_grade, cancellation_percentage, description, name, version, address_id)
-values(1,2,33,'ble','ble',3,1);
 
-#insert into sale(sale_id, additional_services, date_time_from, duration_in_hours, expire_date_time, maximum_persons, price, entity_id)
-#values (1, 'ney', now(),2,'2022-08-13 15:22:22',4,25,1);
+
+insert into sale(sale_id, additional_services, date_time_from, duration_in_hours, expire_date_time, maximum_persons, price, entity_id)
+values (1, 'ney', now(),2,'2022-08-13 15:22:22',4,25,1);
 
