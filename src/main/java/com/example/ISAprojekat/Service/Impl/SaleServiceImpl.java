@@ -17,7 +17,7 @@ import java.util.Set;
 @Service
 public class SaleServiceImpl implements SaleService {
 
-   /* @Autowired
+    @Autowired
     private EntityRepository entityRepository;
 
     @Autowired
@@ -100,15 +100,20 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public Set<Sale> getAllSalesForLoggedInstructor(String email) {
-        List<Adventure> adventures = adventureRepository.fetchAdventuresByFishingInstructor_Email(email);
+        List<Adventure> adventures = adventureRepository.fetchAdventuresByFishingInstructorEmailAddress(email);
 
         Set<Sale> sales = new HashSet<>();
-       /* for(Adventure a : adventures) {
+        for(Adventure a : adventures) {
             for(Sale s : a.getSales()) {
                 s.setRentingEntity(a);
                 sales.add(s);
             }
-        }*/
-     //   return sales;
-    //}
+        }
+        return sales;
+    }
+
+    @Override
+    public List<Sale> findAll(){
+        return saleRepository.findAll();
+    }
 }
