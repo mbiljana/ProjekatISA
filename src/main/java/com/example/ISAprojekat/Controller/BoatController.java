@@ -1,10 +1,8 @@
 package com.example.ISAprojekat.Controller;
 
-import com.example.ISAprojekat.Model.Boat;
-import com.example.ISAprojekat.Model.Cottage;
+import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.*;
-import com.example.ISAprojekat.Model.FastReservation;
-import com.example.ISAprojekat.Model.Ocena;
+import com.example.ISAprojekat.Service.BoatReservationService;
 import com.example.ISAprojekat.Service.BoatService;
 import com.example.ISAprojekat.Service.FastReservationService;
 import com.example.ISAprojekat.Service.OcenaService;
@@ -26,14 +24,14 @@ public class BoatController {
     private final BoatService boatService;
     private final FastReservationService fastReservationService;
     private final OcenaService ocenaService;
+    private final BoatReservationService boatReservationService;
     @Autowired
-    public BoatController(BoatService boatService, FastReservationService fastReservationService, OcenaService ocenaService){
+    public BoatController(BoatService boatService, FastReservationService fastReservationService, OcenaService ocenaService, BoatReservationService boatReservationService){
         this.boatService = boatService;
         this.fastReservationService = fastReservationService;
         this.ocenaService  =ocenaService;
+        this.boatReservationService = boatReservationService;
     }
-
-
 
     //get all boats
     @GetMapping(value = "/all")
@@ -57,6 +55,7 @@ public class BoatController {
     public ResponseEntity<BoatDTO> getBoat(@PathVariable("id")Long id){
         Boat boat = this.boatService.getOne(id);
         BoatDTO boatDTO = new BoatDTO();
+        boatDTO.setId(boat.getId());
         boatDTO.setBoatAddress(boat.getBoatAddress());
         boatDTO.setBoatCapacity(boat.getBoatCapacity());
         boatDTO.setBoatName(boat.getBoatName());
@@ -68,6 +67,7 @@ public class BoatController {
         boatDTO.setMaxSpeed(boat.getMaxSpeed());
         boatDTO.setBoatDescription(boat.getBoatDescription());
         boatDTO.setNavigationEguipment(boat.getNavigationEquimpment());
+        boatDTO.setImage(boat.getImage());
         return new ResponseEntity<>(boatDTO, HttpStatus.FOUND);
     }
 
@@ -152,6 +152,20 @@ public class BoatController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping(value = "/allReservations", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ReservationDTO>> viewReservations(){
+        List<BoatReservation> boatReservations = this.boatReservationService.findAll();
+        List<ReservationDTO> reservationDTOS = new ArrayList<>();
+        for(BoatReservation b : boatReservations){
+            reservationDTOS.add(new ReservationDTO(b));
+        }
+        return new ResponseEntity<>(reservationDTOS,HttpStatus.OK);
+    }
 
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getBoatImage(@RequestBody Long boatId){
+        String image = this.boatService.findBoatImage(boatId);
+        return new ResponseEntity<>(image,HttpStatus.OK);
+    }
 
 }

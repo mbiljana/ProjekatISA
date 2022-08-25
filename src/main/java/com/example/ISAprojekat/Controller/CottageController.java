@@ -3,6 +3,7 @@ package com.example.ISAprojekat.Controller;
 import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Repository.CottageRepository;
+import com.example.ISAprojekat.Service.CottageReservationService;
 import com.example.ISAprojekat.Service.CottageService;
 import com.example.ISAprojekat.Service.FastReservationCottService;
 import com.example.ISAprojekat.Service.Impl.CottageServiceImpl;
@@ -23,12 +24,14 @@ public class CottageController {
     private final CottageService cottageService;
     private final OcenaService ocenaService;
     private final FastReservationCottService fastReservationCottService;
+    private final CottageReservationService cottageReservationService;
 
     @Autowired
-    public CottageController(CottageService cottageService, OcenaService ocenaService, FastReservationCottService fastReservationCottService){
+    public CottageController(CottageService cottageService, OcenaService ocenaService, FastReservationCottService fastReservationCottService,CottageReservationService cottageReservationService){
         this.cottageService = cottageService;
         this.ocenaService = ocenaService;
         this.fastReservationCottService = fastReservationCottService;
+        this.cottageReservationService = cottageReservationService;
     }
 
     //get all cottages
@@ -134,6 +137,15 @@ public class CottageController {
     }
 
 
+    @GetMapping(value = "/allReservations", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ReservationDTO>> viewReservations(){
+        List<CottageReservation> cottageReservations = this.cottageReservationService.findAll();
+        List<ReservationDTO> reservationDTOS = new ArrayList<>();
+        for(CottageReservation b : cottageReservations){
+            reservationDTOS.add(new ReservationDTO(b));
+        }
+        return new ResponseEntity<>(reservationDTOS,HttpStatus.OK);
+    }
 
 
 

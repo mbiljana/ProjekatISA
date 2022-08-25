@@ -8,7 +8,10 @@ import com.example.ISAprojekat.Repository.BoatRepository;
 import com.example.ISAprojekat.Service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -37,6 +40,8 @@ public class  BoatServiceImpl implements BoatService {
         if(boat.getId() != null){
             throw new Exception("ID must be unique!");
         }
+        //String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        //boat.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
         Boat newB = this.boatRepository.save(boat);
         return  newB;
     }
@@ -50,6 +55,13 @@ public class  BoatServiceImpl implements BoatService {
     public Boat update(Boat boat) {
         Boat newBoat = this.boatRepository.save(boat);
         return newBoat;
+    }
+
+    @Override
+    public String findBoatImage(Long boatId) {
+        Boat b = this.boatRepository.findById(boatId).get();
+        String img = b.getImage();
+        return img;
     }
 
 

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Getter
@@ -29,6 +30,7 @@ public class BoatDTO {
     private float srednjaOcena;
     public float latitude;
     public float longitude;
+    private String image;
 
 
     public BoatDTO(Boat b, float suma) {
@@ -47,7 +49,27 @@ public class BoatDTO {
         this.conditions = b.getCancelCondition();
         this.latitude =b.getLatitude();
         this.longitude = b.getLongitude();
+        this.image = b.getImage();
     }
+
+
+    public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions,String image) {
+        this.id = id;
+        this.boatName = boatName;
+        this.boatType = boatType;
+        this.engineNumber = engineNumber;
+        this.enginePower = enginePower;
+        this.maxSpeed = maxSpeed;
+        this.boatAddress = boatAddress;
+        this.boatCapacity = boatCapacity;
+        this.boatRules = boatRules;
+        this.boatDescription = boatDescription;
+        this.additionalEquipment = additionalEquipment;
+        this.navigationEguipment = navigationEguipment;
+        this.conditions = conditions;
+       this.image = image;
+    }
+
 
     public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions) {
         this.id = id;

@@ -39,11 +39,11 @@ VALUES (6,'#pool #spacenter','Kopaonik, Kopaonička 16b','Luxary cottage in the 
 INSERT INTO cottage(id,cottage_additional_services,cottage_address,cottage_description,cottage_name,cottage_rules,num_beds,num_rooms,latitude,longitude,price)
 VALUES (7,'#freeparking #WIFI','Jahorina, Jahorinska 55','Small cottage by the lake.','Cottage3','Check-in before 12am.',3,2,51.3,78.5,70);
 
-INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,cancel_condition,latitude,longitude,price)
+INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,cancel_condition,latitude,longitude,price,image)
 VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
 include stability, strength and durability to survive fishing ventures across various kinds of waterways',
         'Blue Moon','Pets are not allowed.','Fishing boat',
-        'WKC4B','100 horsepower',100,'no returns',42.9868853,19.5180992,500);
+        'WKC4B','100 horsepower',100,'no returns',45.5962,20.1345,500, 'bi1.jpg');
 
 INSERT INTO boat_owner(id) VALUES (76);
 
@@ -55,8 +55,8 @@ insert into ocena(id,ocena,boat_id,cottage_id)
 values (897,4,8,6);
 INSERT INTO cottage_owner(id) VALUES  (77);
 
-insert into boat_reservation(id,end_date,res_name,start_date,boat_id,reg_korisnik_id,duration,num_people)
-values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,108,5,10);
+insert into boat_reservation(id,end_date,res_name,start_date,boat_id,reg_korisnik_id,duration,num_people,price)
+values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,108,5,10,100);
 
 insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people)
  values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,108,4,5);

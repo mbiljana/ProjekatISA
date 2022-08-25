@@ -18,20 +18,24 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationDTO {
+    private Long id;
     private String resName;
     private Date startDate;
     private Date endDate;
     private Long offerId;
     private Long korisnikId;
+    private float price;
     private int duration;
 
     public ReservationDTO(BoatReservation b) {
+        this.id = b.getId();
         this.resName = b.getResName();
         this.startDate = b.getStartDate();
         this.endDate = b.getEndDate();
         this.offerId = b.getBoat().getId();
         this.korisnikId = b.getRegKorisnik().getId();
         this.duration = b.getDuration();
+        this.price = b.getPrice();
     }
     public ReservationDTO(CottageReservation b) {
         this.resName = b.getResName();
@@ -41,4 +45,5 @@ public class ReservationDTO {
         this.korisnikId = b.getRegKorisnik().getId();
         this.duration = b.getDuration();
     }
+
 }

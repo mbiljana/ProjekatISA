@@ -10,5 +10,4 @@ import java.util.List;
 @Repository
 public interface BoatRepository extends JpaRepository<Boat, Long> {
 
-
 }

@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
-    const kord = new Array();
-    var cnt = 0;
+    let imageSrc = '';
+    let longitude = 0;
+    let latitude = 0;
     $.ajax({
         type: "GET",
         url: "http://localhost:8181/api/boats/all",
@@ -10,15 +11,24 @@ $(document).ready(function(){
             console.log("SUCCESS:\n", data);                    // ispisujemo u konzoli povratnu vrednost radi provere
 
             for (i = 0; i < data.length; i++) {
-                var row = "<tr data-id=" + data[i]['id'] + ">";                                  // kreiramo red za tabelu
+                console.log(localStorage.getItem('boat'));
+                var row = "<tr data-id=" + data[i]['id'] + ">";
+                console.log(data[i]['id']);
                 row += "<td>" + data[i]['boatName'] + "</td>";
                 row += "<td>" + data[i]['boatType'] + "</td>";
                 row += "<td>" + data[i]['boatDescription'] + "</td>";
                 row += "<td>" + data[i]['srednjaOcena'] + "</td>";
+                imageSrc = data[i]['image'];
+                longitude = data[i]['longitude'];
+                latitude = data[i]['latitude'];
+                localStorage.setItem('imageSource', imageSrc);
+
                 row += "</tr>";                                     // završavamo kreiranje reda
-                kord.push(data[i]['latitude'],data[i]['longitude']);
-                cnt = cnt+1;
-                $('#regReq').append(row);                        // ubacujemo kreirani red u tabelu čiji je id = employees
+                if(localStorage.getItem('boat') == data[i]['id']){
+                    $('#regReq').append(row);
+                }
+
+                                     // ubacujemo kreirani red u tabelu čiji je id = employees
             }
         },
         error: function (response) {
@@ -28,15 +38,14 @@ $(document).ready(function(){
         }
 
     });
-    let selektovanRed = 0;
-    //let staraBoja = null;
-    $("#regReq").on('click', 'tr:not(:first-child)', function() {
-        selektovanRed = this.dataset.id;
-        localStorage.setItem('boat',this.dataset.id);
-        window.location.href = "viewBoat.html";
-        console.log("Selektovan red ", selektovanRed);      // ispis u konzolu radi provere
-    });
 
+    ymaps.ready(init);
+    function init(){
+        var myMap = new ymaps.Map("map", {
+            center: [latitude, longitude],
+            zoom: 12
+        });
+    }
 
 
 });

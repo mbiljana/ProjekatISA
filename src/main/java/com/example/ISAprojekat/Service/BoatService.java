@@ -2,6 +2,7 @@ package com.example.ISAprojekat.Service;
 
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.BoatOwner;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface BoatService {
     Boat create(Boat boat) throws Exception;
     void delete(Long id);
     Boat update(Boat boat);
+    String findBoatImage(Long boatId);
 
 
 }

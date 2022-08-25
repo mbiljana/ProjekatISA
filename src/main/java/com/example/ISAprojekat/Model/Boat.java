@@ -52,6 +52,8 @@ public class Boat  implements Serializable{
     private float price;
     @Column
     private String cancelCondition;
+    @Column
+    private String image;
 
 
 
@@ -65,6 +67,24 @@ public class Boat  implements Serializable{
     @OneToMany(mappedBy = "boat")
     private List<Ocena> ocene = new ArrayList<>();
 
+    public Boat(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEquimpment, float latitude, float longitude, float price, String cancelCondition) {
+        this.id = id;
+        this.boatName = boatName;
+        this.boatType = boatType;
+        this.engineNumber = engineNumber;
+        this.enginePower = enginePower;
+        this.maxSpeed = maxSpeed;
+        this.boatAddress = boatAddress;
+        this.boatCapacity = boatCapacity;
+        this.boatRules = boatRules;
+        this.boatDescription = boatDescription;
+        this.additionalEquipment = additionalEquipment;
+        this.navigationEquimpment = navigationEquimpment;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.price = price;
+        this.cancelCondition = cancelCondition;
+    }
 
 
 }

@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <div class="modal-content">
                 <h2 class="text-center">Fill in the form</h2>
-                <form id="addCottForm" >
+                <form id="addBoatForm" >
                     <div class="form-group1">
                         <h5 for="cottageName">Cottage name:</h5>
                         <input id="cottageName" name="cottageName" type="text" class="registar" placeholder="Name">
@@ -24,12 +24,12 @@
                         <input id="cottageAddress" name="cottageAddress" type="text" class="registar" placeholder="Address">
                     </div>
                     <div class="form-group1">
-                        <h5 for="cottageDescription">Description:</h5>
-                        <input id="cottageDescription" name="cottageDescription" type="text" class="registar" placeholder="Description">
+                        <h5 for="cottageDescription">Cottage description:</h5>
+                        <input id="cottageDescription" name="engineNumber" type="text" class="registar" placeholder="Description">
                     </div>
                     <div class="form-group1">
                         <h5 for="numRooms">Number of rooms:</h5>
-                        <input id="numRooms" name="numRooms" type="text" class="registar" placeholder="Number of rooms">
+                        <input id="numRooms" name="enginePower" type="text" class="registar" placeholder="Number of rooms">
                     </div>
                     <div class="form-group1">
                         <h5 for="numBeds">Number of beds:</h5>
@@ -37,20 +37,15 @@
                     </div>
                     <div class="form-group1">
                         <h5 for="cottageAdditionalServices">Additional services:</h5>
-                        <input id="cottageAdditionalServices" name="cottageAdditionalServices"type="text" class="registar" placeholder="Bonus services">
+                        <input id="cottageAdditionalServices" name="cottageAdditionalServices"type="text" class="registar" placeholder="Additional services">
                     </div>
                     <div class="form-group1">
-                        <h5 for="cottageRules">Rules:</h5>
-                        <input id="cottageRules" name="cottageRules"type="text" class="registar" placeholder="Rules">
+                        <h5 for="cottageRules">Cottage rules:</h5>
+                        <input id="cottageRules" name="boatCapacity"type="text" class="registar" placeholder="Rules">
                     </div>
                     <div class="form-group1">
                         <h5 for="conditions">Cancelation policy:</h5>
-                        <input id="conditions" name="conditions"type="text" class="registar" placeholder="Cancelation">
-                    </div>
-                    <div>
-                        <form action="/action_page.php">
-                            <input type="file" id="myFile" name="filename">
-                        </form>
+                        <input id="conditions" name="conditions"type="text" class="registar" placeholder="Conditions for cancelation">
                     </div>
                     <div>
                         <button id="formBetn" type="submit" value="Register" class="btn btn-success">Create</button>
@@ -61,5 +56,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>
