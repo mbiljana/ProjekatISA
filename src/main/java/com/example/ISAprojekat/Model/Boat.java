@@ -53,7 +53,13 @@ public class Boat  implements Serializable{
     @Column
     private String cancelCondition;
     @Column
-    private String image;
+    private String imageEnt1;
+    @Column
+    private String imageEnt2;
+    @Column
+    private String imageExt1;
+    @Column
+    private String imageExt2;
 
 
 

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+
 
 @Getter
 @Setter
@@ -29,7 +31,10 @@ public class BoatDTO {
     private float srednjaOcena;
     public float latitude;
     public float longitude;
-    private String image;
+    private String imageEnt1;
+    private String imageEnt2;
+    private String imageExt1;
+    private String imageExt2;
 
 
     public BoatDTO(Boat b, float suma) {
@@ -48,11 +53,14 @@ public class BoatDTO {
         this.conditions = b.getCancelCondition();
         this.latitude =b.getLatitude();
         this.longitude = b.getLongitude();
-        this.image = b.getImage();
+        this.imageEnt1 = b.getImageEnt1();
+        this.imageEnt2 = b.getImageEnt2();
+        this.imageExt1 = b.getImageExt1();
+        this.imageExt2 = b.getImageExt2();
     }
 
 
-    public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions,String image) {
+    public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions,String imageEnt1,String imageEnt2,String imageExt1,String imageExt2) {
         this.id = id;
         this.boatName = boatName;
         this.boatType = boatType;
@@ -66,7 +74,10 @@ public class BoatDTO {
         this.additionalEquipment = additionalEquipment;
         this.navigationEguipment = navigationEguipment;
         this.conditions = conditions;
-       this.image = image;
+        this.imageEnt1 = imageEnt1;
+        this.imageEnt2 = imageEnt2;
+        this.imageExt1 = imageExt1;
+        this.imageExt2 = imageExt2;
     }
 
 

@@ -45,6 +45,14 @@ public class Cottage implements Serializable {
     private float price;
     @Column
     private String cancelCondition;
+    @Column
+    private String imageEnt1;
+    @Column
+    private String imageEnt2;
+    @Column
+    private String imageExt1;
+    @Column
+    private String imageExt2;
 
     @ManyToOne
     private CottageOwner cottageOwner;

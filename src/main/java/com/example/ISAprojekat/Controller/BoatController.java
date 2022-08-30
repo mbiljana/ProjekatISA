@@ -67,7 +67,10 @@ public class BoatController {
         boatDTO.setMaxSpeed(boat.getMaxSpeed());
         boatDTO.setBoatDescription(boat.getBoatDescription());
         boatDTO.setNavigationEguipment(boat.getNavigationEquimpment());
-        boatDTO.setImage(boat.getImage());
+        boatDTO.setImageEnt1(boat.getImageEnt1());
+        boatDTO.setImageEnt2(boat.getImageEnt2());
+        boatDTO.setImageExt1(boat.getImageExt1());
+        boatDTO.setImageExt2(boat.getImageExt2());
         return new ResponseEntity<>(boatDTO, HttpStatus.FOUND);
     }
 

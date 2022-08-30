@@ -63,6 +63,10 @@ public class CottageController {
        cottageDTO.setCottageAddress(cottage.getCottageAddress());
        cottageDTO.setNumRooms(cottage.getNumRooms());
        cottageDTO.setNumBeds(cottage.getNumBeds());
+       cottageDTO.setImageEnt1(cottage.getImageEnt1());
+       cottageDTO.setImageEnt2(cottage.getImageEnt2());
+       cottageDTO.setImageExt1(cottage.getImageExt1());
+       cottageDTO.setImageExt2(cottage.getImageExt2());
         return new ResponseEntity<>(cottageDTO, HttpStatus.FOUND);
     }
 
