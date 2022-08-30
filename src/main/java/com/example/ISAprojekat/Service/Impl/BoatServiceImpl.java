@@ -57,12 +57,7 @@ public class  BoatServiceImpl implements BoatService {
         return newBoat;
     }
 
-    @Override
-    public String findBoatImage(Long boatId) {
-        Boat b = this.boatRepository.findById(boatId).get();
-        String img = b.getImage();
-        return img;
-    }
+
 
 
 }

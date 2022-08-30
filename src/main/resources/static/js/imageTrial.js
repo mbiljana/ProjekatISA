@@ -3,4 +3,6 @@
 
 const img = document.createElement("img");
 img.src = "images/" + localStorage.getItem('imageSource');
+img.width = 800;
+img.height = 600;
 document.body.appendChild(img);

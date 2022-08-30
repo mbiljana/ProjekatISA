@@ -14,7 +14,6 @@ public interface BoatService {
     Boat create(Boat boat) throws Exception;
     void delete(Long id);
     Boat update(Boat boat);
-    String findBoatImage(Long boatId);
 
 
 }

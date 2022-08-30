@@ -17,6 +17,7 @@ INSERT INTO fishing_instructor(id) values (72);
 INSERT INTO fishing_instructor(id) values (73);
 INSERT INTO admin(id) VALUES(74);
 
+
 INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
 VALUES (108,'1995-02-05','bg','@nekiregkor','sdfa','Pavle','pb',0564215,5,'srb','Bugarski','pavleb');
 
@@ -43,7 +44,17 @@ INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_descrip
 VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
 include stability, strength and durability to survive fishing ventures across various kinds of waterways',
         'Blue Moon','Pets are not allowed.','Fishing boat',
-        'WKC4B','100 horsepower',100,'no returns',45.5962,20.1345,500, 'bi1.jpg');
+        'WKC4B','100 horsepower',100,'no returns',45.5962,20.1345,500,'bi1.jpg');
+
+INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,cancel_condition,latitude,longitude,price,image)
+VALUES (9,'Water vests','Blue lagoon 15',20,'Made for relaxation',
+        'Beauty','No smoking','Sailing boat',
+        'WKC4B','100 horsepower',100,'no returns',43.31,43.51,400,'bi3.jpg');
+
+INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,cancel_condition,latitude,longitude,price,image)
+VALUES (10,'Fishing rods','Blue lagoon 185',20,'Fishing boat which is great for relaxation if you love fishing and being on ater!',
+        'Fishing adventure','No smoking, no pets, no food','Fishing boat',
+        'WKC4B','100 horsepower',100,'no returns',43.31,43.51,400,'boat1.jpg');
 
 INSERT INTO boat_owner(id) VALUES (76);
 
@@ -62,3 +73,9 @@ insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_k
  values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,108,4,5);
 insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people)
 values(1025,'2022-10-10', 'Cottage reservation for two','2022-12-10',6,108,5,4);
+
+
+
+
+
+

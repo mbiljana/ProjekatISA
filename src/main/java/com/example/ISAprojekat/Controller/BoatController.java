@@ -162,10 +162,13 @@ public class BoatController {
         return new ResponseEntity<>(reservationDTOS,HttpStatus.OK);
     }
 
+    /*
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getBoatImage(@RequestBody Long boatId){
         String image = this.boatService.findBoatImage(boatId);
         return new ResponseEntity<>(image,HttpStatus.OK);
     }
+
+     */
 
 }

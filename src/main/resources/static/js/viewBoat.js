@@ -3,6 +3,7 @@ $(document).ready(function(){
     let imageSrc = '';
     let longitude = 0;
     let latitude = 0;
+    let boatName='';
     $.ajax({
         type: "GET",
         url: "http://localhost:8181/api/boats/all",
@@ -25,7 +26,10 @@ $(document).ready(function(){
 
                 row += "</tr>";                                     // završavamo kreiranje reda
                 if(localStorage.getItem('boat') == data[i]['id']){
+
                     $('#regReq').append(row);
+
+                    break;
                 }
 
                                      // ubacujemo kreirani red u tabelu čiji je id = employees
