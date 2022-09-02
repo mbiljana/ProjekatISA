@@ -1,9 +1,9 @@
-#Projekat iz predmeta Internet Softverske arhitekture
+# Projekat iz predmeta Internet Softverske arhitekture
  <br /> Web sajt za rezervaciju i postavljanje oglasa za izdavanje 
  <br /> vikendica, brodova i instruktora pecanja
-#Tehnologije
+# Tehnologije
  <br /> Java Spring Boot
  <br /> HTML, JavaScript, CSS
  <br /> MySQL 
-#Pokretanje
+# Pokretanje
  <br /> Aplikacija se pokrece na portu 8181
