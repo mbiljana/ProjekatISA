@@ -54,6 +54,9 @@ public class Cottage implements Serializable {
     @Column
     private String imageExt2;
 
+    @OneToMany(mappedBy = "cottage")
+    List<CottageIncome> cottageIncome = new ArrayList<>();
+
     @ManyToOne
     private CottageOwner cottageOwner;
     @OneToMany(mappedBy = "cottage")

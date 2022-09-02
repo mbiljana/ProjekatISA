@@ -9,6 +9,8 @@ $(document).on("submit","form",function(event){
     var cottageAdditionalServices = $("#cottageAdditionalServices").val();
     var cottageRules = $("#cottageRules").val();
     var conditions = $("#conditions").val();
+    var latitude = $("#latitude").val();
+    var longitude = $("#longitude").val();
     var imageEnt1 = $("#imageEnt1").val();
     //imageEnt1.slice(12);
     console.log(imageEnt1);
@@ -17,7 +19,7 @@ $(document).on("submit","form",function(event){
     var imageExt1 = $("#imageExt1").val();
     //imageExt1.substring(12);
     var imageExt2 = $("#imageExt2").val();
-    var newFitnesCentarJSON=formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,numBeds,cottageAdditionalServices,cottageRules,conditions,imageEnt1,imageEnt2,imageExt1,imageExt2);
+    var newFitnesCentarJSON=formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,numBeds,cottageAdditionalServices,cottageRules,conditions,latitude, longitude,imageEnt1,imageEnt2,imageExt1,imageExt2);
 
     $.ajax({
         type: "POST",
@@ -32,7 +34,7 @@ $(document).on("submit","form",function(event){
     });
 
 });
-function formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,numBeds,cottageAdditionalServices,cottageRules,conditions,imageEnt1,imageEnt2,imageExt1,imageExt2){
+function formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,numBeds,cottageAdditionalServices,cottageRules,conditions,latitude, longitude, imageEnt1,imageEnt2,imageExt1,imageExt2){
     return JSON.stringify({
         "cottageName" : cottageName,
         "cottageAddress" : cottageAddress,
@@ -42,6 +44,8 @@ function formToJSON(cottageName, cottageAddress, cottageDescription,numRooms,num
         "cottageAdditionalServices" : cottageAdditionalServices,
         "cottageRules" : cottageRules,
         "conditions" :conditions,
+        "latitude" : latitude,
+        "longitude" : longitude,
         "imageEnt1" : imageEnt1,
         "imageEnt2" : imageEnt2,
         "imageExt1": imageExt1,

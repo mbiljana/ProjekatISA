@@ -12,8 +12,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class FastResCottDTO {
     private Long cottId;
+    private String resName;
     private Date startDate;
     private int duration;
     private int capacity;
     private String additionalServices;
+    private float price;
 }

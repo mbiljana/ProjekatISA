@@ -13,6 +13,8 @@ $(document).on("submit","form",function(event){
         var additionalEquipment = $("#additionalEquipment").val();
         var navigationEguipment = $("#navigationEguipment").val();
         var conditions= $("#conditions").val();
+        var latitude= $("#latitude").val();
+        var longitude= $("#longitude").val();
         var imageEnt1 = $("#imageEnt1").val();
         //imageEnt1.slice(12);
         console.log(imageEnt1);
@@ -22,7 +24,7 @@ $(document).on("submit","form",function(event){
         //imageExt1.substring(12);
         var imageExt2 = $("#imageExt2").val();
         //imageExt2.substring(12);
-        var newFitnesCentarJSON=formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions,imageEnt1,imageEnt2,imageExt1,imageExt2);
+        var newFitnesCentarJSON=formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions,imageEnt1,imageEnt2,imageExt1,imageExt2,latitude,longitude);
 
         $.ajax({
             type: "POST",
@@ -37,7 +39,7 @@ $(document).on("submit","form",function(event){
         });
 
     });
-    function formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions,imageEnt1,imageEnt2,imageExt1,imageExt2){
+    function formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions,imageEnt1,imageEnt2,imageExt1,imageExt2,latitude,longitude){
     return JSON.stringify({
         "boatName" : boatName,
         "boatType" : boatType,
@@ -54,7 +56,9 @@ $(document).on("submit","form",function(event){
         "imageEnt1" : imageEnt1,
         "imageEnt2" : imageEnt2,
         "imageExt1": imageExt1,
-        "imageExt2": imageExt2
+        "imageExt2": imageExt2,
+        "latitude" : latitude,
+        "longitude" : longitude
     });
 
     }

@@ -47,14 +47,18 @@ $(document).ready(function(){
 
     $("#res").click(function() {
         var boatId = selektovanRed;
+        var resName = $("#resName").val();
         var startDate = $("#startDate").val();
         var duration = $("#duration").val();
         var additionalServices = $("#additionalServices").val();
+        var price = $("#price").val();
         var obj = JSON.stringify({
             "boatId" : boatId,
+            "resName" : resName,
             "startDate" : startDate,
             "duration" : duration,
-            "additionalServices" : additionalServices
+            "additionalServices" : additionalServices,
+            "price" : price
 
         });
         $.ajax({

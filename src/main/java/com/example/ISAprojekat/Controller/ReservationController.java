@@ -22,14 +22,19 @@ public class ReservationController {
     private final RegKorisnikService regKorisnikService;
     private final CottageService cottageService;
     private final CottageReservationService cottageReservationService;
+    private final IncomeService incomeService;
+    private final CottageIncomeService cottageIncomeService;
 
     @Autowired
-    public ReservationController(BoatService boatService, BoatReservationService boatReservationService, RegKorisnikService regKorisnikService, CottageService cottageService, CottageReservationService cottageReservationService){
+    public ReservationController(BoatService boatService, BoatReservationService boatReservationService, RegKorisnikService regKorisnikService, CottageService cottageService, CottageReservationService cottageReservationService,IncomeService incomeService,CottageIncomeService cottageIncomeService){
         this.boatReservationService = boatReservationService;
         this.boatService = boatService;
         this.regKorisnikService = regKorisnikService;
         this.cottageService = cottageService;
         this.cottageReservationService = cottageReservationService;
+        this.incomeService = incomeService;
+        this.cottageIncomeService = cottageIncomeService;
+
     }
 
     @GetMapping(value = "/allBoat")
@@ -40,7 +45,7 @@ public class ReservationController {
         List<ResIncomeDTO> incomeDTO = new ArrayList<>();
         for (BoatReservation b : reservations) {
                 ResIncomeDTO resIncomeDTO = new ResIncomeDTO(
-                        b.getResName(), b.getStartDate(),
+                        b.getResName(), b.getStartDate(),b.getEndDate(),b.getDuration(),
                         b.getBoat().getPrice() * b.getDuration(), b.getNumPeople()
                 );
                 incomeDTO.add(resIncomeDTO);
@@ -55,7 +60,7 @@ public class ReservationController {
         List<ResIncomeDTO> incomeDTOS = new ArrayList<>();
         for (CottageReservation b : reservations) {
             ResIncomeDTO resIncomeDTO = new ResIncomeDTO(
-                    b.getResName(), b.getStartDate(),
+                    b.getResName(), b.getStartDate(),b.getEndDate(),b.getDuration(),
                     b.getCottage().getPrice()*b.getDuration(),b.getNumPeople()
             );
             incomeDTOS.add(resIncomeDTO);
@@ -74,12 +79,17 @@ public class ReservationController {
         reservation.setStartDate(resDTO.getStartDate());
         reservation.setEndDate(resDTO.getEndDate());
         reservation.setRegKorisnik(regKorisnik);
+        reservation.setPrice(resDTO.getPrice());
         this.boatReservationService.create(reservation);
+
+        Income income = new Income(reservation.getPrice(), boat);
+        this.incomeService.save(income);
+
         CreateResDTO resDTO1 = new CreateResDTO(
                 reservation.getId(),reservation.getResName(),
                 reservation.getStartDate(),reservation.getEndDate(),
                 reservation.getBoat().getId(),reservation.getRegKorisnik().getId(),
-                reservation.getDuration()
+                reservation.getDuration(),reservation.getPrice()
         );
         return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
     }
@@ -94,13 +104,20 @@ public class ReservationController {
         reservation.setStartDate(resDTO.getStartDate());
         reservation.setEndDate(resDTO.getEndDate());
         reservation.setRegKorisnik(regKorisnik);
+        reservation.setPrice(resDTO.getPrice());
         this.cottageReservationService.create(reservation);
+
+        CottageIncome cottageIncome = new CottageIncome(reservation.getPrice(),cottage);
+        this.cottageIncomeService.save(cottageIncome);
+
         CreateResDTO resDTO1 = new CreateResDTO(
                 reservation.getId(),reservation.getResName(),
                 reservation.getStartDate(),reservation.getEndDate(),
                 reservation.getCottage().getId(),reservation.getRegKorisnik().getId(),
-                reservation.getDuration()
+                reservation.getDuration(), reservation.getPrice()
         );
+
+
         return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
     }
 

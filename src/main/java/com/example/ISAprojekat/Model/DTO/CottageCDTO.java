@@ -19,6 +19,8 @@ public class CottageCDTO {
     public String cottageRules;
     public float srednjaOcena;
     public String conditions;
+    public float latitude;
+    public float longitude;
     private String imageEnt1;
     private String imageEnt2;
     private String imageExt1;

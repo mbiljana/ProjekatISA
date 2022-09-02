@@ -47,8 +47,6 @@ public class Adventure implements Serializable {
     @OneToMany(mappedBy = "adventure")
     private List<Appointment> freeAppointments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "adventure")
-    private List<FastReservation> fastReservation = new ArrayList<>();
 
     @ManyToOne
     private FishingInstructor fishingInstructor;

@@ -3,11 +3,8 @@ package com.example.ISAprojekat.Controller;
 import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Repository.CottageRepository;
-import com.example.ISAprojekat.Service.CottageReservationService;
-import com.example.ISAprojekat.Service.CottageService;
-import com.example.ISAprojekat.Service.FastReservationCottService;
+import com.example.ISAprojekat.Service.*;
 import com.example.ISAprojekat.Service.Impl.CottageServiceImpl;
-import com.example.ISAprojekat.Service.OcenaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,13 +22,15 @@ public class CottageController {
     private final OcenaService ocenaService;
     private final FastReservationCottService fastReservationCottService;
     private final CottageReservationService cottageReservationService;
+    private final CottageIncomeService cottageIncomeService;
 
     @Autowired
-    public CottageController(CottageService cottageService, OcenaService ocenaService, FastReservationCottService fastReservationCottService,CottageReservationService cottageReservationService){
+    public CottageController(CottageService cottageService, OcenaService ocenaService, FastReservationCottService fastReservationCottService,CottageReservationService cottageReservationService, CottageIncomeService cottageIncomeService){
         this.cottageService = cottageService;
         this.ocenaService = ocenaService;
         this.fastReservationCottService = fastReservationCottService;
         this.cottageReservationService = cottageReservationService;
+        this.cottageIncomeService = cottageIncomeService;
     }
 
     //get all cottages
@@ -81,6 +80,8 @@ public class CottageController {
         cottage.setNumBeds(cottageDTO.getNumBeds());
         cottage.setNumRooms(cottageDTO.getNumRooms());
         cottage.setCancelCondition(cottageDTO.getConditions());
+        cottage.setLatitude(cottageDTO.getLatitude());
+        cottage.setLongitude(cottageDTO.getLongitude());
         String img1 = cottageDTO.getImageEnt1().substring(12);
         String img2 = cottageDTO.getImageEnt2().substring(12);
         String img3 = cottageDTO.getImageExt1().substring(12);
@@ -94,7 +95,9 @@ public class CottageController {
                 cottage.getId(), cottage.getCottageName(), cottage.getCottageAddress(),
                 cottage.getCottageDescription(),cottage.getNumRooms(),cottage.getNumBeds(),
                 cottage.getCottageAdditionalServices(), cottage.getCottageRules(),
-                cottage.getCancelCondition()
+                cottage.getCancelCondition(),cottage.getLatitude(), cottage.getLongitude(),
+                cottage.getImageEnt1(), cottage.getImageEnt2(), cottage.getImageExt1(),
+                cottage.getImageExt2()
         );
         return new ResponseEntity<>(cottageDTO1,HttpStatus.CREATED);
     }
@@ -120,12 +123,12 @@ public class CottageController {
     @PostMapping(value = "/createResCott",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateCottageResDTO> createReservation(@RequestBody FastResCottDTO cottDTO) throws Exception{
         Cottage cottage = this.cottageService.getOne(cottDTO.getCottId());
-        float price = cottage.getPrice() * cottDTO.getDuration();
+       // float price = cottage.getPrice() * cottDTO.getDuration();
         FastReservationCott fastReservation = new FastReservationCott();
         fastReservation.setCapacity(cottDTO.getCapacity());
         fastReservation.setAdditionalServices(cottDTO.getAdditionalServices());
         fastReservation.setDuration(cottDTO.getDuration());
-        fastReservation.setPrice(price);
+        fastReservation.setPrice(cottDTO.getPrice());
         fastReservation.setStartDate(cottDTO.getStartDate());
         fastReservation.setCottage(cottage);
         this.fastReservationCottService.create(fastReservation);
@@ -137,6 +140,13 @@ public class CottageController {
         createCottageResDTO.setPrice(fastReservation.getPrice());
         createCottageResDTO.setStartDate(fastReservation.getStartDate());
         createCottageResDTO.setAdditionalServices(fastReservation.getAdditionalServices());
+
+        List<CottageIncome> cottInc = cottage.getCottageIncome();
+        CottageIncome income = new CottageIncome(createCottageResDTO.getPrice(),cottage);
+        cottInc.add(income);
+        //this.cottageService.save(cottage);
+        this.cottageIncomeService.save(income);
+
         return new ResponseEntity<>(createCottageResDTO,HttpStatus.CREATED);
     }
 
@@ -149,14 +159,33 @@ public class CottageController {
     }
 
 
-    @GetMapping(value = "/allReservations", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ReservationDTO>> viewReservations(){
-        List<CottageReservation> cottageReservations = this.cottageReservationService.findAll();
-        List<ReservationDTO> reservationDTOS = new ArrayList<>();
-        for(CottageReservation b : cottageReservations){
-            reservationDTOS.add(new ReservationDTO(b));
+    @GetMapping(value = "/allReservations")
+    public ResponseEntity<List<FastReservationDTO>> viewReservations(){
+        List<FastReservationCott> cottReservation = this.fastReservationCottService.findAll();
+        List<FastReservationDTO> reservationDTOS = new ArrayList<>();
+        for(FastReservationCott b : cottReservation){
+            b.setId(b.getId());
+            reservationDTOS.add(new FastReservationDTO(b));
         }
         return new ResponseEntity<>(reservationDTOS,HttpStatus.OK);
+    }
+
+    //all income
+    @GetMapping(value = "/income")
+    public ResponseEntity<IncomeDTO> getAllBoatIncome(){
+
+        List<CottageIncome> allIncome = this.cottageIncomeService.findAll();
+        IncomeDTO retIncome = new IncomeDTO();
+        float sum = 0;
+        for (CottageIncome i: allIncome) {
+            sum = sum + i.getIncome();
+        }
+        retIncome.setIncome(sum);
+        //CottageIncome income = new CottageIncome(sum);
+        //cottageIncomeService.save(income);
+
+        return new ResponseEntity<>(retIncome,HttpStatus.OK);
+
     }
 
 

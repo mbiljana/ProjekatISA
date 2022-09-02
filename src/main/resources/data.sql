@@ -61,10 +61,10 @@ INSERT INTO cottage_owner(id) VALUES  (77);
 insert into boat_reservation(id,end_date,res_name,start_date,boat_id,reg_korisnik_id,duration,num_people,price)
 values(1023,'2022-12-12', 'Boat reservation for two','2022-12-10',8,108,5,10,100);
 
-insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people)
- values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,108,4,5);
-insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people)
-values(1025,'2022-10-10', 'Cottage reservation for two','2022-12-10',6,108,5,4);
+insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people,price)
+ values(1024,'2022-12-12', 'Cottage reservation for two','2022-12-10',6,108,4,5,1000);
+insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people,price)
+values(1025,'2022-10-10', 'Cottage reservation for two','2022-12-10',6,108,5,4,500);
 
 insert into income(id, income, boat_id)
 values ( 4002, 500, 8 );
@@ -72,6 +72,22 @@ insert into income(id, income, boat_id)
 values ( 4003, 300, 8 );
 insert into income(id, income, boat_id)
 values ( 4004, 700, 8 );
+
+insert into cottage_income(id, income, cottage_id)
+values ( 4005, 700, 5 );
+insert into cottage_income(id, income, cottage_id)
+values ( 4006, 800, 6 );
+insert into cottage_income(id, income, cottage_id)
+values ( 4007, 1000, 5 );
+
+
+insert into fast_reservation(id,additional_services,capacity,duration,place,price,res_name,start_date, boat_id)
+values ( 785, 'all',2,5,'Lagoon',500,'Boat action','2022-12-10',8 );
+
+insert into fast_reservation_cott(id,additional_services,capacity,duration,price,res_name,start_date, cottage_id)
+values ( 788, 'all',2,5,800,'Cottage action','2022-12-10',6 );
+
+
 
 
 

@@ -15,6 +15,9 @@ public class FastReservationCott implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
+    private String resName;
     @Column
     private Date startDate;
     @Column

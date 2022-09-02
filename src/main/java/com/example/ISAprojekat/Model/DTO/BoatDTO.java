@@ -80,6 +80,28 @@ public class BoatDTO {
         this.imageExt2 = imageExt2;
     }
 
+    public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions,float latitude, float longitude, String imageEnt1,String imageEnt2,String imageExt1,String imageExt2) {
+        this.id = id;
+        this.boatName = boatName;
+        this.boatType = boatType;
+        this.engineNumber = engineNumber;
+        this.enginePower = enginePower;
+        this.maxSpeed = maxSpeed;
+        this.boatAddress = boatAddress;
+        this.boatCapacity = boatCapacity;
+        this.boatRules = boatRules;
+        this.boatDescription = boatDescription;
+        this.additionalEquipment = additionalEquipment;
+        this.navigationEguipment = navigationEguipment;
+        this.conditions = conditions;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.imageEnt1 = imageEnt1;
+        this.imageEnt2 = imageEnt2;
+        this.imageExt1 = imageExt1;
+        this.imageExt2 = imageExt2;
+    }
+
 
     public BoatDTO(Long id, String boatName, String boatType, String engineNumber, String enginePower, int maxSpeed, String boatAddress, int boatCapacity, String boatRules, String boatDescription, String additionalEquipment, String navigationEguipment, String conditions) {
         this.id = id;

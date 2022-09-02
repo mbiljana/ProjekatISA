@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $.ajax({
         type: "GET",
-        url: "http://localhost:8181/api/boats/allReservations",
+        url: "http://localhost:8181/api/cottages/allReservations",
         dataType: "json",
         success: function (data) {                              // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", data);                    // ispisujemo u konzoli povratnu vrednost radi provere
@@ -19,7 +19,6 @@ $(document).ready(function(){
         error: function (response) {
             alert("Dogodila se greska, pogledaj konzolu");
             console.log("ERROR : ", data);
-
         }
 
     });
@@ -31,11 +30,9 @@ $(document).ready(function(){
         window.location.href = "viewOneUser.html";
         console.log("Selektovan red ", selektovanRed);      // ispis u konzolu radi provere
     });
-
-
     $.ajax({
         type: "GET",
-        url: "http://localhost:8181/api/reservations/allBoat",
+        url: "http://localhost:8181/api/reservations/allCottage",
         dataType: "json",
         success: function (data) {                              // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", data);                    // ispisujemo u konzoli povratnu vrednost radi provere
@@ -60,13 +57,13 @@ $(document).ready(function(){
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:8181/api/boats/income",
+        url: "http://localhost:8181/api/cottages/income",
         dataType: "json",
         success: function (data) {                              // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", data);
-                var income =  data['income'] ;
-                $('#income').append(income);
-            },
+            var income =  data['income'] ;
+            $('#income').append(income);
+        },
         error: function (response) {
             alert("Dogodila se greska, pogledaj konzolu");
             console.log("ERROR : ", data);

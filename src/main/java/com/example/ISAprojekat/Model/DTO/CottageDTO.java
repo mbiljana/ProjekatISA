@@ -75,4 +75,21 @@ public class CottageDTO {
         this.imageExt1 = imageExt1;
         this.imageExt2 = imageExt2;
     }
+    public CottageDTO(Long id, String cottageName, String cottageAddress, String cottageDescription, int numRooms, int numBeds, String cottageAdditionalServices, String cottageRules, String cond,float latitude, float longitude,String imageEnt1,String imageEnt2,String imageExt1,String imageExt2) {
+        this.id = id;
+        this.cottageName = cottageName;
+        this.cottageAddress = cottageAddress;
+        this.cottageDescription = cottageDescription;
+        this.numRooms = numRooms;
+        this.numBeds = numBeds;
+        this.cottageAdditionalServices = cottageAdditionalServices;
+        this.cottageRules = cottageRules;
+        this.conditions = cond;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.imageEnt1 = imageEnt1;
+        this.imageEnt2 = imageEnt2;
+        this.imageExt1 = imageExt1;
+        this.imageExt2 = imageExt2;
+    }
 }

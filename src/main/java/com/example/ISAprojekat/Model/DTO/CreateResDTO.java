@@ -23,4 +23,5 @@ public class CreateResDTO {
     private Long offerId;
     private Long korId;
     private int duration;
+    private float price;
 }

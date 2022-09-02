@@ -20,6 +20,8 @@ public class FastReservation implements Serializable {
     private Long id;
 
     @Column
+    private String resName;
+    @Column
     private Date startDate;
     @Column
     //duration in days
@@ -34,8 +36,5 @@ public class FastReservation implements Serializable {
     private String place;
     @ManyToOne
     private Boat boat;
-
-    @ManyToOne
-    private Adventure adventure;
 
 }

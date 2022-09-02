@@ -29,6 +29,8 @@ public class CottageReservation implements Serializable {
     private int duration;
     @Column
     private int numPeople;
+    @Column
+    private float price;
     @OneToOne
     private Cottage cottage;
     @OneToOne

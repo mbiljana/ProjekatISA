@@ -21,7 +21,7 @@ public class IncomeServiceImpl implements IncomeService {
 
     @Override
     public Income save(Income income) {
-        return null;
+        return this.incomeReposiroty.save(income);
     }
 
     @Override

@@ -13,6 +13,8 @@ import java.util.Date;
 public class ResIncomeDTO {
     private String resName;
     private Date startDate;
+    private Date endDate;
+    private int duration;
     private float income;
     private int numPeople;
 

@@ -48,12 +48,14 @@ $(document).ready(function(){
         var startDate = $("#startDate").val();
         var endDate = $("#endDate").val();
         var offerId = selektovanRed;
+        var price = $("#price").val();
         var korisnikId = $("#korisnikId").val();
         var obj = JSON.stringify({
             "resName" : resName,
             "startDate" : startDate,
             "endDate" : endDate,
             "offerId" : offerId,
+            "price":price,
             "korisnikId" : korisnikId
 
         });

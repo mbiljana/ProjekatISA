@@ -35,6 +35,7 @@ $(document).ready(function(){
                     localStorage.setItem('role', data.role);
 
                     window.location.href = "home.html";
+                    //console.log(localStorage.getItem('username'));
                 },
                 error: function (data) {
                     console.log("ERROR " + JSON.stringify(data));

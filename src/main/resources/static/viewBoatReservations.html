@@ -31,17 +31,52 @@
       background-color: #04AA6D;
       color: white;
     }
+    #fastReq {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #fastReq td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #fastReq tr:nth-child(even){background-color: #f2f2f2;}
+
+    #fastReq tr:hover {background-color: #ddd;}
+
+    #fastReq th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
   </style>
 </head>
 <body>
 <div class="container">
-  <h2 class="w3-xlarge"><b>Reservations</b></h2>
+  <h2 class="w3-xlarge"><b>Basic client reservations</b></h2>
   <table id="regReq" style="width:100%" class="display">
+    <tr>
+      <th>Reservation name</th>
+      <th>Start date</th>
+      <th>Capacity</th>
+      <th>Duration</th>
+      <th>Price</th>
+    </tr>
+
+  </table>
+
+  <h2 class="w3-xlarge"><b>Fast reservations</b></h2>
+  <table id="fastReq" style="width:100%" class="display">
     <tr>
       <th>Reservation name</th>
       <th>Start date</th>
       <th>End date</th>
       <th>Duration</th>
+      <th>Price</th>
     </tr>
 
   </table>

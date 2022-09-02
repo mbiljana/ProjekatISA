@@ -87,6 +87,8 @@ public class BoatController {
         boat.setEnginePower(boatDTO.getEnginePower());
         boat.setMaxSpeed(boatDTO.getMaxSpeed());
         boat.setNavigationEquimpment(boatDTO.getNavigationEguipment());
+        boat.setLatitude(boatDTO.getLatitude());
+        boat.setLongitude(boatDTO.getLongitude());
         String img1 = boatDTO.getImageEnt1().substring(12);
         String img2 = boatDTO.getImageEnt2().substring(12);
         String img3 = boatDTO.getImageExt1().substring(12);
@@ -101,6 +103,7 @@ public class BoatController {
                 boat.getEnginePower(),boat.getMaxSpeed(),boat.getBoatAddress(),
                 boat.getBoatCapacity(),boat.getBoatRules(),boat.getBoatDescription(),
                 boat.getAdditionalEquipment(),boat.getNavigationEquimpment(),boat.getCancelCondition(),
+                boat.getLatitude(),boat.getLongitude(),
                 boat.getImageEnt1(),boat.getImageEnt2(),boat.getImageExt1(),boat.getImageExt2()
         );
         return new ResponseEntity<>(boatDTO1,HttpStatus.CREATED);
@@ -108,12 +111,12 @@ public class BoatController {
     @PostMapping(value = "/createRes",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateBoatResDTO> createReservation(@RequestBody FastReservationDTO boatDTO) throws Exception{
         Boat boat = this.boatService.getOne(boatDTO.getBoatId());
-        float price = boat.getPrice() * boatDTO.getDuration();
+        //float price = boat.getPrice() * boatDTO.getDuration();
         FastReservation fastReservation = new FastReservation();
         fastReservation.setCapacity(boatDTO.getCapacity());
         fastReservation.setAdditionalServices(boatDTO.getAdditionalServices());
         fastReservation.setDuration(boatDTO.getDuration());
-        fastReservation.setPrice(price);
+        fastReservation.setPrice(boatDTO.getPrice());
         fastReservation.setStartDate(boatDTO.getStartDate());
         fastReservation.setBoat(boat);
         this.fastReservationService.create(fastReservation);
@@ -129,7 +132,7 @@ public class BoatController {
         List<Income> boatInc = boat.getBoatIncome();
         Income income = new Income(createBoatResDTO.getPrice(),boat);
         boatInc.add(income);
-        this.boatService.save(boat);
+        //this.boatService.save(boat);
         this.incomeService.save(income);
 
 
@@ -171,12 +174,12 @@ public class BoatController {
     }
 
     @GetMapping(value = "/allReservations")
-    public ResponseEntity<List<ReservationDTO>> viewReservations(){
-        List<BoatReservation> boatReservations = this.boatReservationService.findAll();
-        List<ReservationDTO> reservationDTOS = new ArrayList<>();
-        for(BoatReservation b : boatReservations){
-            b.setId(b.getRegKorisnik().getId());
-            reservationDTOS.add(new ReservationDTO(b));
+    public ResponseEntity<List<FastReservationDTO>> viewReservations(){
+        List<FastReservation> boatReservations = this.fastReservationService.findAll();
+        List<FastReservationDTO> reservationDTOS = new ArrayList<>();
+        for(FastReservation b : boatReservations){
+            b.setId(b.getId());
+            reservationDTOS.add(new FastReservationDTO(b));
         }
         return new ResponseEntity<>(reservationDTOS,HttpStatus.OK);
     }
@@ -217,8 +220,8 @@ public class BoatController {
             sum = sum + i.getIncome();
         }
         retIncome.setIncome(sum);
-        Income income = new Income(sum);
-        incomeService.save(income);
+        //Income income = new Income(sum);
+        //incomeService.save(income);
 
         return new ResponseEntity<>(retIncome,HttpStatus.OK);
 

@@ -133,7 +133,7 @@ public class AdventureController {
         adventure.setAventureEquipment(rDTO.getAventureEquipment());
         adventure.setAdventureAdditionalServices(rDTO.getAdventureAdditionalServices());
         adventure.setPromoDescription(rDTO.getPromoDescription());
-        adventure.getFastReservation().add(fastReservation);
+        //adventure.getFastReservation().add(fastReservation);
         this.fastReservationService.create(fastReservation);
         this.adventureService.save(adventure);
         AdventureDTO adventureDTO = new AdventureDTO(adventure.getId(),adventure.getAdventureName(),adventure.getAdventureRules(),
@@ -152,11 +152,11 @@ public class AdventureController {
         fastReservation.setPrice(aDTO.getPrice());
         fastReservation.setStartDate(aDTO.getStartDate());
         fastReservation.setPlace(aDTO.getPlace());
-        fastReservation.setAdventure(adventure);
+        //fastReservation.setAdventure(adventure);
 
         this.fastReservationService.create(fastReservation);
         CreateAdventureResDTO createAdventureResDTO = new CreateAdventureResDTO();
-        createAdventureResDTO.setAdventureId(fastReservation.getAdventure().getId());
+        //createAdventureResDTO.setAdventureId(fastReservation.getAdventure().getId());
         createAdventureResDTO.setCapacity(fastReservation.getCapacity());
         createAdventureResDTO.setDuration(fastReservation.getDuration());
         createAdventureResDTO.setPrice(fastReservation.getPrice());
