@@ -62,9 +62,11 @@ public class Boat  implements Serializable{
     private String imageExt2;
 
 
-
     @OneToOne
     private BoatReservation boatReservation;
+
+    @OneToMany(mappedBy = "boat")
+    List<Income> boatIncome = new ArrayList<>();
 
     @ManyToOne
     private BoatOwner boatOwner;

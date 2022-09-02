@@ -201,6 +201,27 @@ public class KorisnikController {
         return new ResponseEntity<>(korisnikDTO, HttpStatus.OK);
     }
 
+    @GetMapping(value = "one/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<KorisnikDTO> getIdUser(@PathVariable("id") Long id)
+    {
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        KorisnikDTO korisnikDTO = new KorisnikDTO();
+        korisnikDTO.setId(korisnik.getId());
+        korisnikDTO.setUsername(korisnik.getUsername());
+        korisnikDTO.setBirthDate(korisnik.getBirthDate());
+        korisnikDTO.setName(korisnik.getName());
+        korisnikDTO.setSurname(korisnik.getSurname());
+        korisnikDTO.setState(korisnik.getState());
+        korisnikDTO.setCity(korisnik.getCity());
+        korisnikDTO.setHomeAddress(korisnik.getHomeAddress());
+        korisnikDTO.setEmailAddress(korisnik.getEmailAddress());
+        korisnikDTO.setPassword(korisnik.getPassword());
+        korisnikDTO.setPhoneNumber(korisnik.getPhoneNumber());
+        korisnikDTO.setRole(korisnik.getRole());
+
+        return new ResponseEntity<>(korisnikDTO, HttpStatus.OK);
+    }
+
 
 
 

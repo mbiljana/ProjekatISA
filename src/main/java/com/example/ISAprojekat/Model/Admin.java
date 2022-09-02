@@ -13,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Admin extends Korisnik {
+
     public Admin() {
     }
 
@@ -20,9 +21,12 @@ public class Admin extends Korisnik {
         super(id, name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role);
     }
 
+
     @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL,orphanRemoval = true)
     public List<ZahtevZaReg> zahtevi = new ArrayList<>();
 
     @OneToMany(mappedBy = "admin")
     public List<Report> reports = new ArrayList<>();
+
+
 }

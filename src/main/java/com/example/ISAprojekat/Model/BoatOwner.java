@@ -27,4 +27,5 @@ public class BoatOwner  extends Korisnik {
 
     @OneToMany(mappedBy = "boatOwner")
     private List<Boat> boats = new ArrayList<>();
+
 }

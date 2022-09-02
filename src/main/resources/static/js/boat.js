@@ -13,7 +13,16 @@ $(document).on("submit","form",function(event){
         var additionalEquipment = $("#additionalEquipment").val();
         var navigationEguipment = $("#navigationEguipment").val();
         var conditions= $("#conditions").val();
-        var newFitnesCentarJSON=formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions);
+        var imageEnt1 = $("#imageEnt1").val();
+        //imageEnt1.slice(12);
+        console.log(imageEnt1);
+        var imageEnt2 = $("#imageEnt2").val();
+        //imageEnt2.substring(12);
+        var imageExt1 = $("#imageExt1").val();
+        //imageExt1.substring(12);
+        var imageExt2 = $("#imageExt2").val();
+        //imageExt2.substring(12);
+        var newFitnesCentarJSON=formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions,imageEnt1,imageEnt2,imageExt1,imageExt2);
 
         $.ajax({
             type: "POST",
@@ -28,7 +37,7 @@ $(document).on("submit","form",function(event){
         });
 
     });
-    function formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions){
+    function formToJSON(boatName, boatType, engineNumber,enginePower,maxSpeed,boatAddress,boatCapacity,boatRules,boatDescription,additionalEquipment,navigationEguipment,conditions,imageEnt1,imageEnt2,imageExt1,imageExt2){
     return JSON.stringify({
         "boatName" : boatName,
         "boatType" : boatType,
@@ -41,7 +50,11 @@ $(document).on("submit","form",function(event){
         "boatDescription" : boatDescription,
         "additionalEquipment" : additionalEquipment,
         "navigationEguipment" : navigationEguipment,
-        "conditions" : conditions
+        "conditions" : conditions,
+        "imageEnt1" : imageEnt1,
+        "imageEnt2" : imageEnt2,
+        "imageExt1": imageExt1,
+        "imageExt2": imageExt2
     });
 
     }

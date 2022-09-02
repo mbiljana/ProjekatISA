@@ -81,6 +81,14 @@ public class CottageController {
         cottage.setNumBeds(cottageDTO.getNumBeds());
         cottage.setNumRooms(cottageDTO.getNumRooms());
         cottage.setCancelCondition(cottageDTO.getConditions());
+        String img1 = cottageDTO.getImageEnt1().substring(12);
+        String img2 = cottageDTO.getImageEnt2().substring(12);
+        String img3 = cottageDTO.getImageExt1().substring(12);
+        String img4 = cottageDTO.getImageExt2().substring(12);
+        cottage.setImageEnt1(img1);
+        cottage.setImageEnt2(img2);
+        cottage.setImageExt1(img3);
+        cottage.setImageExt2(img4);
         this.cottageService.save(cottage);
         CottageDTO cottageDTO1 = new CottageDTO(
                 cottage.getId(), cottage.getCottageName(), cottage.getCottageAddress(),

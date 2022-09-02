@@ -14,6 +14,7 @@ public interface BoatService {
     Boat create(Boat boat) throws Exception;
     void delete(Long id);
     Boat update(Boat boat);
+    Boat save(Boat boat);
 
 
 }

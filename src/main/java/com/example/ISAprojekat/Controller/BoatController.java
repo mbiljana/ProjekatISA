@@ -2,18 +2,13 @@ package com.example.ISAprojekat.Controller;
 
 import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.*;
-import com.example.ISAprojekat.Service.BoatReservationService;
-import com.example.ISAprojekat.Service.BoatService;
-import com.example.ISAprojekat.Service.FastReservationService;
-import com.example.ISAprojekat.Service.OcenaService;
+import com.example.ISAprojekat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +20,14 @@ public class BoatController {
     private final FastReservationService fastReservationService;
     private final OcenaService ocenaService;
     private final BoatReservationService boatReservationService;
+    private final IncomeService incomeService;
     @Autowired
-    public BoatController(BoatService boatService, FastReservationService fastReservationService, OcenaService ocenaService, BoatReservationService boatReservationService){
+    public BoatController(BoatService boatService, FastReservationService fastReservationService, OcenaService ocenaService, BoatReservationService boatReservationService,IncomeService incomeService){
         this.boatService = boatService;
         this.fastReservationService = fastReservationService;
         this.ocenaService  =ocenaService;
         this.boatReservationService = boatReservationService;
+        this.incomeService = incomeService;
     }
 
     //get all boats
@@ -90,12 +87,21 @@ public class BoatController {
         boat.setEnginePower(boatDTO.getEnginePower());
         boat.setMaxSpeed(boatDTO.getMaxSpeed());
         boat.setNavigationEquimpment(boatDTO.getNavigationEguipment());
+        String img1 = boatDTO.getImageEnt1().substring(12);
+        String img2 = boatDTO.getImageEnt2().substring(12);
+        String img3 = boatDTO.getImageExt1().substring(12);
+        String img4 = boatDTO.getImageExt2().substring(12);
+        boat.setImageEnt1(img1);
+        boat.setImageEnt2(img2);
+        boat.setImageExt1(img3);
+        boat.setImageExt2(img4);
         this.boatService.create(boat);
         BoatDTO boatDTO1 = new BoatDTO(
                 boat.getId(),boat.getBoatName(),boat.getBoatType(),boat.getEngineNumber(),
                 boat.getEnginePower(),boat.getMaxSpeed(),boat.getBoatAddress(),
                 boat.getBoatCapacity(),boat.getBoatRules(),boat.getBoatDescription(),
-                boat.getAdditionalEquipment(),boat.getNavigationEquimpment(),boat.getCancelCondition()
+                boat.getAdditionalEquipment(),boat.getNavigationEquimpment(),boat.getCancelCondition(),
+                boat.getImageEnt1(),boat.getImageEnt2(),boat.getImageExt1(),boat.getImageExt2()
         );
         return new ResponseEntity<>(boatDTO1,HttpStatus.CREATED);
     }
@@ -119,6 +125,15 @@ public class BoatController {
         createBoatResDTO.setPrice(fastReservation.getPrice());
         createBoatResDTO.setStartDate(fastReservation.getStartDate());
         createBoatResDTO.setAdditionalServices(fastReservation.getAdditionalServices());
+
+        List<Income> boatInc = boat.getBoatIncome();
+        Income income = new Income(createBoatResDTO.getPrice(),boat);
+        boatInc.add(income);
+        this.boatService.save(boat);
+        this.incomeService.save(income);
+
+
+
         return new ResponseEntity<>(createBoatResDTO,HttpStatus.CREATED);
     }
 
@@ -155,11 +170,12 @@ public class BoatController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "/allReservations", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/allReservations")
     public ResponseEntity<List<ReservationDTO>> viewReservations(){
         List<BoatReservation> boatReservations = this.boatReservationService.findAll();
         List<ReservationDTO> reservationDTOS = new ArrayList<>();
         for(BoatReservation b : boatReservations){
+            b.setId(b.getRegKorisnik().getId());
             reservationDTOS.add(new ReservationDTO(b));
         }
         return new ResponseEntity<>(reservationDTOS,HttpStatus.OK);
@@ -173,5 +189,40 @@ public class BoatController {
     }
 
      */
+
+
+    //get boat income
+    @GetMapping(path = "/boatIncome", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<IncomeDTO> getBoatIncome(@RequestBody IdDTO boatID){
+        Boat boat = this.boatService.getOne(boatID.getIdKorisnika());
+        List<Income> boatIncome = boat.getBoatIncome();
+        IncomeDTO returnIncome = new IncomeDTO();
+        float sum = 0;
+        for (Income i: boatIncome) {
+            sum = sum + i.getIncome();
+        }
+        returnIncome.setIncome(sum);
+        return new ResponseEntity<>(returnIncome,HttpStatus.OK);
+
+    }
+
+    //all income
+    @GetMapping(value = "/income")
+    public ResponseEntity<IncomeDTO> getAllBoatIncome(){
+
+        List<Income> allIncome = this.incomeService.findAll();
+        IncomeDTO retIncome = new IncomeDTO();
+        float sum = 0;
+        for (Income i: allIncome) {
+            sum = sum + i.getIncome();
+        }
+        retIncome.setIncome(sum);
+        Income income = new Income(sum);
+        incomeService.save(income);
+
+        return new ResponseEntity<>(retIncome,HttpStatus.OK);
+
+    }
+
 
 }

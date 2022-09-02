@@ -51,4 +51,9 @@ public class BoatOwnerServiceImpl implements BoatOwnerService {
         BoatOwner boatOwner = this.boatOwnerRepository.findByUsernameAndPassword(username,password);
         return boatOwner;
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

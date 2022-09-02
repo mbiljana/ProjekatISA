@@ -11,4 +11,5 @@ public interface BoatOwnerService {
     List<BoatOwner> findAll();
     BoatOwner getOne(Long id);
     BoatOwner getByUsernameAndPassword(String username, String password);
+    void delete(Long id);
 }

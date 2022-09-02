@@ -57,7 +57,10 @@ public class  BoatServiceImpl implements BoatService {
         return newBoat;
     }
 
-
+    @Override
+    public Boat save(Boat boat) {
+        return this.boatRepository.save(boat);
+    }
 
 
 }

@@ -23,5 +23,9 @@ public class BoatCDTO {
     private String additionalEquipment;
     private String navigationEguipment;
     private String conditions;
+    private String imageEnt1;
+    private String imageEnt2;
+    private String imageExt1;
+    private String imageExt2;
    // private String image;
 }

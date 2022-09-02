@@ -66,6 +66,13 @@ insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_k
 insert into cottage_reservation(id,end_date,res_name,start_date,cottage_id,reg_korisnik_id,duration,num_people)
 values(1025,'2022-10-10', 'Cottage reservation for two','2022-12-10',6,108,5,4);
 
+insert into income(id, income, boat_id)
+values ( 4002, 500, 8 );
+insert into income(id, income, boat_id)
+values ( 4003, 300, 8 );
+insert into income(id, income, boat_id)
+values ( 4004, 700, 8 );
+
 
 
 
