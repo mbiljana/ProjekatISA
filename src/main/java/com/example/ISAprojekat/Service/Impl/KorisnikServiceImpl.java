@@ -6,8 +6,6 @@ import com.example.ISAprojekat.Model.DTO.KorisnikDTO;
 import com.example.ISAprojekat.Model.DTO.UserAuthentificationRequestDTO;
 import com.example.ISAprojekat.Service.KorisnikService;
 import com.example.ISAprojekat.Service.RoleService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.example.ISAprojekat.Repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +21,8 @@ public class KorisnikServiceImpl implements KorisnikService {
     @Autowired
     private KorisnikService korisnikService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    //@Autowired
+    //private PasswordEncoder passwordEncoder;
 
     @Autowired
     private RoleService roleService;
@@ -83,7 +81,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         return  newK;
     }*/
 
-    @Override
+    /*@Override
     public Korisnik save(UserAuthentificationRequestDTO userRequest) {
         Korisnik u = new Korisnik();
         u.setUsername(userRequest.getUsername());
@@ -102,7 +100,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         u.setUloge(roles);
 
         return this.korisnikRepository.save(u);
-    }
+    }*/
 
     @Override
     public Korisnik update (Korisnik korisnik) throws Exception{
@@ -139,7 +137,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         return admin.isInitialPasswordChanged();
     }
 
-    @Override
+    /*@Override
     public void updatePassword(String username, String password) {
         Korisnik user= korisnikRepository.findByUsername(username);
         user.setPassword(passwordEncoder.encode(password));
@@ -151,7 +149,7 @@ public class KorisnikServiceImpl implements KorisnikService {
         } else {
             korisnikRepository.save(user);
         }
-    }
+    }*/
 
     @Override
     public Korisnik modify(Korisnik korisnik) throws Exception {
@@ -171,7 +169,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 
 
-    public Korisnik ByEmailAddress(String username) throws UsernameNotFoundException {
+    public Korisnik ByEmailAddress(String username)  {
         return korisnikRepository.findByEmailAddress(username);
     }
 

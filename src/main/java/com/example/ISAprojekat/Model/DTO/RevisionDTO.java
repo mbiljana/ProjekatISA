@@ -15,21 +15,21 @@ public class RevisionDTO {
 
     public RevisionDTO() {}
 
-    public RevisionDTO(String content, boolean isApproved, Integer mark, Integer reservationId) {
+    public RevisionDTO(Integer id, String content, boolean isApproved, Integer mark, Integer reservationId, String fullName, String name, String s) {
         this.content = content;
         this.isApproved = isApproved;
         this.mark = mark;
         this.reservationId = reservationId;
     }
 
-    public RevisionDTO(Integer id, String content, boolean isApproved, Integer mark, Integer reservationId, String clientEmail, String clientFullName, String advertiserFullName, String entityName, String type) {
+    public RevisionDTO(Integer id, String content, boolean isApproved, Integer mark, Integer reservationId, String clientEmail,String advertiserFullName, String entityName, String type) {
         this.id = id;
         this.content = content;
         this.isApproved = isApproved;
         this.mark = mark;
         this.reservationId = reservationId;
         this.clientEmail = clientEmail;
-        this.clientFullName = clientFullName;
+        //this.clientFullName = clientFullName;
         this.advertiserFullName = advertiserFullName;
         this.entityName = entityName;
         this.type = type;

@@ -2,7 +2,6 @@ package com.example.ISAprojekat.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,9 +9,9 @@ import java.util.List;
 //implementiran GrantedAuthority kojim se definišu uloge za autentifikaciju
 @Entity
 @Table
-public class Uloga  implements GrantedAuthority {
+public class Uloga {
 
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name ="id")
@@ -25,7 +24,7 @@ public class Uloga  implements GrantedAuthority {
     List<Korisnik>korisnikList;*/
 
     @JsonIgnore
-    @Override
+    //@Override
     public String getAuthority() {
         return name;
     }

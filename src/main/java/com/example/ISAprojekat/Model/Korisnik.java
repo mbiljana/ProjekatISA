@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,8 +23,8 @@ import java.util.List;
 @NoArgsConstructor
 
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Korisnik implements UserDetails {
-    private static final long serialVersionUID = 1L;
+public class Korisnik implements Serializable {
+    //private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -236,7 +235,7 @@ public class Korisnik implements UserDetails {
         this.uloge = uloge;
     }
 
-    @Override
+   /* @Override
     public boolean isEnabled() {
         return enabled;
     }
@@ -262,7 +261,7 @@ public class Korisnik implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
-    }
+    }*/
 
     public String getFullName() {
         return this.getName() + " " + this.getSurname();

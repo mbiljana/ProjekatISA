@@ -100,7 +100,7 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public Set<Sale> getAllSalesForLoggedInstructor(String email) {
-        List<Adventure> adventures = adventureRepository.fetchAdventuresByFishingInstructorEmailAddress(email);
+        List<Adventure> adventures = adventureRepository.fetchAdventuresByFishingInstructor_EmailAddress(email);
 
         Set<Sale> sales = new HashSet<>();
         for(Adventure a : adventures) {

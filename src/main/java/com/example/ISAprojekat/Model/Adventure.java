@@ -31,17 +31,30 @@ public class Adventure extends RentingEntity {
     private Set<String> fishingEquipment = new HashSet<String>();
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
-    @JoinColumn(name = "reg_user_id")
+    @JoinColumn(name = "id")
     private FishingInstructor fishingInstructor;
-    @Id
-    private Integer id;
 
-
-    public void setId(Integer id) {
-        this.id = id;
+    public int getMaxPersons() {
+        return maxPersons;
     }
 
-    public Integer getId() {
-        return id;
+    public void setMaxPersons(int maxPersons) {
+        this.maxPersons = maxPersons;
+    }
+
+    public Set<String> getFishingEquipment() {
+        return fishingEquipment;
+    }
+
+    public void setFishingEquipment(Set<String> fishingEquipment) {
+        this.fishingEquipment = fishingEquipment;
+    }
+
+    public FishingInstructor getFishingInstructor() {
+        return fishingInstructor;
+    }
+
+    public void setFishingInstructor(FishingInstructor fishingInstructor) {
+        this.fishingInstructor = fishingInstructor;
     }
 }

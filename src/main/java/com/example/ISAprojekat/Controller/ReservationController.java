@@ -9,15 +9,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "api/reservations")
 public class ReservationController {
+
+
+    @Autowired
+    private FastReservationService reservationService;
+
+    @Autowired
+    private EntityService entityService;
+
+    @Autowired
+    SaleService saleService;
+
+    //private ModelMapper modelMapper = new ModelMapper();
     /*private final BoatService boatService;
     private final BoatReservationService boatReservationService;
     private final RegKorisnikService regKorisnikService;
@@ -127,5 +140,33 @@ public class ReservationController {
         return new ResponseEntity<>(isBooked, HttpStatus.OK);
     }*/
 
+    @GetMapping(value = "/entity/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Set<ReservationDTO>> getReservationsByEntityId(@PathVariable("id") Integer id) {
+        List<FastReservation> reservations = reservationService.getReservationsByEntityId(id);
 
+        Set<ReservationDTO> reservationDTOS = new HashSet<>();
+        for(FastReservation r : reservations) {
+            ReservationDTO dto = new ReservationDTO(r.getId(), r.getStartDate(), r.getDuration(), r.getCapacity(), r.getPrice(), r.getCanceled(), r.getRentingEntity().getId(), r.getRentingEntity().getName());
+            reservationDTOS.add(dto);
+        }
+        return new ResponseEntity<>(reservationDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/booked/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    //@PreAuthorize("hasAnyRole('COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR')")
+    public ResponseEntity<Boolean> isEntityBooked(@PathVariable("id") Integer id) {
+        Boolean isBooked = reservationService.isEntityBookedNow(id);
+        return new ResponseEntity<>(isBooked, HttpStatus.OK);
+    }
+
+    //ne radi
+   /* @PostMapping(value = "/createByAdvertiser")
+   // @PreAuthorize("hasAnyRole('COTTAGE_OWNER, SHIP_OWNER, INSTRUCTOR')")
+    public ResponseEntity<ReservationDTO> saveReservationByAdvertiser(@RequestBody ReservationDTO reservationDTO) {
+        FastReservation reservation = modelMapper.map(reservationDTO, Reservation.class);
+        //reservation.setRentingEntity(this.entityService.getEntityById(reservationDTO.getEntityId()));
+        //reservation.getRentingEntity().setVersion(reservationDTO.getEntityVersion());
+        ReservationDTO createdReservation = reservationService.saveReservationCreatedByAdvertiser(reservation, reservationDTO.getEntityId());
+        return new ResponseEntity<>(createdReservation, HttpStatus.CREATED);
+    }*/
 }

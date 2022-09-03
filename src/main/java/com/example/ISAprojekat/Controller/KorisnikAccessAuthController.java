@@ -9,18 +9,12 @@ import java.util.Map;
 
 import com.example.ISAprojekat.Model.DTO.IzmenaProfilaDTO;
 import com.example.ISAprojekat.Model.DTO.KorisnikDTO;
-import com.example.ISAprojekat.Model.DTO.UserTokenState;
+
 import com.example.ISAprojekat.Repository.KorisnikRepository;
-import com.example.ISAprojekat.Utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.ISAprojekat.Model.Korisnik;
@@ -35,26 +29,26 @@ public class KorisnikAccessAuthController {
     @Autowired
     private KorisnikService userService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    //@Autowired
+    //private AuthenticationManager authenticationManager;
 
     @Autowired
     private KorisnikRepository userRepository;
 
-    @Autowired
-    private TokenUtils tokenUtils;
+    //@Autowired
+   // private TokenUtils tokenUtils;
 
     // Za pristup ovoj metodi neophodno je da ulogovani korisnik ima ADMIN ulogu
     // Ukoliko nema, server ce vratiti gresku 403 Forbidden
     // Korisnik jeste autentifikovan, ali nije autorizovan da pristupi resursu
     @GetMapping("/user/{userId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public Korisnik loadById(@PathVariable Integer userId) {
         return this.userService.findOne(userId);
     }
 
     @GetMapping(value="/getById/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+    //@PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
     public ResponseEntity<KorisnikDTO> getById(@PathVariable Integer id){
         Korisnik user = userService.findOne(id);
         KorisnikDTO userDTO = new KorisnikDTO(user.getId(), user.getName(), user.getSurname(), user.getPhoneNumber(), user.getEmailAddress(), user.getPassword(), user.getUserStatus(), user.isEnabled(), user.getLastPasswordResetDate());
@@ -62,7 +56,7 @@ public class KorisnikAccessAuthController {
     }
 
     @GetMapping(value="/getByEmail/{email}")
-    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+   // @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
     public ResponseEntity<KorisnikDTO> getByEmail(@PathVariable("email") String email){
         Korisnik user = userService.getByEmailAddress(email);
         KorisnikDTO userDTO = new KorisnikDTO(user.getId(), user.getName(), user.getSurname(), user.getPhoneNumber(), user.getEmailAddress(), user.getPassword(), user.getUserStatus(), user.isEnabled(), user.getLastPasswordResetDate());
@@ -71,14 +65,13 @@ public class KorisnikAccessAuthController {
 
     //po username-u
     @GetMapping(value="/getLoggedUser")
-    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+    //@PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
     public ResponseEntity<KorisnikDTO> getLoggedUser(Principal principal){
         KorisnikDTO user=userService.getProfileInfo(principal.getName());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping("/user/all")
-    @PreAuthorize("hasRole('ADMIN')")
     public List<Korisnik> loadAll() {
         return this.userService.findAll();
     }
@@ -91,7 +84,7 @@ public class KorisnikAccessAuthController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }*/
 
-    @PutMapping (value="/changePassword/{password}")
+    /*@PutMapping (value="/changePassword/{password}")
     @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
     public ResponseEntity<UserTokenState> changePassword(@PathVariable String password, Principal principal) throws InterruptedException {
         String email = principal.getName();
@@ -111,19 +104,19 @@ public class KorisnikAccessAuthController {
         String jwt = tokenUtils.generateToken(user.getUsername());
         int expiresIn = tokenUtils.getExpiredIn();
         return ResponseEntity.ok(new UserTokenState(jwt, expiresIn,user.getUloge().get(1).getName()));
-    }
+    }*/
 
     //ne radi
     //ne moze da castuje admina za korisnika u serviceImpl
     @GetMapping("/passwordChanged")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Boolean> hasAdminChangedInitialPassword(Principal admin) {
         Boolean initialPasswordChanged = userService.hasAdminChangedInitialPassword(admin.getName());
         return new ResponseEntity<>(initialPasswordChanged, HttpStatus.OK);
     }
 
     @GetMapping("/whoami")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public Korisnik user(Principal user) {
         return this.userRepository.findByUsername(user.getName());
     }
@@ -136,7 +129,7 @@ public class KorisnikAccessAuthController {
     }
 
     @PutMapping(value="/update")
-    @PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
+    //@PreAuthorize("hasAnyRole('ADMIN','COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','CLIENT')")
     public ResponseEntity<Void> updateUser(@RequestBody IzmenaProfilaDTO user) throws Exception {
         userService.updateDTO(user);
         return new ResponseEntity<>(HttpStatus.OK);

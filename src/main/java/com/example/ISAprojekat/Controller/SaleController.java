@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +31,7 @@ public class SaleController {
     private SaleService saleService;
 
     @GetMapping("/instructor")
-    @PreAuthorize("hasAnyRole('INSTRUCTOR', 'ADMIN')")
+    //@PreAuthorize("hasAnyRole('INSTRUCTOR', 'ADMIN')")
     public ResponseEntity<Set<SaleDTO>> getAllSalesForLoggedInstructor(Principal principal) {
         Set<Sale> sales = saleService.getAllSalesForLoggedInstructor(principal.getName());
         Set<SaleDTO> dto = getSaleDTOS(sales);
@@ -50,7 +49,7 @@ public class SaleController {
     }
 
     @GetMapping("")
-    @PreAuthorize("hasRole('ADMIN')")
+   // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Set<SaleDTO>> getAllSales() {
         List<Sale> sales = saleService.findAll();
 
@@ -63,7 +62,7 @@ public class SaleController {
     }
 
     @PostMapping("/{id}")
-    @PreAuthorize("hasAnyRole('COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR', 'ADMIN')")
+    //@PreAuthorize("hasAnyRole('COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR', 'ADMIN')")
     public ResponseEntity<SaleDTO> createSaleForEntity(@RequestBody Sale sale, @PathVariable("id") Integer entityId) {
         Sale newSale = saleService.createSaleForEntity(sale, entityId);
         SaleDTO saleDTO = new SaleDTO(newSale.getId(), newSale.getDateTimeFrom(), newSale.getDurationInHours(), newSale.getMaximumPersons(), newSale.getExpireDateTime(), newSale.getAdditionalServices(), newSale.getPrice());
