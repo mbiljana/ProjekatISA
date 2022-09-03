@@ -1,6 +1,6 @@
-$(document).ready(function(){
+$(document).on("submit","form",function(event){
 
-    $("#addOwnerForm").submit(function(event) {
+    //$("#addOwnerForm").submit(function(event) {
 
         event.preventDefault();
         var username = $("#username").val();
@@ -16,35 +16,17 @@ $(document).ready(function(){
         var homeAddress = $("#homeAddress").val();
         var regType = $("#regType").val();
         var razlog = $("#razlog").val();
-        //var aktivan = true;
-       // var da_li_je_registrovan = true;
-        var obj = JSON.stringify({
-            "username" : username,
-            "password" : password,
-            "password2" : password2,
-            "name" : name,
-            "surname" : surname,
-            "phoneNumber" : phoneNumber,
-            "emailAddress" : emailAddress,
-            "birthDate" : birthDate,
-            "city" : city,
-            "state" : state,
-            "homeAddress" : homeAddress ,
-            "regType" : regType,
-            "role" : 1,
-            "razlog" : razlog,
-           // "aktivan" : aktivan,
-           // "da_li_je_registrovan" : da_li_je_registrovan,
-        });
 
+        //new way
+        var newFitnesCentarJSON=formToJSON(username,password,password2,name,surname,phoneNumber,emailAddress,birthDate,city,state,homeAddress,regType,razlog);
         $.ajax({
             type: "POST",
             url: "http://localhost:8181/api/korisnik/registerOwner",
             dataType: "json",
             contentType: "application/json",
-            data: obj,
+            data: newFitnesCentarJSON,
             success: function () {
-                alert(obj);
+                alert("Usesno poslat zahtev za registraciju");
                 window.location.href = "index.html";
             },
             error: function (data) {
@@ -53,6 +35,28 @@ $(document).ready(function(){
                 alert("Izgleda da jeste");
             }
         });
+
+        function formToJSON(username,password,password2,name,surname,phoneNumber,emailAddress,birthDate,city,state,homeAddress,regType,razlog){
+            return  JSON.stringify({
+                "username" : username,
+                "password" : password,
+                "password2" : password2,
+                "name" : name,
+                "surname" : surname,
+                "phoneNumber" : phoneNumber,
+                "emailAddress" : emailAddress,
+                "birthDate" : birthDate,
+                "city" : city,
+                "state" : state,
+                "homeAddress" : homeAddress ,
+                "regType" : regType,
+                "role" : 1,
+                "razlog" : razlog
+            });
+        }
+
+
+
 
         /*
             });
@@ -74,7 +78,7 @@ $(document).ready(function(){
                 },
                 error: function (response) {
                 } */
-    });
+   // });
 
 
 });

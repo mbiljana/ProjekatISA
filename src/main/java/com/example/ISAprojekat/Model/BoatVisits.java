@@ -21,5 +21,5 @@ public class BoatVisits {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    
+
 }

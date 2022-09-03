@@ -12,44 +12,48 @@
 
 
     <style>
-       .container{
-           align-content: center;
-           align-items: center;
 
+       body{
+        background-image:url("images/back3.jpg");
        }
+       .center{
+           margin: auto;
+           width: 60%;
+           padding: 10px;
+       }
+
+
     </style>
 
 </head>
 <body>
 
-<div class="container">
+<div class="container" >
     <div class="row">
-        <div class="u-columns-6-xs">
-            <h2 class="w3-xxlarge"><b>Sign in </b></h2>
-            <form id="formaLogovanjeKorisnika" action="#">
+        <div class="center">
+            <h2 class="w3-xxlarge center"><b>Sign in </b></h2>
+            <form id="formaLogovanjeKorisnika" action="#" class="center">
 
-                <div class="input-group input-group-lg">
+                <div >
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <input id="username" type="text" class="form-control" placeholder="Username">
                 </div>
 
-                <div class="input-group input-group-lg">
+                <div >
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                     <input id="password" type="password" class="form-control" placeholder="Password">
                 </div>
-                <button type="submit" class="btn u-btn-submit" >Login</button>
+                <button type="submit" class="btn u-btn-4" >Login</button>
             </form>
         </div>
 
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="u-columns-6-xs">
+<div class="center">
+    <div class="center">
+        <div class="center">
             <ul id="hl" >
                 <li id = "dugmeRegistracijaClana"><a href="ownerRegistration.html">Register</a></li>
-                <li id = "dugmeOdobrenje"><a href="registrationRequests.html">Requests</a></li>
-                <li><a href="imageTrial.html">Photos</a></li>
             </ul>
         </div>
 

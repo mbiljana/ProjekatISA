@@ -101,6 +101,7 @@ public class KorisnikController {
                 zahtevZaReg.setPhoneNumber(DTO.getPhoneNumber());
                 zahtevZaReg.setUsername(DTO.getUsername());
                 zahtevZaReg.setSurname(DTO.getSurname());
+                zahtevZaReg.setRazlog(DTO.getRazlog());
                 ZahtevZaRegDTO zahtevZaRegDTO = new ZahtevZaRegDTO(DTO.getName(),DTO.getSurname(),
                         DTO.getEmailAddress(),DTO.getPhoneNumber(),DTO.getCity(),
                         DTO.getState(),DTO.getHomeAddress(),DTO.getBirthDate(),
@@ -222,6 +223,46 @@ public class KorisnikController {
         return new ResponseEntity<>(korisnikDTO, HttpStatus.OK);
     }
 
+
+/*
+    @PostMapping(value="/register" ,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<OwnerDTO> register(@RequestBody RegisterOwnerDTO DTO) throws Exception {
+        Korisnik existing = this.korisnikService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
+        //ako vec postoji clan
+        if (existing != null) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }else {
+            if (DTO.getPassword().equals(DTO.getPassword2())) {
+                OwnerDTO ownerDTO = new OwnerDTO();
+                ownerDTO.setCity(DTO.getCity());
+                ownerDTO.setBirthDate(DTO.getBirthDate());
+                ownerDTO.setEmailAddress(DTO.getEmailAddress());
+                ownerDTO.setName(DTO.getName());
+                ownerDTO.setPassword(DTO.getPassword());
+                ownerDTO.setState(DTO.getState());
+                ownerDTO.setHomeAddress(DTO.getHomeAddress());
+                ownerDTO.setPhoneNumber(DTO.getPhoneNumber());
+                ownerDTO.setUsername(DTO.getUsername());
+                zahtevZaReg.setSurname(DTO.getSurname());
+                ZahtevZaRegDTO zahtevZaRegDTO = new ZahtevZaRegDTO(DTO.getName(),DTO.getSurname(),
+                        DTO.getEmailAddress(),DTO.getPhoneNumber(),DTO.getCity(),
+                        DTO.getState(),DTO.getHomeAddress(),DTO.getBirthDate(),
+                        DTO.getUsername(),DTO.getPassword(),DTO.getRegType(),DTO.getRazlog());
+                this.zahtevZaRegService.save(zahtevZaReg);
+                Admin admin = this.adminService.getByUsernameAndPassword("123","111");
+                admin.zahtevi.add(zahtevZaReg);
+                return new ResponseEntity<>(zahtevZaRegDTO, HttpStatus.OK);
+            }else{
+                System.out.println("Lozinke se ne poklapaju!");
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+        }
+    }
+
+ */
 
 
 
