@@ -5,6 +5,7 @@ import com.example.ISAprojekat.Model.Adventure;
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Model.FastReservation;
+import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Service.AdventureService;
 import com.example.ISAprojekat.Service.FastReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,50 @@ public class AdventureController {
         this.adventureService = adventureService;
         this.fastReservationService = fastReservationService;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Adventure> getAdventureById(@PathVariable("id") Integer id) {
+        Adventure adventure = null;
+
+        try {
+            adventure = adventureService.fetchById(id);
+            adventure.setReservations(null);
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not load images!");
+        }
+
+        if(adventure == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no adventure with this id!");
+
+        return new ResponseEntity<>(adventure, HttpStatus.OK);
+    }
+
+    //ne radi
+    @PostMapping("/add")
+    public ResponseEntity<String> addNewAdventure(Korisnik user, @RequestBody Adventure adventure) throws IOException {
+
+        if(adventureService.findByName(adventure.getName()) != null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Adventure with this name already exists!");
+
+        adventure.getFishingInstructor().setUsername(user.getUsername());
+        adventureService.save(adventure);
+        return new ResponseEntity<>("Adventure successfully added!", HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updateAdventure(@RequestBody Adventure adventure) throws IOException {
+        if(existsAdventureWithSameName(adventure))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Adventure with this name already exists!");
+
+        adventureService.update(adventure);
+        return new ResponseEntity<>("Successfully edited cottage!", HttpStatus.OK);
+    }
+
+    private boolean existsAdventureWithSameName(Adventure adventure) {
+        Adventure existedAdventure = adventureService.findByName(adventure.getName());
+        return existedAdventure != null && existedAdventure.getId() != adventure.getId();
+    }
+
+
 
    /* @GetMapping(value = "/allAdventures")
     public ResponseEntity<List<AdventureDTO>> getAllAdventures() {
@@ -90,27 +138,6 @@ public class AdventureController {
         }
 
         return new ResponseEntity<>(boatDTOS, HttpStatus.OK);
-    }
-
-    @PostMapping(value = ("/update"),
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AdventureDTO> izmena(@RequestBody AdventureDTO kDTO) throws Exception {
-        Adventure listaTreninga = adventureService.findOne(kDTO.getId());
-        listaTreninga.setAdventureName(kDTO.getAdventureName());
-        //LocalDateTime now = LocalDateTime.now();
-        listaTreninga.setAdventureRules(kDTO.getAdventureRules());
-        listaTreninga.setAdventureAddress(kDTO.getAdventureAddress());
-        listaTreninga.setAdventureCapacity(kDTO.getAdventureCapacity());
-        listaTreninga.setInstructorBiography(kDTO.getInstructorBiography());
-        listaTreninga.setAventureEquipment(kDTO.getAventureEquipment());
-        listaTreninga.setAdventureAdditionalServices(kDTO.getAdventureAdditionalServices());
-        listaTreninga.setPromoDescription(kDTO.getPromoDescription());
-        adventureService.update(listaTreninga);
-        AdventureDTO tDTO = new AdventureDTO(listaTreninga.getAdventureName(),listaTreninga.getAdventureRules(), listaTreninga.getPromoDescription(), listaTreninga.getAdventureCapacity(), listaTreninga.getAdventureAddress(), listaTreninga.getAdventureAdditionalServices(), listaTreninga.getAventureEquipment(), listaTreninga.getInstructorBiography());
-
-        return new ResponseEntity<>(tDTO,HttpStatus.OK);
-
     }
 
     @PostMapping(value = ("/createAdventureRes"),

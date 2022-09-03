@@ -1,24 +1,17 @@
 package com.example.ISAprojekat.Controller;
 
 
-import com.example.ISAprojekat.Exception.ResourceConflictException;
+
 import com.example.ISAprojekat.Model.Admin;
-import com.example.ISAprojekat.Model.DTO.JwtAuthenticationRequest;
-import com.example.ISAprojekat.Model.DTO.UserAuthentificationRequestDTO;
-import com.example.ISAprojekat.Model.DTO.UserTokenState;
+
 import com.example.ISAprojekat.Model.Korisnik;
 import com.example.ISAprojekat.Repository.KorisnikRepository;
 import com.example.ISAprojekat.Service.KorisnikService;
-import com.example.ISAprojekat.Utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,21 +25,21 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthenticationController {
 
-    @Autowired
-    private TokenUtils tokenUtils;
+  //  @Autowired
+    //private TokenUtils tokenUtils;
 
     @Autowired
     private KorisnikRepository korisnikRepository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    //@Autowired
+    //private AuthenticationManager authenticationManager;
 
     @Autowired
     private KorisnikService userService;
 
     // Prvi endpoint koji pogadja korisnik kada se loguje.
     // Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public ResponseEntity<UserTokenState> createAuthenticationToken(
             @RequestBody JwtAuthenticationRequest authenticationRequest, HttpServletResponse response) {
 
@@ -66,10 +59,10 @@ public class AuthenticationController {
 
         // Vrati token kao odgovor na uspesnu autentifikaciju
         return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
-    }
+    }*/
 
     // Endpoint za registraciju novog korisnika
-    @PostMapping("/signup")
+    /*@PostMapping("/signup")
     public ResponseEntity<Korisnik> addUser(@RequestBody UserAuthentificationRequestDTO userRequest, UriComponentsBuilder ucBuilder) {
 
         Korisnik existUser = this.korisnikRepository.findByUsername(userRequest.getUsername());
@@ -93,9 +86,9 @@ public class AuthenticationController {
         return new ResponseEntity<>(addedAdmin, HttpStatus.CREATED);
     }*/
 
-    @PostMapping("/logout")
+    /*@PostMapping("/logout")
     public ResponseEntity<Void> Logout() {
         SecurityContextHolder.getContext().setAuthentication(null);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
+    }*/
 }

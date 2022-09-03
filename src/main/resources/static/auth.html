@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>JSON web token with vanilla js</title>
+    <script src="jwt-vanilla.js"></script>
 </head>
 <body>
 <div class="input">
-    <label>user name:</label>
+    <label>username:</label>
     <input id="username">
     <label>password:</label>
     <input id="password">
-     <button onclick="getToken()">login</button>
+     <button onclick="request.send()">login</button>
 </div>
-<div id="token"></div>
-<button onclick="getSecret()">get secret message</button>
-<div id="result"></div>
-<script src="jwt-vanilla.js"></script>
+
 </body>
 </html>

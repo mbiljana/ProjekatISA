@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class RevisionServiceImpl implements RevisionService {
-   /* @Autowired
+    @Autowired
     private RevisionRepository revisionRepository;
 
     @Autowired
@@ -83,5 +83,5 @@ public class RevisionServiceImpl implements RevisionService {
                 .append("\nNew average grade is ").append(newAverageGrade);
 
         //emailService.sendSimpleMessage(advertiser.getEmailAddress(), "New revision approved", stringBuilder.toString());
-    }*/
+    }
 }

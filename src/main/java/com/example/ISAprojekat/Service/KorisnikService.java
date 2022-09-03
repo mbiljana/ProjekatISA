@@ -17,10 +17,10 @@ public interface KorisnikService {
     Korisnik findOne(Integer id);
     Korisnik update(Korisnik korisnik) throws Exception;
     void updateDTO(IzmenaProfilaDTO korisnik) throws Exception;
-    void updatePassword(String username, String Password);
+    //void updatePassword(String username, String Password);
     boolean hasAdminChangedInitialPassword(String email);
     Korisnik modify(Korisnik korisnik) throws Exception;
-    Korisnik save(UserAuthentificationRequestDTO userRequest);
+    //Korisnik save(UserAuthentificationRequestDTO userRequest);
     //Korisnik save(Korisnik korisnik) throws Exception;
     //Korisnik findByEmailAddress(String email);
 }

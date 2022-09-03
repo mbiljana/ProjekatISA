@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,28 +21,28 @@ import java.util.Set;
 @Controller
 @RequestMapping(value = "/revision", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RevisionController {
-   /* @Autowired
+    @Autowired
     private RevisionService revisionService;
 
     @Autowired
     private AdvertiserService advertiserService;
 
     @GetMapping("")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Set<RevisionDTO>> getAllPendingRevisions() {
         List<Revision> revisions = revisionService.getAllPendingRevisions();
 
         Set<RevisionDTO> DTOs = new HashSet<>();
         for(Revision r : revisions) {
             Korisnik advertiser = advertiserService.findAdvertiserByEntityId(r.getReservation().getRentingEntity().getId());
-            //RevisionDTO dto = new RevisionDTO(r.getId(), r.getContent(), r.getApproved(), r.getMark(), r.getId(), r.getReservation().getClient().getEmailAddress(), r.getReservation().getClient().getFullName(), advertiser.getFullName(), r.getReservation().getRentingEntity().getName(), advertiser.getUloge().get(1).getName());
-            //DTOs.add(dto);
+            RevisionDTO dto = new RevisionDTO(r.getId(), r.getContent(), r.getApproved(), r.getMark(), r.getId(), advertiser.getFullName(), r.getReservation().getRentingEntity().getName(), advertiser.getRole().name());
+            DTOs.add(dto);
         }
         return new ResponseEntity<>(DTOs, HttpStatus.OK);
     }
 
     @PutMapping("/approve")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> approveRevision(@RequestBody Integer id) {
         try {
             revisionService.approveRevision(id);
@@ -56,7 +55,7 @@ public class RevisionController {
     }
 
     @DeleteMapping("/disapprove/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> disapproveRevision(@PathVariable("id") Integer id) {
         try{
             revisionService.deleteById(id);
@@ -66,5 +65,5 @@ public class RevisionController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Looks like some other admin is reviewing this revision right now.");
         }
         return new ResponseEntity<>("Revision disapproved and deleted!", HttpStatus.OK);
-    }*/
+    }
 }

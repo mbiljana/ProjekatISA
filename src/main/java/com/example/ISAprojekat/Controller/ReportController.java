@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -37,7 +36,7 @@ public class ReportController {
     private AdvertiserService advertiserService;
 
     @PostMapping("/add")
-    @PreAuthorize("hasAnyRole('COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','ADMIN')")
+    //@PreAuthorize("hasAnyRole('COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR','ADMIN')")
     public ResponseEntity<String> addNewReport(Principal user, @RequestBody ReportDTO reportDTO)  {
         //Report report = new Report(reportDTO.getContent(), reportDTO.isBadReview(), reportDTO.isNotAppeared(),
                 //new Client(this.userService.getByUsername(reportDTO.getEntityName())),
@@ -47,7 +46,7 @@ public class ReportController {
     }
 
     @GetMapping("")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Set<ReportDTO>> getAllReports() {
         List<Report> reports = reportService.getAllReports();
 

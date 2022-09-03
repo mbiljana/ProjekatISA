@@ -5,6 +5,7 @@ import com.example.ISAprojekat.Model.BoatOwner;
 import com.example.ISAprojekat.Model.FishingInstructor;
 import com.example.ISAprojekat.Model.UnavailablePeriod;
 import com.example.ISAprojekat.Repository.FishingInstructorRepository;
+import com.example.ISAprojekat.Repository.KorisnikRepository;
 import com.example.ISAprojekat.Service.FishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,15 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class FishingInstructorImpl implements FishingInstructorService {
-    private final FishingInstructorRepository fishingInstructorRepository;
+    @Autowired
+    private  FishingInstructorRepository fishingInstructorRepository;
+
 
     @Autowired
-    private FishingInstructorImpl(FishingInstructorRepository fishingInstructorRepository){
-        this.fishingInstructorRepository = fishingInstructorRepository;
-    }
+    private KorisnikRepository userRepository;
+
+
 
     @Override
     public FishingInstructor save(FishingInstructor fishingInstructor) throws Exception {
@@ -83,6 +87,13 @@ public class FishingInstructorImpl implements FishingInstructorService {
     public FishingInstructor getByEmailAddressAndPassword(String emailAddress, String password){
         FishingInstructor fishingInstructor =this.fishingInstructorRepository.findByEmailAddressAndPassword(emailAddress,password);
         return fishingInstructor;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<UnavailablePeriod> getAllUnavailablePeriodsForInstructor(String instructorEmail) {
+        FishingInstructor fishingInstructor = userRepository.fetchByEmailAddress(instructorEmail);
+        return fishingInstructor.getUnavailablePeriods();
     }
 
 

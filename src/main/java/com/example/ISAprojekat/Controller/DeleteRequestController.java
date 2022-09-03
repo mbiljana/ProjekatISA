@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,14 +26,14 @@ public class DeleteRequestController {
     DeleteRequestService deleteRequestService;
 
     @PostMapping("")
-    @PreAuthorize("hasAnyRole('ADMIN', 'CLIENT', 'COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR')")
+   //@PreAuthorize("hasAnyRole('ADMIN', 'CLIENT', 'COTTAGE_OWNER', 'SHIP_OWNER', 'INSTRUCTOR')")
     public ResponseEntity<Void> saveDeleteRequest(@RequestBody String content, Principal principal) {
         deleteRequestService.save(principal.getName(), content);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("")
-    @PreAuthorize("hasRole('ADMIN')")
+   // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Set<DeleteRequestDTO>> getAllDeleteRequests() {
         List<DeleteRequest> requests = deleteRequestService.getAllRequests();
 
@@ -47,7 +46,7 @@ public class DeleteRequestController {
     }
 
     @PutMapping("/reject/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> rejectDeleteRequest(@PathVariable("id") Integer id, @RequestBody String response) {
         try {
             deleteRequestService.rejectDeleteRequest(id, response);
@@ -61,7 +60,7 @@ public class DeleteRequestController {
     }
 
     @PutMapping("/approve")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> approveDeleteRequest(@RequestBody Integer id) {
         try {
             deleteRequestService.approveDeleteRequest(id);

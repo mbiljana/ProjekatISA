@@ -31,8 +31,8 @@ public class FishingInstructor extends Korisnik{
     }
 
     //lista avantura
-    @OneToMany(mappedBy = "fishingInstructor")
-    private List<Adventure> adventures = new ArrayList<>();
+   /* @OneToMany(mappedBy = "fishingInstructor")
+    private List<Adventure> adventures = new ArrayList<>();*/
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore

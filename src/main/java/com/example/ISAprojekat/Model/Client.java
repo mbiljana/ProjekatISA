@@ -15,8 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
-public class Client implements Serializable {
+public class Client extends Korisnik {
     @Column(name="points", unique=false, nullable=true)
     private double points = 0;
 
@@ -25,25 +24,21 @@ public class Client implements Serializable {
 
     @Column(name="client_type", unique=false, nullable=true)
     private ClientType clientType = ClientType.bronze;
-    @Id
-    private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    /*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "rent_entity", joinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "entity_id", referencedColumnName = "entity_id"))
-    private Set<RentingEntity> subscriptions = new HashSet<RentingEntity>();*/
+    private Set<RentingEntity> subscriptions = new HashSet<RentingEntity>();
 
+
+    public Client() {}
 
     /*public Client(RegistrationRequest userRequest) {
         super(userRequest);
     }*/
+
+    public Client(Korisnik registeredUser) { super(registeredUser); }
+
 
 }
