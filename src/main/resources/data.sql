@@ -88,6 +88,14 @@ insert into fast_reservation_cott(id,additional_services,capacity,duration,price
 values ( 788, 'all',2,5,800,'Cottage action','2022-12-10',6 );
 
 
+insert into boat_visits(id,end_date,number_of_visits,start_date,boat_id)
+values ( 515, '2022-9-10' ,5,'2022-9-1',8);
+insert into boat_visits(id,end_date,number_of_visits,start_date,boat_id)
+values ( 516, '2022-9-10' ,4,'2022-9-1',8);
+
+insert into boat_visits(id,end_date,number_of_visits,start_date,boat_id)
+values ( 517, '2022-10-10' ,8,'2022-10-1',8);
+
 
 
 

@@ -58,6 +58,8 @@ $(document).ready(function(){
 
     });
 
+
+
     $.ajax({
         type: "GET",
         url: "http://localhost:8181/api/boats/income",

@@ -57,6 +57,9 @@ public class Cottage implements Serializable {
     @OneToMany(mappedBy = "cottage")
     List<CottageIncome> cottageIncome = new ArrayList<>();
 
+    @OneToMany(mappedBy = "cottage")
+    List<CottageVisits> cottageVisits = new ArrayList<>();
+
     @ManyToOne
     private CottageOwner cottageOwner;
     @OneToMany(mappedBy = "cottage")

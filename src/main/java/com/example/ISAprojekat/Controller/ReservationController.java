@@ -3,6 +3,7 @@ package com.example.ISAprojekat.Controller;
 import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Model.DTO.*;
 import com.example.ISAprojekat.Service.*;
+import com.example.ISAprojekat.Service.Impl.DateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,9 +25,11 @@ public class ReservationController {
     private final CottageReservationService cottageReservationService;
     private final IncomeService incomeService;
     private final CottageIncomeService cottageIncomeService;
+    private final DateConverter dateConverter;
+    private final BoatVisitsService boatVisitsService;
 
     @Autowired
-    public ReservationController(BoatService boatService, BoatReservationService boatReservationService, RegKorisnikService regKorisnikService, CottageService cottageService, CottageReservationService cottageReservationService,IncomeService incomeService,CottageIncomeService cottageIncomeService){
+    public ReservationController(BoatService boatService, BoatReservationService boatReservationService, RegKorisnikService regKorisnikService, CottageService cottageService, CottageReservationService cottageReservationService,IncomeService incomeService,CottageIncomeService cottageIncomeService, DateConverter dateConverter, BoatVisitsService boatVisitsService){
         this.boatReservationService = boatReservationService;
         this.boatService = boatService;
         this.regKorisnikService = regKorisnikService;
@@ -34,6 +37,8 @@ public class ReservationController {
         this.cottageReservationService = cottageReservationService;
         this.incomeService = incomeService;
         this.cottageIncomeService = cottageIncomeService;
+        this.dateConverter = dateConverter;
+        this.boatVisitsService = boatVisitsService;
 
     }
 
@@ -84,6 +89,12 @@ public class ReservationController {
 
         Income income = new Income(reservation.getPrice(), boat);
         this.incomeService.save(income);
+        LocalDate ld = this.dateConverter.convertToLocalDateViaInstant(reservation.getStartDate());
+        LocalDate ld2 = this.dateConverter.convertToLocalDateViaInstant(reservation.getEndDate());
+
+
+        BoatVisits boatVisits = new BoatVisits(reservation.getNumPeople(), ld, ld2, boat);
+        this.boatVisitsService.save(boatVisits);
 
         CreateResDTO resDTO1 = new CreateResDTO(
                 reservation.getId(),reservation.getResName(),

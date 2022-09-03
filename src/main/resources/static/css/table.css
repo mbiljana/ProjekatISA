@@ -9,17 +9,17 @@ table tr{
 
 
 thead{
-    background:linear-gradient(#f8a1a1 0%, #ffffff 100%);
+    background:linear-gradient(#6495ED 0%, #6495ED 100%);
 }
 
 tfoot{
-    background: linear-gradient(#ccc9c9 0%, #730a0a 100%);
+    background: linear-gradient(#6495ED 0%, #6495ED 100%);
     color: white;
     font-weight: bold;
 }
 
 tbody>tr:nth-child(2n){
-    background: #cfcfcf;
+    background: darkblue;
 }
 
 tbody>tr:nth-child(2n+1){
