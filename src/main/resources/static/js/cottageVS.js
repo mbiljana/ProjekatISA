@@ -4,7 +4,7 @@ $(document).ready(function() {
     var weeklyVisits;
     $.ajax({
         type: "GET",
-        url: "http://localhost:8181/api/visits/seasonal",
+        url: "http://localhost:8181/api/visits/seasonalCott",
         dataType: "json",
         success: function (data) {                              // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", data);
@@ -12,8 +12,6 @@ $(document).ready(function() {
             yearlyVisits = data['yearlyVisits'];
             weeklyVisits = data['weeklyVisits'];
             console.log(monthlyVisits,yearlyVisits);
-            var xValues = ['','This week','This month','This year'];
-            var xVals =  [0,weeklyVisits,monthlyVisits, yearlyVisits];
             var barColors = [
                 "rgba(0,0,255,1.0)",
                 "rgba(0,0,255,0.8)",
@@ -21,6 +19,8 @@ $(document).ready(function() {
                 "rgba(0,0,255,0.4)",
                 "rgba(0,0,255,0.2)",
             ];
+            var xValues = ['','This week','This month','This year'];
+            var xVals =  [0,weeklyVisits,monthlyVisits, yearlyVisits];
             var myChart = new Chart("myChart", {
                 type: "bar",
                 data: {labels: xValues,
@@ -29,7 +29,13 @@ $(document).ready(function() {
                         data: xVals
                     }]},
                 options: {
-                    text: "Visits"
+                    text: "Visits",
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: "#000080",
+                        }
+                    }
                 }
             });
         },

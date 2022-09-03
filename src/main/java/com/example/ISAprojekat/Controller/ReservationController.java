@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,9 +28,15 @@ public class ReservationController {
     private final CottageIncomeService cottageIncomeService;
     private final DateConverter dateConverter;
     private final BoatVisitsService boatVisitsService;
+    private final CottageVisitsService cottageVisitsService;
 
     @Autowired
-    public ReservationController(BoatService boatService, BoatReservationService boatReservationService, RegKorisnikService regKorisnikService, CottageService cottageService, CottageReservationService cottageReservationService,IncomeService incomeService,CottageIncomeService cottageIncomeService, DateConverter dateConverter, BoatVisitsService boatVisitsService){
+    public ReservationController(BoatService boatService, BoatReservationService boatReservationService,
+                                 RegKorisnikService regKorisnikService, CottageService cottageService,
+                                 CottageReservationService cottageReservationService,
+                                 IncomeService incomeService,CottageIncomeService cottageIncomeService,
+                                 DateConverter dateConverter, BoatVisitsService boatVisitsService,
+                                 CottageVisitsService cottageVisitsService){
         this.boatReservationService = boatReservationService;
         this.boatService = boatService;
         this.regKorisnikService = regKorisnikService;
@@ -39,7 +46,7 @@ public class ReservationController {
         this.cottageIncomeService = cottageIncomeService;
         this.dateConverter = dateConverter;
         this.boatVisitsService = boatVisitsService;
-
+        this.cottageVisitsService = cottageVisitsService;
     }
 
     @GetMapping(value = "/allBoat")
@@ -85,7 +92,10 @@ public class ReservationController {
         reservation.setEndDate(resDTO.getEndDate());
         reservation.setRegKorisnik(regKorisnik);
         reservation.setPrice(resDTO.getPrice());
-        this.boatReservationService.create(reservation);
+        reservation.setNumPeople(resDTO.getNumPeople());
+        //this.boatReservationService.create(reservation);
+        boolean saved = this.boatReservationService.Save(reservation);
+        if(!saved) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The given period is occupied!");
 
         Income income = new Income(reservation.getPrice(), boat);
         this.incomeService.save(income);
@@ -100,7 +110,7 @@ public class ReservationController {
                 reservation.getId(),reservation.getResName(),
                 reservation.getStartDate(),reservation.getEndDate(),
                 reservation.getBoat().getId(),reservation.getRegKorisnik().getId(),
-                reservation.getDuration(),reservation.getPrice()
+                reservation.getDuration(),reservation.getPrice(), reservation.getNumPeople()
         );
         return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
     }
@@ -116,16 +126,22 @@ public class ReservationController {
         reservation.setEndDate(resDTO.getEndDate());
         reservation.setRegKorisnik(regKorisnik);
         reservation.setPrice(resDTO.getPrice());
+        reservation.setNumPeople(resDTO.getNumPeople());
         this.cottageReservationService.create(reservation);
 
         CottageIncome cottageIncome = new CottageIncome(reservation.getPrice(),cottage);
         this.cottageIncomeService.save(cottageIncome);
+        LocalDate ld = this.dateConverter.convertToLocalDateViaInstant(reservation.getStartDate());
+        LocalDate ld2 = this.dateConverter.convertToLocalDateViaInstant(reservation.getEndDate());
 
+
+        CottageVisits cottageVisits = new CottageVisits(reservation.getNumPeople(), ld, ld2, cottage);
+        this.cottageVisitsService.save(cottageVisits);
         CreateResDTO resDTO1 = new CreateResDTO(
                 reservation.getId(),reservation.getResName(),
                 reservation.getStartDate(),reservation.getEndDate(),
                 reservation.getCottage().getId(),reservation.getRegKorisnik().getId(),
-                reservation.getDuration(), reservation.getPrice()
+                reservation.getDuration(), reservation.getPrice(), reservation.getNumPeople()
         );
 
 

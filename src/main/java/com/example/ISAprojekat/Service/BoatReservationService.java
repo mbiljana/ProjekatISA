@@ -10,4 +10,5 @@ public interface BoatReservationService {
     BoatReservation create(BoatReservation boatReservation) throws Exception;
     void delete (Long idRes);
     List<FastReservation> getFastReservations();
+    Boolean Save(BoatReservation reservation);
 }

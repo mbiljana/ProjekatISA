@@ -12,4 +12,5 @@ import lombok.Setter;
 public class SeasonalVisitsDTO {
     private int monthlyVisits;
     private int yearlyVisits;
+    private int weeklyVisits;
 }

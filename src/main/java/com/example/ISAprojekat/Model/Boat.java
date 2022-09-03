@@ -62,8 +62,8 @@ public class Boat  implements Serializable{
     private String imageExt2;
 
 
-    @OneToOne
-    private BoatReservation boatReservation;
+    @OneToMany(mappedBy = "boat")
+    private List<BoatReservation> boatReservation = new ArrayList<>();
 
     @OneToMany(mappedBy = "boat")
     List<Income> boatIncome = new ArrayList<>();

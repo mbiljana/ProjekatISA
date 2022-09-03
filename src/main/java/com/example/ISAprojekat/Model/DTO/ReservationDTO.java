@@ -26,6 +26,7 @@ public class ReservationDTO {
     private Long korisnikId;
     private float price;
     private int duration;
+    private int numPeople;
 
     public ReservationDTO(BoatReservation b) {
         this.id = b.getId();
@@ -36,6 +37,7 @@ public class ReservationDTO {
         this.korisnikId = b.getRegKorisnik().getId();
         this.duration = b.getDuration();
         this.price = b.getPrice();
+        this.numPeople = b.getNumPeople();
     }
     public ReservationDTO(CottageReservation b) {
         this.resName = b.getResName();
@@ -44,6 +46,7 @@ public class ReservationDTO {
         this.offerId = b.getCottage().getId();
         this.korisnikId = b.getRegKorisnik().getId();
         this.duration = b.getDuration();
+        this.numPeople = b.getNumPeople();
     }
 
 }

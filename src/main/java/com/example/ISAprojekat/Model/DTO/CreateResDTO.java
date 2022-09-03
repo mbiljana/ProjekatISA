@@ -24,4 +24,5 @@ public class CreateResDTO {
     private Long korId;
     private int duration;
     private float price;
+    private int numPeople;
 }

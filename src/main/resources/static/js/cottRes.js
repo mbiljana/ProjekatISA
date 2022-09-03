@@ -50,13 +50,15 @@ $(document).ready(function(){
         var offerId = selektovanRed;
         var price = $("#price").val();
         var korisnikId = $("#korisnikId").val();
+        var numPeople = $("#numPeople").val();
         var obj = JSON.stringify({
             "resName" : resName,
             "startDate" : startDate,
             "endDate" : endDate,
             "offerId" : offerId,
             "price":price,
-            "korisnikId" : korisnikId
+            "korisnikId" : korisnikId,
+            "numPeople" : numPeople
 
         });
         $.ajax({

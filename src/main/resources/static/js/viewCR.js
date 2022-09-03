@@ -26,8 +26,8 @@ $(document).ready(function(){
     let staraBoja = null;
     $("#regReq").on('click', 'tr:not(:first-child)', function() {
         selektovanRed = this.dataset.id;
-        localStorage.setItem('rezkor',this.dataset.id);
-        window.location.href = "viewOneUser.html";
+       // localStorage.setItem('kor',this.dataset.id);
+       // window.location.href = "viewOneUser.html";
         console.log("Selektovan red ", selektovanRed);      // ispis u konzolu radi provere
     });
     $.ajax({

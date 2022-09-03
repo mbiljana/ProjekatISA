@@ -14,6 +14,7 @@ $(document).ready(function(){
                 row += "<td>" + data[i]['price'] + "</td>";
                 row += "</tr>";
                 $('#regReq').append(row);
+
             }
         },
         error: function (response) {
@@ -27,9 +28,10 @@ $(document).ready(function(){
     let staraBoja = null;
     $("#regReq").on('click', 'tr:not(:first-child)', function() {
         selektovanRed = this.dataset.id;
+
         localStorage.setItem('rezkor',this.dataset.id);
         window.location.href = "viewOneUser.html";
-        console.log("Selektovan red ", selektovanRed);      // ispis u konzolu radi provere
+        console.log("Selektovan red ", this.dataset.id);      // ispis u konzolu radi provere
     });
 
 

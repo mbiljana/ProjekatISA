@@ -92,9 +92,17 @@ insert into boat_visits(id,end_date,number_of_visits,start_date,boat_id)
 values ( 515, '2022-9-10' ,5,'2022-9-1',8);
 insert into boat_visits(id,end_date,number_of_visits,start_date,boat_id)
 values ( 516, '2022-9-10' ,4,'2022-9-1',8);
+insert into boat_visits(id,end_date,number_of_visits,start_date,boat_id)
+values ( 5126, '2022-9-3' ,4,'2022-9-1',8);
 
 insert into boat_visits(id,end_date,number_of_visits,start_date,boat_id)
 values ( 517, '2022-10-10' ,8,'2022-10-1',8);
+
+insert into cottage_visits(id,end_date,number_of_visits,start_date,cottage_id)
+values ( 616, '2022-10-10' ,8,'2022-10-1',6);
+
+insert into cottage_visits(id,end_date,number_of_visits,start_date,cottage_id)
+values ( 617, '2022-9-10' ,8,'2022-9-1',6);
 
 
 

@@ -31,7 +31,7 @@ public class BoatReservation implements Serializable {
     private int numPeople;
     @Column
     private float price;
-    @OneToOne
+    @ManyToOne
     private Boat boat;
     @OneToOne
     private RegKorisnik regKorisnik;

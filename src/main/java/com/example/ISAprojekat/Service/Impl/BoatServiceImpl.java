@@ -1,10 +1,8 @@
 package com.example.ISAprojekat.Service.Impl;
 
-import com.example.ISAprojekat.Model.Boat;
-import com.example.ISAprojekat.Model.BoatOwner;
-import com.example.ISAprojekat.Model.Cottage;
-import com.example.ISAprojekat.Model.FastReservation;
+import com.example.ISAprojekat.Model.*;
 import com.example.ISAprojekat.Repository.BoatRepository;
+import com.example.ISAprojekat.Repository.BoatReservationRepository;
 import com.example.ISAprojekat.Service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,15 +10,18 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class  BoatServiceImpl implements BoatService {
 
     private final BoatRepository boatRepository;
+    private final BoatReservationRepository boatReservationRepository;
     @Autowired
-    public BoatServiceImpl(BoatRepository boatRepository){
+    public BoatServiceImpl(BoatRepository boatRepository,BoatReservationRepository boatReservationRepository){
         this.boatRepository = boatRepository;
+        this.boatReservationRepository = boatReservationRepository;
     }
 
 
@@ -61,6 +62,31 @@ public class  BoatServiceImpl implements BoatService {
     public Boat save(Boat boat) {
         return this.boatRepository.save(boat);
     }
+
+
+    @Override
+    public BoatReservation checkIfAlreadyReserved(BoatReservation reservation) {
+        Date endDate = reservation.getEndDate();
+
+       // if(!checkOverlappingDates(reservation,endDate)){
+            return reservation;
+       // }
+       // return null;
+    }
+
+    /*
+    private boolean checkReservationPeriods(BoatReservation reservation, Date endDate) {
+        for(BoatReservation dbReservation: boatReservationRepository.findBoatReservationByBoat(reservation.getBoat().getId())){
+            Date dbEndDate =getEndDate(dbReservation.getDateTime(),dbReservation.getDurationInHours());
+            if(dbReservation.getDateTime().compareTo(endDate) <=0 &&
+                    dbEndDate.compareTo(reservation.getDateTime())>=0)
+                return true;
+        }
+        return false;
+    }
+
+     */
+
 
 
 }
