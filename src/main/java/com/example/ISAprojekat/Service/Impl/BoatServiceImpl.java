@@ -66,26 +66,29 @@ public class  BoatServiceImpl implements BoatService {
 
     @Override
     public BoatReservation checkIfAlreadyReserved(BoatReservation reservation) {
-        Date endDate = reservation.getEndDate();
 
-       // if(!checkOverlappingDates(reservation,endDate)){
+      // if(!checkReservationPeriods(reservation)){
             return reservation;
        // }
-       // return null;
+     //   return null;
     }
 
     /*
-    private boolean checkReservationPeriods(BoatReservation reservation, Date endDate) {
-        for(BoatReservation dbReservation: boatReservationRepository.findBoatReservationByBoat(reservation.getBoat().getId())){
-            Date dbEndDate =getEndDate(dbReservation.getDateTime(),dbReservation.getDurationInHours());
-            if(dbReservation.getDateTime().compareTo(endDate) <=0 &&
-                    dbEndDate.compareTo(reservation.getDateTime())>=0)
-                return true;
+    private boolean checkReservationPeriods(BoatReservation reservation) {
+        for(BoatReservation boatReservation: boatReservationRepository.findBoatReservationByBoat(reservation.getBoat().getId())){
+            Date boatEndDate = boatReservation.getEndDate();
+            Date boatStartDate = boatReservation.getStartDate();
+
+            if((reservation.getStartDate().after(boatStartDate)) && (reservation.getEndDate().before(boatEndDate))){
+                return false;
+            }
+            return true;
         }
-        return false;
+        return true;
     }
 
      */
+
 
 
 

@@ -2,6 +2,7 @@ package com.example.ISAprojekat.Service.Impl;
 
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.BoatReservation;
+import com.example.ISAprojekat.Model.CottageReservation;
 import com.example.ISAprojekat.Model.FastReservation;
 import com.example.ISAprojekat.Repository.BoatRepository;
 import com.example.ISAprojekat.Repository.BoatReservationRepository;
@@ -65,7 +66,7 @@ public class BoatReservationServiceImpl implements BoatReservationService {
     public Boolean Save(BoatReservation reservation){
         try {
             reservation.setBoat(this.boatRepository.findLockedById(reservation.getBoat().getId()));
-        } catch(PessimisticLockingFailureException ex) { throw  new PessimisticLockingFailureException("Owner already reserved this entity!"); }
+        } catch(PessimisticLockingFailureException ex) { throw  new PessimisticLockingFailureException("This boat is already reserved!!"); }
         BoatReservation updatedReservation=boatService.checkIfAlreadyReserved(reservation);
         if(updatedReservation==null)
             return false;
@@ -86,6 +87,15 @@ public class BoatReservationServiceImpl implements BoatReservationService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    @Transactional
+    public BoatReservation SaveBoat(BoatReservation reservation){
+        try {
+            reservation.setBoat(this.boatRepository.findLockedById(reservation.getBoat().getId()));
+        } catch(PessimisticLockingFailureException ex) { throw  new PessimisticLockingFailureException("This boat is already reserved!!"); }
+        return this.boatReservationRepository.save(reservation);
     }
 
 

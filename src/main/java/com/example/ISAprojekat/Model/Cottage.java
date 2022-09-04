@@ -64,10 +64,10 @@ public class Cottage implements Serializable {
     private CottageOwner cottageOwner;
     @OneToMany(mappedBy = "cottage")
     private List<Ocena> ocene = new ArrayList<>();
-    @OneToMany(mappedBy = "cottage")
+    @OneToMany(mappedBy = "cottage",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<FastReservationCott> fastReservations = new ArrayList<>();
-    @OneToOne
-    private CottageReservation cottageReservation;
+    @OneToMany(mappedBy = "cottage",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CottageReservation> cottageReservation;
 
 
 

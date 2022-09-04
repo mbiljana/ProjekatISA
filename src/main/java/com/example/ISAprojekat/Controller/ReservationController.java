@@ -29,6 +29,8 @@ public class ReservationController {
     private final DateConverter dateConverter;
     private final BoatVisitsService boatVisitsService;
     private final CottageVisitsService cottageVisitsService;
+    private final RegKorisnikService korisnikService;
+
 
     @Autowired
     public ReservationController(BoatService boatService, BoatReservationService boatReservationService,
@@ -36,7 +38,7 @@ public class ReservationController {
                                  CottageReservationService cottageReservationService,
                                  IncomeService incomeService,CottageIncomeService cottageIncomeService,
                                  DateConverter dateConverter, BoatVisitsService boatVisitsService,
-                                 CottageVisitsService cottageVisitsService){
+                                 CottageVisitsService cottageVisitsService,RegKorisnikService korisnikService){
         this.boatReservationService = boatReservationService;
         this.boatService = boatService;
         this.regKorisnikService = regKorisnikService;
@@ -47,6 +49,7 @@ public class ReservationController {
         this.dateConverter = dateConverter;
         this.boatVisitsService = boatVisitsService;
         this.cottageVisitsService = cottageVisitsService;
+        this.korisnikService = korisnikService;
     }
 
     @GetMapping(value = "/allBoat")
@@ -95,9 +98,9 @@ public class ReservationController {
         reservation.setRegKorisnik(regKorisnik);
         reservation.setPrice(resDTO.getPrice());
         reservation.setNumPeople(resDTO.getNumPeople());
-        //this.boatReservationService.create(reservation);
-        boolean saved = this.boatReservationService.Save(reservation);
-        if(!saved) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The given period is occupied!");
+        reservation.setDuration(resDTO.getDuration());
+        reservation.setPrice(resDTO.getPrice());
+        this.boatReservationService.SaveBoat(reservation);
 
         Income income = new Income(reservation.getPrice(), boat);
         this.incomeService.save(income);
@@ -129,7 +132,7 @@ public class ReservationController {
         reservation.setRegKorisnik(regKorisnik);
         reservation.setPrice(resDTO.getPrice());
         reservation.setNumPeople(resDTO.getNumPeople());
-        this.cottageReservationService.create(reservation);
+        this.cottageReservationService.SaveCott(reservation);
 
         CottageIncome cottageIncome = new CottageIncome(reservation.getPrice(),cottage);
         this.cottageIncomeService.save(cottageIncome);
@@ -149,6 +152,54 @@ public class ReservationController {
 
         return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
     }
+
+
+    @PostMapping(value = "/reserve/{id}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CreateResDTO> clientBoatReservation(@RequestBody ReservationDTO resDTO, @PathVariable Long id) throws Exception{
+        RegKorisnik korisnik = this.korisnikService.getOne(id);
+        BoatReservation boatReservation = new BoatReservation();
+        boatReservation.setPrice(resDTO.getPrice());
+        boatReservation.setDuration(resDTO.getDuration());
+        boatReservation.setNumPeople(resDTO.getNumPeople());
+        boatReservation.setResName(resDTO.getResName());
+        boatReservation.setRegKorisnik(korisnik);
+        boatReservation.setEndDate(resDTO.getEndDate());
+        boatReservation.setStartDate(resDTO.getStartDate());
+        Boat boat = this.boatService.getOne(resDTO.getOfferId());
+        boatReservation.setBoat(boat);
+        boolean saved = boatReservationService.Save(boatReservation);
+        if(!saved) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Already reserved!");
+        CreateResDTO resDTO1 = new CreateResDTO(boatReservation.getId(),boatReservation.getResName(),
+                boatReservation.getStartDate(),boatReservation.getEndDate(),
+                boatReservation.getBoat().getId(), boatReservation.getRegKorisnik().getId(),
+                boatReservation.getDuration(), boatReservation.getPrice(), boatReservation.getNumPeople());
+        return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/reserveCott/{id}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CreateResDTO> clientCottageReservation(@RequestBody ReservationDTO resDTO, @PathVariable Long id) throws Exception{
+        RegKorisnik korisnik = this.korisnikService.getOne(id);
+        CottageReservation boatReservation = new CottageReservation();
+        boatReservation.setPrice(resDTO.getPrice());
+        boatReservation.setDuration(resDTO.getDuration());
+        boatReservation.setNumPeople(resDTO.getNumPeople());
+        boatReservation.setResName(resDTO.getResName());
+        boatReservation.setRegKorisnik(korisnik);
+        boatReservation.setEndDate(resDTO.getEndDate());
+        boatReservation.setStartDate(resDTO.getStartDate());
+        Cottage cottage = this.cottageService.getOne(resDTO.getOfferId());
+        boatReservation.setCottage(cottage);
+        boolean saved = cottageReservationService.Save(boatReservation);
+        if(!saved) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Already reserved!");
+        CreateResDTO resDTO1 = new CreateResDTO(boatReservation.getId(),boatReservation.getResName(),
+                boatReservation.getStartDate(),boatReservation.getEndDate(),
+                boatReservation.getCottage().getId(), boatReservation.getRegKorisnik().getId(),
+                boatReservation.getDuration(), boatReservation.getPrice(), boatReservation.getNumPeople());
+        return new ResponseEntity<>(resDTO1,HttpStatus.CREATED);
+    }
+
+
+
 
 
 

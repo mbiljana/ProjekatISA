@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -15,10 +16,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class RegKorisnik extends Korisnik {
 
-        @OneToOne
-        private BoatReservation boatReservation;
-        @OneToOne
-        private CottageReservation cottageReservation;
+        @OneToMany(mappedBy = "regKorisnik")
+        private List<BoatReservation> boatReservation;
+        @OneToMany(mappedBy = "regKorisnik")
+        private List<CottageReservation> cottageReservation;
 
 
 

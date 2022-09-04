@@ -2,6 +2,7 @@ package com.example.ISAprojekat.Service.Impl;
 
 import com.example.ISAprojekat.Model.Cottage;
 import com.example.ISAprojekat.Model.CottageOwner;
+import com.example.ISAprojekat.Model.CottageReservation;
 import com.example.ISAprojekat.Repository.CottageRepository;
 import com.example.ISAprojekat.Service.CottageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,11 @@ public class CottageServiceImpl implements CottageService {
     public Cottage update(Cottage cottage) {
         Cottage newCott = this.cottageRepository.save(cottage);
         return newCott;
+    }
+
+    @Override
+    public CottageReservation checkIfAlreadyReserved(CottageReservation reservation) {
+        return reservation;
     }
 }
 

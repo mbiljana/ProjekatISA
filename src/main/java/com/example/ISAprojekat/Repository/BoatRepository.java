@@ -2,9 +2,12 @@ package com.example.ISAprojekat.Repository;
 
 import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.BoatOwner;
+import com.example.ISAprojekat.Model.BoatReservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.LockModeType;
@@ -17,6 +20,7 @@ public interface BoatRepository extends JpaRepository<Boat, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "0")})
     Boat findLockedById(Long id);
+
 
 
 

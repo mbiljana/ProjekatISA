@@ -131,6 +131,7 @@ public class CottageController {
         fastReservation.setPrice(cottDTO.getPrice());
         fastReservation.setStartDate(cottDTO.getStartDate());
         fastReservation.setCottage(cottage);
+        fastReservation.setResName(cottDTO.getResName());
         this.fastReservationCottService.create(fastReservation);
         cottage.getFastReservations().add(fastReservation);
         CreateCottageResDTO createCottageResDTO = new CreateCottageResDTO();
@@ -140,6 +141,7 @@ public class CottageController {
         createCottageResDTO.setPrice(fastReservation.getPrice());
         createCottageResDTO.setStartDate(fastReservation.getStartDate());
         createCottageResDTO.setAdditionalServices(fastReservation.getAdditionalServices());
+        createCottageResDTO.setResName(fastReservation.getResName());
 
         List<CottageIncome> cottInc = cottage.getCottageIncome();
         CottageIncome income = new CottageIncome(createCottageResDTO.getPrice(),cottage);

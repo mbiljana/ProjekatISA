@@ -18,4 +18,5 @@ public class CreateCottageResDTO {
     private int capacity;
     private String additionalServices;
     private float price;
+    private String resName;
 }

@@ -69,7 +69,7 @@ $(document).ready(function(){
             data: obj,
             success: function (data) {
                 console.log("SUCCESS : ", data);
-                window.location.href = "boatPage.html";
+                window.location.href = "viewBoatReservations.html";
             },
             error: function (data) {
                 alert("Nova greska!");

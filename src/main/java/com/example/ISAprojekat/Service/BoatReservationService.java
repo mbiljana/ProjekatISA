@@ -11,4 +11,5 @@ public interface BoatReservationService {
     void delete (Long idRes);
     List<FastReservation> getFastReservations();
     Boolean Save(BoatReservation reservation);
+    BoatReservation SaveBoat(BoatReservation reservation);
 }

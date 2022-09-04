@@ -31,8 +31,8 @@ public class CottageReservation implements Serializable {
     private int numPeople;
     @Column
     private float price;
-    @OneToOne
+    @ManyToOne
     private Cottage cottage;
-    @OneToOne
+    @ManyToOne
     private RegKorisnik regKorisnik;
 }

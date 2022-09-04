@@ -62,7 +62,7 @@ public class Boat  implements Serializable{
     private String imageExt2;
 
 
-    @OneToMany(mappedBy = "boat")
+    @OneToMany(mappedBy = "boat",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BoatReservation> boatReservation = new ArrayList<>();
 
     @OneToMany(mappedBy = "boat")
@@ -74,7 +74,7 @@ public class Boat  implements Serializable{
 
     @ManyToOne
     private BoatOwner boatOwner;
-    @OneToMany(mappedBy = "boat")
+    @OneToMany(mappedBy = "boat",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<FastReservation> fastReservation = new ArrayList<>();
     @OneToMany(mappedBy = "boat")
     private List<Ocena> ocene = new ArrayList<>();

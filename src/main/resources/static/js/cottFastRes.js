@@ -67,7 +67,7 @@ $(document).ready(function(){
             data: obj,
             success: function (data) {
                 console.log("SUCCESS : ", data);
-                window.location.href = "cottagesPage.html";
+                window.location.href = "viewCottageReservations.html";
             },
             error: function (data) {
                 alert("Nova greska!");
