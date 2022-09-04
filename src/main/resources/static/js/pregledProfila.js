@@ -9,19 +9,22 @@ $(document).ready(function(){
     korisnik += "<th>" + localStorage.getItem('emailAddress') + "</th>";
     korisnik += "<th>" + localStorage.getItem('username') + "</th>";
     korisnik += "</tr>";
-});
 
 $.ajax({
     type: "GET",
-    url: "http://localhost:8181/api/korisnik/username",
+    url: "http://localhost:8181/api/korisnik/" + localStorage.getItem('username'),
     dataType: "json",
-    success: function (korisnik) {                              // ova f-ja se izvršava posle uspešnog zahteva
-        console.log("SUCCESS:\n", korisnik);                    // ispisujemo u konzoli povratnu vrednost radi provere
-            var row = "<tr data-id=" + data[i]['id'] + ">";                                  // kreiramo red za tabelu
-            row += "<td>" + data[i]['resName'] + "</td>";
-            row += "<td>" + data[i]['startDate'] + "</td>";
-            row += "<td>" + data[i]['income'] + "</td>";
-            row += "<td>" + data[i]['numPeople'] + "</td>";
+    success: function (data) {                              // ova f-ja se izvršava posle uspešnog zahteva
+        console.log("SUCCESS:\n", data);                    // ispisujemo u konzoli povratnu vrednost radi provere
+            var row = "<tr data-id=" + data['id'] + ">";                                  // kreiramo red za tabelu
+            row += "<td>" + data['name'] + "</td>";
+            row += "<td>" + data['surname'] + "</td>";
+            row += "<td>" + data['phoneNumber'] + "</td>";
+            row += "<td>" + data['homeAddress'] + "</td>";
+            row += "<td>" + data['city'] + "</td>";
+            row += "<td>" + data['state'] + "</td>";
+            row += "<td>" + data['emailAddress'] + "</td>";
+            row += "<td>" + data['username'] + "</td>";
             row += "</tr>";
             $('#regReq').append(row);
     },
@@ -39,8 +42,8 @@ $("#regReq").on('click', 'tr:not(:first-child)', function() {
     if (staraBoja != null) {
         $('#regReq tr[data-id=' + selektovanRed + ']').css('background-color', staraBoja); // vracamo staru boju
     }
-    selektovanRed = this.dataset.username;// cuvamo id selektovanog termina
-    broj = selektovanRed;
+    selektovanRed = localStorage.getItem('username');// cuvamo id selektovanog termina
+
     staraBoja = $(this).css('background-color');        // cuvamo staru boju da bi vratili kad se odselektuje
 
     $(this).css('background-color', '#a6c9e2');         // postavljamo novu boju
@@ -83,4 +86,5 @@ $("#change").click(function() {
             alert("Nova greska!");
         }
     });
+});
 });

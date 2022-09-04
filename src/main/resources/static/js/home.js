@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    console.log(localStorage.getItem('username'));
     if(localStorage.getItem('username') === null || localStorage.getItem('username') == 'none'){
         $("#boatOwnerFunc").css('display', 'none');
         $("#cottageOwnerFunc").css('display', 'none');

@@ -173,6 +173,9 @@ public class KorisnikController {
 
 
 
+
+
+
     @PostMapping(value = "/report", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ReportDTO> createReport(@RequestBody ReportDTO reportDTO){
         Report report = new Report();
@@ -190,6 +193,7 @@ public class KorisnikController {
     {
         Korisnik korisnik = this.korisnikService.findByUsername(username);
         IzmenaProfilaDTO korisnikDTO = new IzmenaProfilaDTO();
+        korisnikDTO.setName(korisnik.getName());
         korisnikDTO.setUsername(korisnik.getUsername());
         korisnikDTO.setSurname(korisnik.getSurname());
         korisnikDTO.setState(korisnik.getState());
