@@ -7,11 +7,30 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/home.js"></script>
+    <style>
+
+        body{
+            background-image:url("images/back100.jpg");
+        }
+        ul {
+            color: #0f0f0f;
+            padding: 20px;
+            font-size: x-large;
+        }
+
+        .center{
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+        }
+
+
+    </style>
 </head>
 <body>
-<div class="container">
+<div class="center">
 
-    <div id = "boatOwnerFunc" class="col-sm-3">
+    <div id = "boatOwnerFunc" class="center">
         <ul class="multi-column-dropdown" id="bo">
             <li><a href="boatPage.html">View boats</a></li>
             <li><a href="createBoat.html">Create a boat</a></li>
@@ -25,7 +44,7 @@
 
         </ul>
     </div>
-    <div id = "cottageOwnerFunc" class="col-sm-3">
+    <div id = "cottageOwnerFunc" class="center">
         <ul class="multi-column-dropdown" id="co">
             <li><a href="cottagesPage.html">View cottages</a></li>
             <li><a href="createCott.html">Add a new cottage</a></li>
@@ -38,7 +57,7 @@
             <li><a href="viewUsersReservationsCottage.html">View users profiles</a></li>
         </ul>
     </div>
-    <div id = "adminFunc" class="col-sm-3">
+    <div id = "adminFunc" class="center">
         <ul class="multi-column-dropdown" id="ad">
             <li><a href="registrationRequests.html">View requests</a></li>
         </ul>

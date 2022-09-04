@@ -8,6 +8,14 @@
   <script src="js/modifyCottage.js"></script>
 
   <style>
+    body{
+      background-image:url("images/back100.jpg");
+    }
+    .center{
+      margin: auto;
+      width: 60%;
+      padding: 10px;
+    }
     #regReq {
       font-family: Arial, Helvetica, sans-serif;
       border-collapse: collapse;
@@ -49,9 +57,10 @@
     </table>
   </div>
 </div>
-<div class="modal-dialog text-center">
+<div class="modal-dialog center">
   <button id="delete">Remove</button>
 </div>
+<div class="center">
 <div class="form-group1">
   <h5 for="name">Name:</h5>
   <input id="name" name="name" type="text" class="registar" >
@@ -84,7 +93,11 @@
   <h5 for="rules">Rules:</h5>
   <input id="rules"  name="rules" type="text"  class="registar " >
 </div>
-<button id="change">Update</button>
+</div>
+<div class="center">
+  <button id="change">Update</button>
+</div>
+
 
 </body>
 </html>
