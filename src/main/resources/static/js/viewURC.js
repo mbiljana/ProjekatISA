@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:8181/api/reservations/allBoat",
+        url: "http://localhost:8181/api/reservations/allCottage",
         dataType: "json",
         success: function (data) {                              // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", data);                    // ispisujemo u konzoli povratnu vrednost radi provere

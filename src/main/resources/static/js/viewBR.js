@@ -24,15 +24,6 @@ $(document).ready(function(){
         }
 
     });
-    let selektovanRed = 0;
-    let staraBoja = null;
-    $("#regReq").on('click', 'tr:not(:first-child)', function() {
-        selektovanRed = this.dataset.id;
-
-        localStorage.setItem('rezkor',this.dataset.id);
-        window.location.href = "viewOneUser.html";
-        console.log("Selektovan red ", this.dataset.id);      // ispis u konzolu radi provere
-    });
 
 
     $.ajax({
@@ -58,6 +49,16 @@ $(document).ready(function(){
 
         }
 
+    });
+
+    let selektovanRed = 0;
+    let staraBoja = null;
+    $("#regReq").on('click', 'tr:not(:first-child)', function() {
+        selektovanRed = this.dataset.id;
+
+        localStorage.setItem('rezkor',this.dataset.id);
+        //window.location.href = "viewOneUser.html";
+        console.log("Selektovan red ", this.dataset.id);      // ispis u konzolu radi provere
     });
 
 

@@ -11,6 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResIncomeDTO {
+    private Long id;
     private String resName;
     private Date startDate;
     private Date endDate;

@@ -2,7 +2,7 @@ $(document).ready(function(){
     var regkor = localStorage.getItem('rezkor');
     $.ajax({
         type: "GET",
-        url: "http://localhost:8181/api/korisnik/one/" +regkor,
+        url: "http://localhost:8181/api/korisnik/one/" + localStorage.getItem('rezkor'),
         dataType: "json",
         success: function (data) {                              // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", data);

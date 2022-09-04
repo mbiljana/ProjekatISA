@@ -57,6 +57,7 @@ public class ReservationController {
         List<ResIncomeDTO> incomeDTO = new ArrayList<>();
         for (BoatReservation b : reservations) {
                 ResIncomeDTO resIncomeDTO = new ResIncomeDTO(
+                        b.getRegKorisnik().getId(),
                         b.getResName(), b.getStartDate(),b.getEndDate(),b.getDuration(),
                         b.getBoat().getPrice() * b.getDuration(), b.getNumPeople()
                 );
@@ -72,6 +73,7 @@ public class ReservationController {
         List<ResIncomeDTO> incomeDTOS = new ArrayList<>();
         for (CottageReservation b : reservations) {
             ResIncomeDTO resIncomeDTO = new ResIncomeDTO(
+                    b.getRegKorisnik().getId(),
                     b.getResName(), b.getStartDate(),b.getEndDate(),b.getDuration(),
                     b.getCottage().getPrice()*b.getDuration(),b.getNumPeople()
             );
