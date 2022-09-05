@@ -51,4 +51,4 @@ $(document).on("submit","form",function(event){
             "razlog" : razlog
         });
     }
-}
+});

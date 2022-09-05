@@ -1,25 +1,25 @@
-INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (72,'1997-02-05','bg','@2','sdfa','bla','111',234,4,'srb','qwe','123');
+INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username, blocked)
+VALUES (72,'1997-02-05','bg','@2','sdfa','bla','111',234,4,'srb','qwe','123', false);
 
-INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (73,'1997-02-05','bg','@2','sdfa','bla','11',234,4,'srb','qwe','11');
+INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username, blocked)
+VALUES (73,'1997-02-05','bg','@2','sdfa','bla','11',234,4,'srb','qwe','121', false);
 
-INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (74,'1997-02-05','bg','@2','sdfa','bla','111',234,1,'srb','qwe','123');
+INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username, blocked)
+VALUES (74,'1997-02-05','bg','@2','sdfa','bla','111',234,1,'srb','qwe','123', false);
 
-INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (76,'1997-02-05','bg','@2','sdfa','bla','1',234,2,'srb','qwe','1');
+INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username, blocked)
+VALUES (76,'1997-02-05','bg','@2','sdfa','bla','1',234,2,'srb','qwe','1', false);
 
-INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (77,'1997-02-05','bg','@2','sdfa','bla','11',234,3,'srb','qwe','11');
+INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username, blocked)
+VALUES (77,'1997-02-05','bg','@2','sdfa','bla','11',234,3,'srb','qwe','11', false);
 
 INSERT INTO fishing_instructor(id) values (72);
 INSERT INTO fishing_instructor(id) values (73);
 INSERT INTO admin(id) VALUES(74);
 
 
-INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username)
-VALUES (108,'1995-02-05','bg','@nekiregkor','sdfa','Pavle','pb',0564215,5,'srb','Bugarski','pavleb');
+INSERT INTO korisnik(id, birth_date,city,email_address, home_address, ime, password, phone_number, role,state, surname, username, blocked)
+VALUES (108,'1995-02-05','bg','@nekiregkor','sdfa','Pavle','pb',0564215,5,'srb','Bugarski','pavleb', false);
 
 
 INSERT INTO reg_korisnik(id) VALUES (108);

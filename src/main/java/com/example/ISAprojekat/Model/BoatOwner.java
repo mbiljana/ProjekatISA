@@ -21,6 +21,10 @@ public class BoatOwner  extends Korisnik {
         super( name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role);
     }
 
+    public BoatOwner( String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role,boolean blocked) {
+        super( name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role,blocked);
+    }
+
     public BoatOwner() {
 
     }

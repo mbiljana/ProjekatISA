@@ -17,8 +17,8 @@ public class Admin extends Korisnik {
     public Admin() {
     }
 
-    public Admin(Long id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role) {
-        super(id, name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role);
+    public Admin(Long id, String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role, boolean blocked) {
+        super(id, name, surname, emailAddress, phoneNumber, city, state, homeAddress, birthDate, username, password, role,blocked);
     }
 
 
@@ -27,6 +27,9 @@ public class Admin extends Korisnik {
 
     @OneToMany(mappedBy = "admin")
     public List<Report> reports = new ArrayList<>();
+
+    @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL,orphanRemoval = true)
+    public List<ZahtevZaBrisanje> deleteRequests = new ArrayList<>();
 
 
 }

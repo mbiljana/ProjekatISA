@@ -21,14 +21,19 @@ public class AdminController {
     private final BoatOwnerService boatOwnerService;
     private final CottageOwnerService cottageOwnerService;
     private final ZahtevZaRegService zahtevZaRegService;
+    private final ZahtevZaBrisanjeService brisanjeService;
+
 
     @Autowired
-    public AdminController(AdminService adminService, KorisnikService korisnikService, BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService, ZahtevZaRegService zahtevZaRegService){
+    public AdminController(AdminService adminService, KorisnikService korisnikService,
+                           BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService,
+                           ZahtevZaRegService zahtevZaRegService,ZahtevZaBrisanjeService brisanjeService){
         this.adminService = adminService;
         this.korisnikService = korisnikService;
         this.boatOwnerService = boatOwnerService;
         this.cottageOwnerService = cottageOwnerService;
         this.zahtevZaRegService = zahtevZaRegService;
+        this.brisanjeService = brisanjeService;
     }
 
 
@@ -191,6 +196,36 @@ public class AdminController {
                 zahtevZaRegDTOS.add(zahtevZaRegDTO);
         }
         return new ResponseEntity<>(zahtevZaRegDTOS, HttpStatus.OK);
+    }
+
+    //get all delete account requests
+    @GetMapping(value="/deleteReq", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ZahtevZaBrisanjeDTO>> getDelRequests() {
+        List<ZahtevZaBrisanjeDTO> zahtevZaRegDTOS = new ArrayList<>();
+
+        List<ZahtevZaBrisanje> zahtevZaRegs = this.brisanjeService.findAll();
+
+        for(ZahtevZaBrisanje t : zahtevZaRegs) {
+
+            ZahtevZaBrisanjeDTO zahtevZaRegDTO = new ZahtevZaBrisanjeDTO(
+                    t.getId(),t.getName(),t.getSurname(),t.getEmailAddress(),t.getPhoneNumber(),
+                    t.getUsername(),t.isBlocked()
+            );
+            zahtevZaRegDTOS.add(zahtevZaRegDTO);
+        }
+        return new ResponseEntity<>(zahtevZaRegDTOS, HttpStatus.OK);
+    }
+
+    @PostMapping(value = ("/removeAccountBoat"), consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ZahtevZaBrisanje> removeAccount(@RequestBody KorisnikZahtevDTO dto) throws Exception{
+        ZahtevZaBrisanje zahtevZaBrisanje = this.brisanjeService.findOne(dto.getId());
+        Korisnik korisnik = this.korisnikService.findByUsername(zahtevZaBrisanje.getUsername());
+
+        //BoatOwner boatOwner = this.boatOwnerService.findByUsername(zahtevZaBrisanje.getUsername());
+        korisnik.setBlocked(true);
+
+        this.korisnikService.save(korisnik);
+        return new ResponseEntity<>(zahtevZaBrisanje, HttpStatus.OK);
     }
 
 

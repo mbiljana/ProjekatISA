@@ -26,22 +26,26 @@ public class KorisnikController {
     private final BoatOwnerService boatOwnerService;
     private final CottageOwnerService cottageOwnerService;
     private final ZahtevZaRegService zahtevZaRegService;
-   private final AdminService adminService;
+    private final AdminService adminService;
     private final KorisnikService korisnikService;
     private final ReportService reportService;
+    private final ZahtevZaBrisanjeService zahtevZaBrisanjeService;
 
     @Autowired
-    public KorisnikController(AdminService adminService, KorisnikService korisnikService,BoatOwnerService boatOwnerService, CottageOwnerService cottageOwnerService,ZahtevZaRegService zahtevZaRegService,ReportService reportService){
+    public KorisnikController(AdminService adminService, KorisnikService korisnikService,
+                              BoatOwnerService boatOwnerService,
+                              CottageOwnerService cottageOwnerService,
+                              ZahtevZaRegService zahtevZaRegService,
+                              ReportService reportService,ZahtevZaBrisanjeService zahtevZaBrisanjeService){
         this.adminService = adminService;
         this.korisnikService = korisnikService;
         this.boatOwnerService = boatOwnerService;
         this.cottageOwnerService = cottageOwnerService;
         this.zahtevZaRegService = zahtevZaRegService;
         this.reportService = reportService;
+        this.zahtevZaBrisanjeService = zahtevZaBrisanjeService;
     }
 
-    //ne znam sta ovo radi
-    //logovanje admina kao provera
     @PostMapping(
             value =("/login"),
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -127,23 +131,23 @@ public class KorisnikController {
 
         PrijavaKorisnikaDTO prijavaDTO = new PrijavaKorisnikaDTO();
 
-        if(admin != null){
+        if((admin != null) && (admin.isBlocked() == false)){
             prijavaDTO = new PrijavaKorisnikaDTO(admin.getId(),admin.getName(),admin.getSurname(),
                     admin.getEmailAddress(),admin.getPhoneNumber(),admin.getCity(),admin.getState(),
                     admin.getHomeAddress(),admin.getBirthDate(),admin.getUsername(),
-                    admin.getPassword(),admin.getRole());
+                    admin.getPassword(),admin.getRole(), admin.isBlocked());
             return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
-        }else if(boatOwner != null){
+        }else if((boatOwner != null) && (boatOwner.isBlocked() == false)){
             prijavaDTO = new PrijavaKorisnikaDTO(boatOwner.getId(),boatOwner.getName(),boatOwner.getSurname(),
                     boatOwner.getEmailAddress(),boatOwner.getPhoneNumber(),boatOwner.getCity(),boatOwner.getState(),
                     boatOwner.getHomeAddress(),boatOwner.getBirthDate(),boatOwner.getUsername(),
-                    boatOwner.getPassword(),boatOwner.getRole());
+                    boatOwner.getPassword(),boatOwner.getRole(), boatOwner.isBlocked());
             return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
-        }else if(cottageOwner != null){
+        }else if((cottageOwner != null) && (cottageOwner.isBlocked() == false)){
             prijavaDTO = new PrijavaKorisnikaDTO(cottageOwner.getId(),cottageOwner.getName(),cottageOwner.getSurname(),
                     cottageOwner.getEmailAddress(),cottageOwner.getPhoneNumber(),cottageOwner.getCity(),cottageOwner.getState(),
                     cottageOwner.getHomeAddress(),cottageOwner.getBirthDate(),cottageOwner.getUsername(),
-                    cottageOwner.getPassword(),cottageOwner.getRole());
+                    cottageOwner.getPassword(),cottageOwner.getRole(), cottageOwner.isBlocked());
             return new ResponseEntity<>(prijavaDTO,HttpStatus.OK);
         }else{
             throw new Exception("Kredencijali nisu tacni ili korisnik nema nalog!");
@@ -228,45 +232,55 @@ public class KorisnikController {
     }
 
 
-/*
-    @PostMapping(value="/register" ,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OwnerDTO> register(@RequestBody RegisterOwnerDTO DTO) throws Exception {
-        Korisnik existing = this.korisnikService.getByEmailAddressAndPassword(DTO.getEmailAddress(), DTO.getPassword());
-        //ako vec postoji clan
-        if (existing != null) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }else {
-            if (DTO.getPassword().equals(DTO.getPassword2())) {
-                OwnerDTO ownerDTO = new OwnerDTO();
-                ownerDTO.setCity(DTO.getCity());
-                ownerDTO.setBirthDate(DTO.getBirthDate());
-                ownerDTO.setEmailAddress(DTO.getEmailAddress());
-                ownerDTO.setName(DTO.getName());
-                ownerDTO.setPassword(DTO.getPassword());
-                ownerDTO.setState(DTO.getState());
-                ownerDTO.setHomeAddress(DTO.getHomeAddress());
-                ownerDTO.setPhoneNumber(DTO.getPhoneNumber());
-                ownerDTO.setUsername(DTO.getUsername());
-                zahtevZaReg.setSurname(DTO.getSurname());
-                ZahtevZaRegDTO zahtevZaRegDTO = new ZahtevZaRegDTO(DTO.getName(),DTO.getSurname(),
-                        DTO.getEmailAddress(),DTO.getPhoneNumber(),DTO.getCity(),
-                        DTO.getState(),DTO.getHomeAddress(),DTO.getBirthDate(),
-                        DTO.getUsername(),DTO.getPassword(),DTO.getRegType(),DTO.getRazlog());
-                this.zahtevZaRegService.save(zahtevZaReg);
-                Admin admin = this.adminService.getByUsernameAndPassword("123","111");
-                admin.zahtevi.add(zahtevZaReg);
-                return new ResponseEntity<>(zahtevZaRegDTO, HttpStatus.OK);
-            }else{
-                System.out.println("Lozinke se ne poklapaju!");
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
 
+    //send request for account removal cottage owner
+    @PostMapping(value="/removeAccountCott/{id}")
+    public ResponseEntity<ZahtevZaBrisanje> removeCottageAccount(@PathVariable Long id) throws Exception {
+        CottageOwner cottageOwner = this.cottageOwnerService.getOne(id);
+        Admin admin = this.adminService.getByUsernameAndPassword("123","111");
+        ZahtevZaBrisanje zahtevZaBrisanjeDTO = new ZahtevZaBrisanje();
+         if(cottageOwner != null){
+            zahtevZaBrisanjeDTO.setBlocked(cottageOwner.isBlocked());
+            zahtevZaBrisanjeDTO.setName(cottageOwner.getName());
+            zahtevZaBrisanjeDTO.setEmailAddress(cottageOwner.getEmailAddress());
+            zahtevZaBrisanjeDTO.setSurname(cottageOwner.getSurname());
+            zahtevZaBrisanjeDTO.setPhoneNumber(cottageOwner.getPhoneNumber());
+            zahtevZaBrisanjeDTO.setUsername(cottageOwner.getUsername());
+            zahtevZaBrisanjeDTO.setId(cottageOwner.getId());
+            this.zahtevZaBrisanjeService.save(zahtevZaBrisanjeDTO);
+            admin.deleteRequests.add(zahtevZaBrisanjeDTO);
+            return new ResponseEntity<>(zahtevZaBrisanjeDTO, HttpStatus.OK);
         }
+
+        return new ResponseEntity<>(zahtevZaBrisanjeDTO, HttpStatus.CONFLICT);
+
     }
 
- */
+
+
+    //send request for account removal cottage owner
+    @PostMapping(value="/removeAccountBoat/{id}")
+    public ResponseEntity<ZahtevZaBrisanje> removeBoatAccount(@PathVariable Long id) throws Exception {
+        BoatOwner boatOwner = this.boatOwnerService.getOne(id);
+        Admin admin = this.adminService.getByUsernameAndPassword("123","111");
+        ZahtevZaBrisanje zahtevZaBrisanjeDTO = new ZahtevZaBrisanje();
+
+        if(boatOwner != null){
+            zahtevZaBrisanjeDTO.setBlocked(boatOwner.isBlocked());
+            zahtevZaBrisanjeDTO.setName(boatOwner.getName());
+            zahtevZaBrisanjeDTO.setEmailAddress(boatOwner.getEmailAddress());
+            zahtevZaBrisanjeDTO.setSurname(boatOwner.getSurname());
+            zahtevZaBrisanjeDTO.setPhoneNumber(boatOwner.getPhoneNumber());
+            zahtevZaBrisanjeDTO.setUsername(boatOwner.getUsername());
+            zahtevZaBrisanjeDTO.setId(boatOwner.getId());
+            this.zahtevZaBrisanjeService.save(zahtevZaBrisanjeDTO);
+            admin.deleteRequests.add(zahtevZaBrisanjeDTO);
+            return new ResponseEntity<>(zahtevZaBrisanjeDTO, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(zahtevZaBrisanjeDTO, HttpStatus.CONFLICT);
+
+    }
 
 
 

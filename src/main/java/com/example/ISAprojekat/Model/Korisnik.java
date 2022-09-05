@@ -45,6 +45,8 @@ public class Korisnik implements Serializable {
     private String password;
     @Column
     private Role role;
+    @Column
+    private boolean blocked;
 
 
 
@@ -62,6 +64,23 @@ public class Korisnik implements Serializable {
         this.role = role;
     }
 
+    public Korisnik(String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role, boolean blocked) {
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.city = city;
+        this.state = state;
+        this.homeAddress = homeAddress;
+        this.birthDate = birthDate;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.blocked = blocked;
+    }
+
+
+
     public Korisnik(String name, String surname, String emailAddress, String phoneNumber, Date birthDate, String username, String password, Role role) {
         this.name = name;
         this.surname = surname;
@@ -72,5 +91,7 @@ public class Korisnik implements Serializable {
         this.password = password;
         this.role = role;
     }
+
+
 }
 

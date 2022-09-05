@@ -25,6 +25,7 @@ public class PrijavaKorisnikaDTO {
     private String username;
     private String password;
     private Role role;
+    private boolean blocked;
 
 
 
@@ -40,6 +41,21 @@ public class PrijavaKorisnikaDTO {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public PrijavaKorisnikaDTO(String name, String surname, String emailAddress, String phoneNumber, String city, String state, String homeAddress, Date birthDate, String username, String password, Role role, boolean blocked) {
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.city = city;
+        this.state = state;
+        this.homeAddress = homeAddress;
+        this.birthDate = birthDate;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.blocked = blocked;
     }
 
 

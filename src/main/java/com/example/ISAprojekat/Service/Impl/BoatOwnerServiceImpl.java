@@ -26,10 +26,13 @@ public class BoatOwnerServiceImpl implements BoatOwnerService {
     }
 
     @Override
-    public BoatOwner save(BoatOwner boatOwner) throws Exception {
+    public BoatOwner save(BoatOwner boatOwner) {
+        /*
         if(boatOwner.getId() != null){
             throw new Exception("ID must be unique!");
         }
+        
+         */
         BoatOwner newBO = boatOwnerRepository.save(boatOwner);
         return  newBO;
     }
@@ -55,5 +58,10 @@ public class BoatOwnerServiceImpl implements BoatOwnerService {
     @Override
     public void delete(Long id) {
 
+    }
+
+    @Override
+    public BoatOwner findByUsername(String username) {
+        return this.boatOwnerRepository.findByUsername(username);
     }
 }

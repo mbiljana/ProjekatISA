@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 public interface BoatOwnerRepository extends JpaRepository<BoatOwner,Long> {
     BoatOwner findByEmailAddressAndPassword(String emailAddress, String password);
     BoatOwner findByUsernameAndPassword(String username, String password);
+    BoatOwner findByUsername(String username);
 }

@@ -11,7 +11,7 @@ public interface KorisnikService {
     Korisnik getByUsernameAndPassword(String username, String password);
     Korisnik getByEmailAddressAndPassword(String emailAddress, String password);
     public List<Korisnik> findAll();
-    Korisnik save (Korisnik korisnik) throws Exception;
+    Korisnik save (Korisnik korisnik);
     Korisnik findOne(Long id);
 
     Korisnik update(Korisnik korisnik) throws Exception;

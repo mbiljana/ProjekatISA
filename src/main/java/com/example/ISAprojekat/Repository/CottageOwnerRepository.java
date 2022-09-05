@@ -10,4 +10,5 @@ public interface CottageOwnerRepository extends JpaRepository<CottageOwner,Long>
 
     CottageOwner findByEmailAddressAndPassword(String emailAddress, String password);
     CottageOwner findByUsernameAndPassword(String username, String password);
+    CottageOwner findByUsername(String username);
 }

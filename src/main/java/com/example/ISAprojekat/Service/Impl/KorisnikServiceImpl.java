@@ -44,10 +44,13 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
     @Override
-    public Korisnik save(Korisnik korisnik) throws Exception {
+    public Korisnik save(Korisnik korisnik){
+        /*
         if(korisnik.getId() != null){
             throw new Exception("ID must be unique!");
         }
+
+         */
         Korisnik newK = korisnikRepository.save(korisnik);
         return  newK;
     }

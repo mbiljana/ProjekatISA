@@ -26,10 +26,13 @@ public class CottageOwnerServiceImpl implements CottageOwnerService {
     }
 
     @Override
-    public CottageOwner save(CottageOwner cottageOwner) throws Exception {
+    public CottageOwner save(CottageOwner cottageOwner) {
+        /*
         if(cottageOwner.getId() != null){
             throw new Exception("ID must be unique!");
         }
+
+         */
         CottageOwner newCO = cottageOwnerRepository.save(cottageOwner);
         return  newCO;
     }
@@ -44,5 +47,10 @@ public class CottageOwnerServiceImpl implements CottageOwnerService {
     public CottageOwner getByUsernameAndPassword(String username, String password) {
         CottageOwner cottageOwner = this.cottageOwnerRepository.findByUsernameAndPassword(username,password);
         return cottageOwner;
+    }
+
+    @Override
+    public CottageOwner findByUsername(String username) {
+        return this.cottageOwnerRepository.findByUsername(username);
     }
 }
