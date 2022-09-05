@@ -5,10 +5,12 @@ import com.example.ISAprojekat.Repository.BoatRepository;
 import com.example.ISAprojekat.Repository.BoatReservationRepository;
 import com.example.ISAprojekat.Service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -41,15 +43,19 @@ public class  BoatServiceImpl implements BoatService {
         if(boat.getId() != null){
             throw new Exception("ID must be unique!");
         }
-        //String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        //boat.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
         Boat newB = this.boatRepository.save(boat);
         return  newB;
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
-        this.boatRepository.deleteById(id);
+        Boat boat = new Boat();
+        try {
+            boat =  this.boatRepository.findLockedById(id);
+        } catch(PessimisticLockingFailureException ex) { throw  new PessimisticLockingFailureException("This boat is already reserved!!"); }
+
+        this.boatRepository.deleteById(boat.getId());
     }
 
     @Override
@@ -66,28 +72,8 @@ public class  BoatServiceImpl implements BoatService {
 
     @Override
     public BoatReservation checkIfAlreadyReserved(BoatReservation reservation) {
-
-      // if(!checkReservationPeriods(reservation)){
             return reservation;
-       // }
-     //   return null;
     }
-
-    /*
-    private boolean checkReservationPeriods(BoatReservation reservation) {
-        for(BoatReservation boatReservation: boatReservationRepository.findBoatReservationByBoat(reservation.getBoat().getId())){
-            Date boatEndDate = boatReservation.getEndDate();
-            Date boatStartDate = boatReservation.getStartDate();
-
-            if((reservation.getStartDate().after(boatStartDate)) && (reservation.getEndDate().before(boatEndDate))){
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-     */
 
 
 

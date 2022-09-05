@@ -1,13 +1,16 @@
 package com.example.ISAprojekat.Service.Impl;
 
+import com.example.ISAprojekat.Model.Boat;
 import com.example.ISAprojekat.Model.Cottage;
 import com.example.ISAprojekat.Model.CottageOwner;
 import com.example.ISAprojekat.Model.CottageReservation;
 import com.example.ISAprojekat.Repository.CottageRepository;
 import com.example.ISAprojekat.Service.CottageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -41,9 +44,15 @@ public class CottageServiceImpl implements CottageService {
         return newCO;
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
-        this.cottageRepository.deleteById(id);
+        Cottage cottage = new Cottage();
+        try {
+            cottage =  this.cottageRepository.findLockedById(id);
+        } catch(PessimisticLockingFailureException ex) { throw  new PessimisticLockingFailureException("This boat is already reserved!!"); }
+
+        this.cottageRepository.deleteById(cottage.getId());
     }
 
     @Override

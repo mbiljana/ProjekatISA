@@ -45,6 +45,11 @@ VALUES (8,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fish
 include stability, strength and durability to survive fishing ventures across various kinds of waterways',
         'Blue Moon','Pets are not allowed.','Fishing boat',
         'WKC4B','100 horsepower',100,'no returns',45.5962,20.1345,500,'bi1.jpg', 'bi3.jpg','boat1.jpg','boat2.jpg');
+INSERT INTO boat(id,additional_equipment,boat_address,boat_capacity,boat_description,boat_name,boat_rules,boat_type,engine_number,engine_power,max_speed,cancel_condition,latitude,longitude,price,image_ent1, image_ent2,image_ext1,image_ext2)
+VALUES (9,'Fishing rods, water vests','Harbor C5',10,'Built exclusively for fishing,
+include stability, strength and durability to survive fishing ventures across various kinds of waterways',
+        'Blue Moon','Pets are not allowed.','Fishing boat',
+        'WKC4B','100 horsepower',100,'no returns',45.5962,20.1345,500,'bi1.jpg', 'bi3.jpg','boat1.jpg','boat2.jpg');
 
 
 
